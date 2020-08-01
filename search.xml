@@ -173,9 +173,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> ISCC </tag>
             
@@ -202,9 +202,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> ISCC </tag>
             
@@ -293,11 +293,11 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
             
             <tag> MISC </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -686,11 +686,11 @@
       
         <tags>
             
-            <tag> 开发工具 </tag>
-            
             <tag> 基本语法 </tag>
             
             <tag> 流程控制 </tag>
+            
+            <tag> 开发工具 </tag>
             
         </tags>
       
@@ -1042,9 +1042,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 攻防世界 </tag>
             
@@ -1071,9 +1071,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> i春秋 </tag>
             
@@ -1100,9 +1100,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 南邮 </tag>
             
@@ -1351,9 +1351,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 南邮 </tag>
             
@@ -1440,9 +1440,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 攻防世界 </tag>
             
@@ -1968,11 +1968,11 @@
       
         <tags>
             
+            <tag> 函数 </tag>
+            
             <tag> 基本语法 </tag>
             
             <tag> 流程控制 </tag>
-            
-            <tag> 函数 </tag>
             
             <tag> 数组 </tag>
             
