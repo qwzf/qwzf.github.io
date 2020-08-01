@@ -42,20 +42,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SQL </tag>
-            
-            <tag> BUG </tag>
-            
             <tag> REGEXP注入 </tag>
             
             <tag> LIKE注入 </tag>
+            
+            <tag> 题目复现 </tag>
             
         </tags>
       
@@ -402,16 +402,18 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SSRF漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> 相关函数和协议 </tag>
             
-            <tag> SSRF </tag>
+            <tag> 漏洞利用 </tag>
             
         </tags>
       
@@ -462,16 +464,18 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> CSRF漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> 靶场练习 </tag>
             
-            <tag> CSRF </tag>
+            <tag> 攻击类型 </tag>
             
         </tags>
       
@@ -793,14 +797,14 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> XXE漏洞 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> BUG </tag>
             
             <tag> XML </tag>
             
@@ -826,20 +830,24 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SQL </tag>
+            <tag> 题目复现 </tag>
             
-            <tag> BUG </tag>
+            <tag> 靶场练习 </tag>
             
             <tag> 堆叠注入 </tag>
             
             <tag> order by排序注入 </tag>
+            
+            <tag> 异或注入 </tag>
             
         </tags>
       
@@ -857,16 +865,16 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SQL </tag>
-            
-            <tag> BUG </tag>
+            <tag> 靶场练习 </tag>
             
             <tag> 二次注入 </tag>
             
@@ -890,16 +898,16 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SQL </tag>
-            
-            <tag> BUG </tag>
+            <tag> 靶场练习 </tag>
             
             <tag> POST型联合查询注入 </tag>
             
@@ -923,18 +931,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 协议层漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
-            
-            <tag> 协议层 </tag>
+            <tag> 题目复现 </tag>
             
             <tag> HTTP </tag>
+            
+            <tag> HTTP请求走私 </tag>
             
         </tags>
       
@@ -952,14 +962,14 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> BUG </tag>
             
             <tag> SQL盲注 </tag>
             
@@ -979,16 +989,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 文件操作漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> 题目复现 </tag>
             
-            <tag> 任意文件读取与下载漏洞 </tag>
+            <tag> 任意文件读取漏洞 </tag>
+            
+            <tag> 任意文件下载漏洞 </tag>
             
         </tags>
       
@@ -1006,16 +1020,14 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> SQL </tag>
-            
-            <tag> BUG </tag>
             
             <tag> 报错注入 </tag>
             
@@ -1122,16 +1134,22 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 文件包含漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> 漏洞利用 </tag>
             
-            <tag> 文件包含漏洞 </tag>
+            <tag> 漏洞基础 </tag>
+            
+            <tag> 漏洞绕过 </tag>
+            
+            <tag> PHP伪协议 </tag>
             
         </tags>
       
@@ -1149,16 +1167,18 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 信息泄露 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
-            
             <tag> 源码泄露 </tag>
+            
+            <tag> 源码泄露类型 </tag>
             
         </tags>
       
@@ -1176,16 +1196,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 反序列化漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> PHP类与对象 </tag>
             
-            <tag> 反序列化漏洞 </tag>
+            <tag> 序列化与反序列化基础 </tag>
+            
+            <tag> 魔术方法简单利用 </tag>
             
         </tags>
       
@@ -1203,16 +1227,18 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 命令注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> 命令执行 </tag>
             
-            <tag> 命令执行与代码执行 </tag>
+            <tag> 代码执行 </tag>
             
         </tags>
       
@@ -1259,16 +1285,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 文件上传漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> 白名单绕过 </tag>
             
-            <tag> 文件上传漏洞 </tag>
+            <tag> 内容绕过 </tag>
+            
+            <tag> 竞争条件绕过 </tag>
             
         </tags>
       
@@ -1317,16 +1347,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> 文件上传漏洞 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> JS绕过 </tag>
             
-            <tag> 文件上传漏洞 </tag>
+            <tag> MIME绕过 </tag>
+            
+            <tag> 黑名单绕过 </tag>
             
         </tags>
       
@@ -1402,20 +1436,20 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SQL </tag>
-            
-            <tag> BUG </tag>
-            
             <tag> 导出文件注入 </tag>
             
             <tag> GET型盲注 </tag>
+            
+            <tag> 靶场练习 </tag>
             
         </tags>
       
@@ -1491,16 +1525,16 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> XSS </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
-            
-            <tag> XSS </tag>
+            <tag> XSS绕过 </tag>
             
         </tags>
       
@@ -1661,18 +1695,18 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> SQL注入 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SQL </tag>
+            <tag> 靶场练习 </tag>
             
-            <tag> BUG </tag>
-            
-            <tag> GET型错误型注入 </tag>
+            <tag> GET型联合查询注入 </tag>
             
             <tag> GET型双查询注入 </tag>
             
@@ -1808,16 +1842,18 @@
       
       <categories>
           
-          <category> Web </category>
+          <category> 漏洞原理 </category>
+          
+          <category> XSS </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> BUG </tag>
+            <tag> XSS基础 </tag>
             
-            <tag> XSS </tag>
+            <tag> XSS绕过 </tag>
             
         </tags>
       
