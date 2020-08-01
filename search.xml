@@ -75,6 +75,8 @@
           
           <category> 运维 </category>
           
+          <category> Docker </category>
+          
       </categories>
       
       
@@ -103,6 +105,8 @@
       <categories>
           
           <category> 运维 </category>
+          
+          <category> Docker </category>
           
       </categories>
       
@@ -134,6 +138,8 @@
       <categories>
           
           <category> 运维 </category>
+          
+          <category> Docker </category>
           
       </categories>
       
@@ -311,6 +317,8 @@
           
           <category> 运维 </category>
           
+          <category> Linux网络服务 </category>
+          
       </categories>
       
       
@@ -423,6 +431,8 @@
           
           <category> 运维 </category>
           
+          <category> Linux网络服务 </category>
+          
       </categories>
       
       
@@ -481,12 +491,12 @@
           
           <category> 编程开发 </category>
           
+          <category> Python </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Python </tag>
             
             <tag> 网络爬虫 </tag>
             
@@ -511,6 +521,8 @@
       <categories>
           
           <category> 运维 </category>
+          
+          <category> Docker </category>
           
       </categories>
       
@@ -570,12 +582,12 @@
           
           <category> 编程开发 </category>
           
+          <category> Python </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Python </tag>
             
             <tag> 异常处理及程序调试 </tag>
             
@@ -601,12 +613,12 @@
           
           <category> 编程开发 </category>
           
+          <category> Python </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Python </tag>
             
             <tag> 字符串及正则表达式 </tag>
             
@@ -632,14 +644,22 @@
           
           <category> 编程开发 </category>
           
+          <category> Python </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> 序列的应用 </tag>
+            
+            <tag> 列表 </tag>
+            
+            <tag> 元组 </tag>
+            
+            <tag> 字典 </tag>
+            
+            <tag> 集合 </tag>
             
         </tags>
       
@@ -659,12 +679,12 @@
           
           <category> 编程开发 </category>
           
+          <category> Python </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Python </tag>
             
             <tag> 开发工具 </tag>
             
@@ -689,6 +709,8 @@
       <categories>
           
           <category> 运维 </category>
+          
+          <category> Linux基础 </category>
           
       </categories>
       
@@ -1668,16 +1690,14 @@
           
           <category> 编程开发 </category>
           
+          <category> PHP </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> Web </tag>
-            
-            <tag> PHP </tag>
-            
-            <tag> PHP开发 </tag>
+            <tag> Web开发 </tag>
             
             <tag> bbs论坛 </tag>
             
@@ -1699,14 +1719,16 @@
           
           <category> 协议分析 </category>
           
+          <category> HTTP协议 </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> HTTP协议 </tag>
+            
+            <tag> HTTP头流量包 </tag>
             
         </tags>
       
@@ -1755,14 +1777,12 @@
           
           <category> 编程开发 </category>
           
+          <category> PHP </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Web </tag>
-            
-            <tag> PHP </tag>
             
             <tag> MySQL学习 </tag>
             
@@ -1813,14 +1833,12 @@
           
           <category> 编程开发 </category>
           
+          <category> PHP </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Web </tag>
-            
-            <tag> PHP </tag>
             
             <tag> 正则表达式 </tag>
             
@@ -1857,9 +1875,9 @@
             
             <tag> BUG </tag>
             
-            <tag> PHP </tag>
-            
             <tag> SQL注入 </tag>
+            
+            <tag> PHP </tag>
             
         </tags>
       
@@ -1879,14 +1897,14 @@
           
           <category> 编程开发 </category>
           
+          <category> PHP </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> Web </tag>
-            
-            <tag> PHP开发 </tag>
+            <tag> Web开发 </tag>
             
             <tag> 登录和注册功能 </tag>
             
@@ -1937,20 +1955,18 @@
           
           <category> 编程开发 </category>
           
+          <category> PHP </category>
+          
       </categories>
       
       
         <tags>
-            
-            <tag> Web </tag>
             
             <tag> 基本语法 </tag>
             
             <tag> 流程控制 </tag>
             
             <tag> 函数 </tag>
-            
-            <tag> PHP </tag>
             
             <tag> 数组 </tag>
             
@@ -2146,7 +2162,7 @@
           
           <category> 工具学习 </category>
           
-          <category> 运维 </category>
+          <category> phpstudy </category>
           
       </categories>
       
@@ -2156,8 +2172,6 @@
             <tag> Web </tag>
             
             <tag> 数据库 </tag>
-            
-            <tag> phpstudy </tag>
             
         </tags>
       
