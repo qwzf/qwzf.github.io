@@ -686,11 +686,11 @@
       
         <tags>
             
+            <tag> 开发工具 </tag>
+            
             <tag> 基本语法 </tag>
             
             <tag> 流程控制 </tag>
-            
-            <tag> 开发工具 </tag>
             
         </tags>
       
@@ -1641,9 +1641,9 @@
             
             <tag> CTF </tag>
             
-            <tag> BUGKU </tag>
-            
             <tag> MISC </tag>
+            
+            <tag> BUGKU </tag>
             
         </tags>
       
@@ -1968,11 +1968,11 @@
       
         <tags>
             
-            <tag> 函数 </tag>
-            
             <tag> 基本语法 </tag>
             
             <tag> 流程控制 </tag>
+            
+            <tag> 函数 </tag>
             
             <tag> 数组 </tag>
             
