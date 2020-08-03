@@ -940,13 +940,13 @@
       
         <tags>
             
-            <tag> 靶场练习 </tag>
-            
             <tag> POST型联合查询注入 </tag>
             
             <tag> POST型报错注入 </tag>
             
             <tag> POST型盲注 </tag>
+            
+            <tag> 靶场练习 </tag>
             
         </tags>
       
@@ -1737,11 +1737,11 @@
       
         <tags>
             
+            <tag> 靶场练习 </tag>
+            
             <tag> GET型联合查询注入 </tag>
             
             <tag> GET型双查询注入 </tag>
-            
-            <tag> 靶场练习 </tag>
             
         </tags>
       
@@ -1884,9 +1884,9 @@
       
         <tags>
             
-            <tag> XSS基础 </tag>
-            
             <tag> XSS绕过 </tag>
+            
+            <tag> XSS基础 </tag>
             
         </tags>
       
