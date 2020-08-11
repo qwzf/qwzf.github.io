@@ -1478,11 +1478,11 @@
       
         <tags>
             
-            <tag> 靶场练习 </tag>
-            
             <tag> 导出文件注入 </tag>
             
             <tag> GET型盲注 </tag>
+            
+            <tag> 靶场练习 </tag>
             
         </tags>
       
@@ -1708,9 +1708,9 @@
             
             <tag> CTF </tag>
             
-            <tag> BUGKU </tag>
-            
             <tag> MISC </tag>
+            
+            <tag> BUGKU </tag>
             
         </tags>
       
@@ -1737,11 +1737,11 @@
       
         <tags>
             
+            <tag> 靶场练习 </tag>
+            
             <tag> GET型联合查询注入 </tag>
             
             <tag> GET型双查询注入 </tag>
-            
-            <tag> 靶场练习 </tag>
             
         </tags>
       
