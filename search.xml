@@ -204,9 +204,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> ISCC </tag>
             
@@ -233,9 +233,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> ISCC </tag>
             
@@ -324,11 +324,11 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
             
             <tag> MISC </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1087,9 +1087,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 攻防世界 </tag>
             
@@ -1116,9 +1116,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> i春秋 </tag>
             
@@ -1145,9 +1145,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 南邮 </tag>
             
@@ -1418,9 +1418,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 南邮 </tag>
             
@@ -1478,11 +1478,11 @@
       
         <tags>
             
+            <tag> 靶场练习 </tag>
+            
             <tag> 导出文件注入 </tag>
             
             <tag> GET型盲注 </tag>
-            
-            <tag> 靶场练习 </tag>
             
         </tags>
       
@@ -1507,9 +1507,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
             <tag> 攻防世界 </tag>
             
@@ -1708,9 +1708,9 @@
             
             <tag> CTF </tag>
             
-            <tag> MISC </tag>
-            
             <tag> BUGKU </tag>
+            
+            <tag> MISC </tag>
             
         </tags>
       
@@ -1737,11 +1737,11 @@
       
         <tags>
             
-            <tag> 靶场练习 </tag>
-            
             <tag> GET型联合查询注入 </tag>
             
             <tag> GET型双查询注入 </tag>
+            
+            <tag> 靶场练习 </tag>
             
         </tags>
       
