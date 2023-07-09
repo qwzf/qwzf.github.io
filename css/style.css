@@ -1185,10 +1185,7 @@ article .content .video-container embed {
 }
 article .content blockquote {
   margin: 1rem 10px;
-  padding: 0.5em 10px;
-  background: inherit;
   color: #ccffb6;
-  quotes: "\201C" "\201D" "\2018" "\2019";
   font-weight: 700;
 }
 article .content blockquote p {
