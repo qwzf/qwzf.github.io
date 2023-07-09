@@ -556,9 +556,13 @@ body h4 {
 .content a.icon {
   background: none;
   color: #383838;
+  text-decoration: none;
 }
 .content a.icon:hover {
   color: #d480aa;
+}
+.content a.icon:hover {
+  text-decoration: none;
 }
 .content h1 a,
 .content .h1 a,
