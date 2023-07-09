@@ -32,7 +32,7 @@ $(document).ready(function () {
         /**
          * Display the menu on hi-res laptops and desktops.
          */
-        if ($(document).width() >= 1440) {
+        if ($(document).width() >= 0) { //原来是1440，修改分辨率大于0进入文章页面显示菜单及toc
             menu.css("visibility", "visible");
             menuIcon.addClass("active");
         }
@@ -59,10 +59,8 @@ $(document).ready(function () {
                 var topDistance = menu.offset().top;
 
                 // hide only the navigation links on desktop
-                if (!nav.is(":visible") && topDistance < 50) {
+                if (!nav.is(":visible") || 1 > 0) { //原来的是if (!nav.is(":visible") && topDistance < 50) {nav.show();} else if (nav.is(":visible") && topDistance > 100) {nav.hide();}
                     nav.show();
-                } else if (nav.is(":visible") && topDistance > 100) {
-                    nav.hide();
                 }
 
                 // on tablet, hide the navigation icon as well and show a "scroll to top

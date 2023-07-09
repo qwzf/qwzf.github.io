@@ -828,7 +828,7 @@ body h4 {
   background-repeat: repeat-x;
 }
 #header-post #nav ul li {
-  border-right: 1px dotted #2bbc8a;
+  border-right: 1px;
 }
 #header-post #nav ul li:last-child {
   margin-right: 0;
