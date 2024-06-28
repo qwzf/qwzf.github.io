@@ -1635,7 +1635,7 @@ article .content .caption {
   z-index: 3;
 }
 figure.highlight table::-webkit-scrollbar-thumb {
-  background: #121212;
+  background: #131416;
 }
 figure.highlight pre .deletion {
   color: #bf42bf;
@@ -1772,7 +1772,7 @@ table tr th:not(.gutter):not(.code) {
 table tr .gutter {
   float: left;
   width: 3em;
-  background: #505050;
+  background: #212326;
   color: #dfe;
   text-align: right;
 }
