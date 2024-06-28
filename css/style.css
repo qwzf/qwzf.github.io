@@ -1593,70 +1593,108 @@ article .content .caption {
 #categories .category-list .category-list-item .category-list-count:after {
   content: ")";
 }
-.highlight {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #b1e7e7;
-  background: #282c34;
+.highlight-wrap[data-rel]:hover {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0px 30px 0px rgba(0,0,0,0.4);
 }
-.highlight .comment,
-.highlight .quote {
-  color: #969896;
-  font-style: italic;
+.highlight-wrap[data-rel] {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0px 10px 0px rgba(0,0,0,0.4);
 }
-.highlight .doctag,
-.highlight .keyword,
-.highlight .formula {
-  color: #c678dd;
-}
-.highlight .section,
-.highlight .name,
-.highlight .selector-tag,
-.highlight .deletion,
-.highlight .subst {
-  color: #e06c75;
-}
-.highlight .literal {
-  color: #56b6c2;
-}
-.highlight .string,
-.highlight .regexp,
-.highlight .addition,
-.highlight .attribute,
-.highlight .meta-string {
-  color: #98c379;
-}
-.highlight .built_in,
-.highlight .class .title {
-  color: #e6c07b;
-}
-.highlight .attr,
-.highlight .variable,
-.highlight .template-variable,
-.highlight .type,
-.highlight .selector-class,
-.highlight .selector-attr,
-.highlight .selector-pseudo,
-.highlight .number {
-  color: #d19a66;
-}
-.highlight .symbol,
-.highlight .bullet,
-.highlight .link,
-.highlight .meta,
-.highlight .selector-id,
-.highlight .title {
-  color: #969896;
-}
-.highlight .emphasis {
-  font-style: italic;
-}
-.highlight .strong {
+.highlight-wrap[data-rel]::before {
+  content: attr(data-rel);
+  height: 38px;
+  line-height: 38px;
+  background: #e6ebf1;
+  color: #90a4ae;
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   font-weight: bold;
+  text-indent: 15px;
+  float: left;
 }
-.highlight .link {
-  text-decoration: underline;
+figure.highlight table::-webkit-scrollbar-thumb {
+  background: $highlight-scrollbar;
+}
+figure.highlight pre .deletion {
+  color: $highlight-deletion;
+}
+figure.highlight pre .addition {
+  color: $highlight-addition;
+}
+figure.highlight pre .meta {
+  color: $highlight-purple;
+}
+figure.highlight pre .comment {
+  color: $highlight-comment;
+}
+figure.highlight pre .variable,
+figure.highlight pre .attribute,
+figure.highlight pre .regexp,
+figure.highlight pre .ruby .constant,
+figure.highlight pre .xml .tag .title,
+figure.highlight pre .xml .pi,
+figure.highlight pre .xml .doctype,
+figure.highlight pre .html .doctype,
+figure.highlight pre .css .id,
+figure.highlight pre .tag .name,
+figure.highlight pre .css .class,
+figure.highlight pre .css .pseudo {
+  color: $highlight-red;
+}
+figure.highlight pre .tag {
+  color: $highlight-aqua;
+}
+figure.highlight pre .number,
+figure.highlight pre .preprocessor,
+figure.highlight pre .literal,
+figure.highlight pre .params,
+figure.highlight pre .constant,
+figure.highlight pre .command {
+  color: $highlight-orange;
+}
+figure.highlight pre .built_in {
+  color: $highlight-yellow;
+}
+figure.highlight pre .ruby .class .title,
+figure.highlight pre .css .rules .attribute,
+figure.highlight pre .string,
+figure.highlight pre .value,
+figure.highlight pre .inheritance,
+figure.highlight pre .header,
+figure.highlight pre .ruby .symbol,
+figure.highlight pre .xml .cdata,
+figure.highlight pre .special,
+figure.highlight pre .number,
+figure.highlight pre .formula {
+  color: $highlight-green;
+}
+figure.highlight pre .keyword,
+figure.highlight pre .title,
+figure.highlight pre .css .hexcolor {
+  color: $highlight-aqua;
+}
+figure.highlight pre .function,
+figure.highlight pre .python .decorator,
+figure.highlight pre .python .title,
+figure.highlight pre .ruby .function .title,
+figure.highlight pre .ruby .title .keyword,
+figure.highlight pre .perl .sub,
+figure.highlight pre .javascript .title,
+figure.highlight pre .coffeescript .title {
+  color: $highlight-blue;
+}
+figure.highlight pre .tag .attr,
+figure.highlight pre .javascript .function {
+  color: $highlight-purple;
+}
+.highlight {
+  margin: 2rem 0 0 0;
 }
 pre {
   overflow-x: auto;
