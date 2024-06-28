@@ -1709,6 +1709,12 @@ figure.highlight pre .tag .attr,
 figure.highlight pre .javascript .function {
   color: #c792ea;
 }
+.highlight {
+  margin: 2rem 0 0 0;
+}
+.btn-copy {
+  top: 0.2rem;
+}
 pre {
   overflow-x: auto;
   font-size: 16px;
@@ -1781,7 +1787,7 @@ table tr .code pre .line .meta + .bash {
 }
 .highlight {
   overflow-x: auto;
-  margin: 2rem 0 0 0;
+  margin: 1rem 0;
   border-radius: 4px;
   font-weight: 500;
   font-family: "Fira Code", 'Noto Sans SC', sans-serif, monospace;
@@ -1818,7 +1824,6 @@ display,
 }
 .btn-copy {
   position: absolute;
-  top: 0.2rem;
   right: 20px;
   font-size: 1.2rem;
   opacity: 0;
