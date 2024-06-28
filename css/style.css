@@ -1762,7 +1762,6 @@ td code {
 }
 table {
   font-weight: 400;
-  background: #212326;
   font-size: 16px !important;
   font-family: "Fira Code", 'Noto Sans SC', sans-serif, monospace;
 }
@@ -1782,6 +1781,7 @@ table tr .code pre .line .meta + .bash {
 .highlight {
   overflow-x: auto;
   margin: 2rem 0 0 0;
+  background: #212326;
   font-weight: 500;
   font-family: "Fira Code", 'Noto Sans SC', sans-serif, monospace;
   -webkit-border-radius: 4px;
